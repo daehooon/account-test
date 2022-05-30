@@ -1,4 +1,4 @@
-package com.bit189.haroo.service.impl;
+package com.kim2.test.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,37 +7,29 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
-import com.bit189.haroo.dao.LearningDao;
-import com.bit189.haroo.dao.LearningScheduleDao;
-import com.bit189.haroo.dao.ServiceInfoDao;
-import com.bit189.haroo.domain.Learning;
-import com.bit189.haroo.domain.ServiceInfo;
-import com.bit189.haroo.service.LearningService;
+import com.kim2.test.dao.CustomerDao;
+import com.kim2.test.domain.Customer;
+import com.kim2.test.service.CustomerService;
 
 @Service
-public class DefaultLearningService implements LearningService {
+public class DefaultCustomerService implements CustomerService {
 
   TransactionTemplate transactionTemplate;
-  ServiceInfoDao serviceInfoDao;
-  LearningDao learningDao;
-  LearningScheduleDao learningScheduleDao;
+  CustomerDao customerDao;
 
-  public DefaultLearningService(PlatformTransactionManager txManager, ServiceInfoDao serviceInfoDao,
-      LearningDao learningDao, LearningScheduleDao learningScheduleDao) {
+  public DefaultCustomerService(PlatformTransactionManager txManager, CustomerDao customerDao) {
 
     this.transactionTemplate = new TransactionTemplate(txManager);
-    this.serviceInfoDao = serviceInfoDao;
-    this.learningDao = learningDao;
-    this.learningScheduleDao = learningScheduleDao;
+    this.customerDao = customerDao;
   }
 
   @Override
-  public int add(ServiceInfo serviceInfo, Learning learning) throws Exception {
+  public int add(Customer customer) throws Exception {
     return transactionTemplate.execute(new TransactionCallback<Integer>() {
       @Override
       public Integer doInTransaction(TransactionStatus status) {
         try {
-          serviceInfoDao.insert(serviceInfo);
+          customerDao.insert(customer);
 
           HashMap<String,Object> param = new HashMap<>();
           param.put("no", serviceInfo.getNo());
@@ -59,17 +51,17 @@ public class DefaultLearningService implements LearningService {
   }
 
   @Override
-  public List<Learning> list() throws Exception {
+  public List<Customer> list() throws Exception {
     return learningDao.findAll();
   }
 
   @Override
-  public Learning get(int no) throws Exception {
+  public Customer get(int no) throws Exception {
     return learningDao.findByNo(no);
   }
 
   @Override
-  public int update(ServiceInfo serviceInfo, Learning learning) throws Exception {
+  public int update(ServiceInfo serviceInfo, Customer learning) throws Exception {
     return transactionTemplate.execute(new TransactionCallback<Integer>() {
       @Override
       public Integer doInTransaction(TransactionStatus status) {
@@ -100,7 +92,7 @@ public class DefaultLearningService implements LearningService {
   }
 
   @Override
-  public Learning Search(int no) throws Exception {
+  public Customer Search(int no) throws Exception {
     return null;
   }
 }

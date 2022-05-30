@@ -10,7 +10,7 @@
     <!-- domain.Customer -->
     <id column="BUSI_NUM" property="businessNumber"/>
     <result column="CUSTOM" property="custom"/>
-    <result column="SHORT" property="short"/>
+    <result column="SHORT" property="sshort"/>
     <result column="CEO" property="ceo"/>
     <result column="CHARGE_PERSON" property="chargePerson"/>
     <result column="BUSI_CONDITION" property="businessCondition"/>
@@ -34,40 +34,13 @@
     <result column="REGI_INFO_DATE" property="registrationDate"/>
     <result column="MODI_INFO_MAN" property="modificationMan"/>
     <result column="MODI_INFO_DATE" property="modificationDate"/>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <association property="owner" javaType="tutor">
-      <id column="tno" property="no"/>
-      <result column="name" property="name"/>
-      <result column="nickname" property="nickname"/>
-      <result column="profile_pic" property="profilePicture"/>
-      <result column="mrno" property="rank"/>
-      <result column="tintro" property="intro"/>
-      <result column="tappl" property="application"/>
-      <result column="prom_dttm" property="promotedDate"/>
-    </association>
-    
-    <collection property="schedules" ofType="learningSchedule">
-      <id column="sche_no" property="no"/>
-      <result column="lno" property="learningNo"/>
-      <result column="date" property="learningDate"/>
-      <result column="stm" property="startTime"/>
-      <result column="etm" property="endTime"/>
-    </collection>
   </resultMap>
   
   <insert id="insert" parameterType="map">
-    insert into har_learning(lno,tno,min_head,max_head,curriculum,price,zipcode,addr,det_addr,rfnd_info,sgg_no)
+    insert into custom(BUSI_NUM, CUSTOM, SHORT, CEO, CHARGE_PERSON, BUSI_CONDITION, ITEM, POST_NUM, 
+      ADDR1, ADDR2, TEL, FAX, HOMEPAGE, CO_YN, FOREIGN_YN, TAX_YN, COUNTRY_ENG, COUNTRY_KOR, 
+      SPECIAL_RELATION, TRADE_SHOP, CONTRACT_PERIOD_S, CONTRACT_PERIOD_E, REGI_INFO_MAN, REGI_INFO_DATE, 
+      MODI_INFO_MAN, MODI_INFO_DATE)
     values(#{no},#{learning.owner.no},#{learning.minPeople},#{learning.maxPeople},#{learning.progressOrder},#{learning.price},#{learning.zipcode},#{learning.address},#{learning.detailAddress},#{learning.refundInformation},#{learning.sigunguNo})
   </insert>
   

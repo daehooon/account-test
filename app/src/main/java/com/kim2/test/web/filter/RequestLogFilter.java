@@ -1,4 +1,4 @@
-package com.bit189.haroo.web.filter;
+package com.kim2.test.web.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;

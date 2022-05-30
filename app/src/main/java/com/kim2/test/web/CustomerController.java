@@ -1,4 +1,4 @@
-package com.bit189.haroo.web;
+package com.kim2.test.web;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -14,30 +14,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.bit189.haroo.domain.Learning;
 import com.bit189.haroo.domain.LearningApplication;
 import com.bit189.haroo.domain.LearningSchedule;
-import com.bit189.haroo.domain.Member;
 import com.bit189.haroo.domain.ServiceInfo;
 import com.bit189.haroo.domain.Tutor;
 import com.bit189.haroo.service.LearningApplicationService;
-import com.bit189.haroo.service.LearningService;
 import com.bit189.haroo.service.MemberService;
+import com.kim2.test.domain.Customer;
+import com.kim2.test.service.LearningService;
 import net.coobird.thumbnailator.ThumbnailParameter;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 import net.coobird.thumbnailator.name.Rename;
 
 @Controller
-@RequestMapping("/learning")
-public class LearningController {
+@RequestMapping("/customer")
+public class CustomerController {
 
   ServletContext sc;
   LearningService learningService;
   MemberService memberService;
   LearningApplicationService learningApplicationService;
 
-  public LearningController(ServletContext sc, LearningService learningService, 
+  public CustomerController(ServletContext sc, LearningService learningService, 
       MemberService memberService, LearningApplicationService learningApplicationService) {
     this.sc = sc;
     this.learningService = learningService;
@@ -54,7 +53,7 @@ public class LearningController {
     String uploadDir = sc.getRealPath("/upload");
 
     ServiceInfo s = new ServiceInfo();
-    Learning l = new Learning();
+    Customer l = new Customer();
 
     Member loginUser = (Member) session.getAttribute("loginUser");
     Tutor tutor = new Tutor();
@@ -122,7 +121,7 @@ public class LearningController {
 
   @RequestMapping("delete")
   public String delete(int no, HttpSession session) throws Exception {
-    Learning learning = learningService.get(no);
+    Customer learning = learningService.get(no);
     if (learning == null) {
       throw new Exception("해당 번호의 체험학습이 없습니다.");
     }
@@ -147,7 +146,7 @@ public class LearningController {
   @GetMapping("list")
   public void list(Model model) throws Exception {
     List<Member> members = memberService.list(null);
-    List<Learning> learnings = learningService.list();
+    List<Customer> learnings = learningService.list();
     model.addAttribute("learnings", learnings);
     model.addAttribute("members", members);
   }
@@ -161,11 +160,11 @@ public class LearningController {
   public String update(int no, Model model, Part coverImage,
       HttpSession session, HttpServletRequest request) throws Exception {
 
-    Learning learning = learningService.get(no);
+    Customer learning = learningService.get(no);
     String uploadDir = sc.getRealPath("/upload");
 
     ServiceInfo s = new ServiceInfo();
-    Learning l = new Learning();
+    Customer l = new Customer();
 
     Member loginUser = (Member) session.getAttribute("loginUser");
     if (learning.getOwner().getNo() != loginUser.getNo()) {
