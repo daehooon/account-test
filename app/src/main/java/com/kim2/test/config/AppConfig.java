@@ -96,9 +96,9 @@ public class AppConfig {
     // mybatis 설정 파일을 XML 파일로 따로 두지 말고,
     // 다음과 같이 자바 코드로 설정하면 편하다.
     // 
-    sqlSessionFactoryBean.setTypeAliasesPackage("com.bit189.haroo.domain");
+    sqlSessionFactoryBean.setTypeAliasesPackage("com.kim2.test.domain");
     sqlSessionFactoryBean.setMapperLocations(
-        appCtx.getResources("classpath:com/bit189/haroo/mapper/*Mapper.xml"));
+        appCtx.getResources("classpath:com/kim2/test/mapper/*Mapper.xml"));
     return sqlSessionFactoryBean.getObject();
   }
 

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kim2.test.dao.CustomerDao">
+  
+  <resultMap id="customerMap" type="customer">
+  
+    <!-- domain.Customer -->
+    <id column="BUSI_NUM" property="businessNumber"/>
+    <result column="CUSTOM" property="custom"/>
+    <result column="SHORT" property="short"/>
+    <result column="CEO" property="ceo"/>
+    <result column="CHARGE_PERSON" property="chargePerson"/>
+    <result column="BUSI_CONDITION" property="businessCondition"/>
+    <result column="ITEM" property="item"/>
+    <result column="POST_NUM" property="postNumber"/>
+    <result column="ADDR1" property="firstAddress"/>
+    <result column="ADDR2" property="secondAddress"/>
+    <result column="TEL" property="tel"/>
+    <result column="FAX" property="fax"/>
+    <result column="HOMEPAGE" property="homepage"/>
+    <result column="CO_YN" property="corporationWhether"/>
+    <result column="FOREIGN_YN" property="foreignWhether"/>
+    <result column="TAX_YN" property="taxWhether"/>
+    <result column="COUNTRY_ENG" property="countryEnglish"/>
+    <result column="COUNTRY_KOR" property="countryKorean"/>
+    <result column="SPECIAL_RELATION" property="specialRelation"/>
+    <result column="TRADE_SHOP" property="tradeShop"/>
+    <result column="CONTRACT_PERIOD_S" property="contractStart"/>
+    <result column="CONTRACT_PERIOD_E" property="contractEnd"/>
+    <result column="REGI_INFO_MAN" property="registrationMan"/>
+    <result column="REGI_INFO_DATE" property="registrationDate"/>
+    <result column="MODI_INFO_MAN" property="modificationMan"/>
+    <result column="MODI_INFO_DATE" property="modificationDate"/>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <association property="owner" javaType="tutor">
+      <id column="tno" property="no"/>
+      <result column="name" property="name"/>
+      <result column="nickname" property="nickname"/>
+      <result column="profile_pic" property="profilePicture"/>
+      <result column="mrno" property="rank"/>
+      <result column="tintro" property="intro"/>
+      <result column="tappl" property="application"/>
+      <result column="prom_dttm" property="promotedDate"/>
+    </association>
+    
+    <collection property="schedules" ofType="learningSchedule">
+      <id column="sche_no" property="no"/>
+      <result column="lno" property="learningNo"/>
+      <result column="date" property="learningDate"/>
+      <result column="stm" property="startTime"/>
+      <result column="etm" property="endTime"/>
+    </collection>
+  </resultMap>
+  
+  <insert id="insert" parameterType="map">
+    insert into har_learning(lno,tno,min_head,max_head,curriculum,price,zipcode,addr,det_addr,rfnd_info,sgg_no)
+    values(#{no},#{learning.owner.no},#{learning.minPeople},#{learning.maxPeople},#{learning.progressOrder},#{learning.price},#{learning.zipcode},#{learning.address},#{learning.detailAddress},#{learning.refundInformation},#{learning.sigunguNo})
+  </insert>
+  
+  <update id="update" parameterType="map">
+    update har_learning set
+      min_head=#{learning.minPeople},
+      max_head=#{learning.maxPeople},
+      curriculum=#{learning.progressOrder},
+      price=#{learning.price},
+      zipcode=#{learning.zipcode},
+      addr=#{learning.address},
+      det_addr=#{learning.detailAddress},
+      rfnd_info=#{learning.refundInformation},
+      sgg_no=#{learning.sigunguNo}
+    where lno=#{no}
+  </update>
+       
+  <select id="findAll" resultMap="learningMap">
+    select
+      l.lno,
+      l.min_head,
+      l.max_head,
+      l.curriculum,
+      l.price,
+      l.zipcode,
+      l.addr,
+      l.det_addr,
+      l.rfnd_info,
+      s.sno,
+      s.sname,
+      s.sintro,
+      s.cov_img,
+      s.sstat,
+      s.rdttm,
+      e.sche_no,
+      e.date,
+      e.stm,
+      e.etm,
+      m.mno,
+      m.name,
+      m.nickname,
+      m.profile_pic,
+      m.mrno,
+      t.tno,
+      t.tintro,
+      t.tappl,
+      t.prom_dttm,
+      n.ncat_no,
+      n.ncat_name,
+      b.bcat_no,
+      b.bcat_name,
+      g.sgg_no,
+      g.sgg_name,
+      d.sido_no,
+      d.sido_name
+    from har_learning l
+      inner join har_service s on s.sno=l.lno
+      inner join har_narrow_cat n on n.ncat_no=s.ncat_no
+      inner join har_broad_cat b on b.bcat_no=n.bcat_no
+      inner join har_sigungu g on g.sgg_no=l.sgg_no
+      inner join har_sido d on d.sido_no=g.sido_no
+      inner join har_schedule e on e.lno=l.lno
+      inner join har_tutor t on t.tno=l.tno
+      inner join har_member m on m.mno=t.tno
+    order by s.sno desc
+  </select>
+  
+  <!-- 체험학습 상세 -->
+  <select id="findByNo" resultMap="learningMap" parameterType="int">
+    select
+      s.sno,
+      s.sname,
+      s.rdttm,
+      s.cov_img,
+      s.sintro,
+      s.sstat,
+      m.name,
+      m.nickname,
+      m.profile_pic,
+      m.mrno,
+      l.lno,
+      l.min_head,
+      l.max_head,
+      l.curriculum,
+      l.price,
+      l.zipcode,
+      l.addr,
+      l.det_addr,
+      l.rfnd_info,
+      e.sche_no,
+      e.date,
+      e.stm,
+      e.etm,
+      n.ncat_no,
+      n.ncat_name,
+      b.bcat_no,
+      b.bcat_name,
+      g.sgg_no,
+      g.sgg_name,
+      d.sido_no,
+      d.sido_name,
+      t.tno,
+      t.tintro
+    from har_learning l
+      inner join har_service s on s.sno=l.lno
+      inner join har_narrow_cat n on n.ncat_no=s.ncat_no
+      inner join har_broad_cat b on b.bcat_no=n.bcat_no
+      inner join har_sigungu g on g.sgg_no=l.sgg_no
+      inner join har_sido d on d.sido_no=g.sido_no
+      inner join har_schedule e on e.lno=l.lno
+      inner join har_tutor t on t.tno=l.tno
+      inner join har_member m on m.mno=t.tno
+    where
+      l.lno=#{value}
+  </select>
+  
+</mapper>
+
+
+
+
+
+
