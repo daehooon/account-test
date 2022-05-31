@@ -37,15 +37,26 @@
   </resultMap>
   
   <insert id="insert" parameterType="map">
-    insert into custom(BUSI_NUM, CUSTOM, SHORT, CEO, CHARGE_PERSON, BUSI_CONDITION, ITEM, POST_NUM, 
-      ADDR1, ADDR2, TEL, FAX, HOMEPAGE, CO_YN, FOREIGN_YN, TAX_YN, COUNTRY_ENG, COUNTRY_KOR, 
-      SPECIAL_RELATION, TRADE_SHOP, CONTRACT_PERIOD_S, CONTRACT_PERIOD_E, REGI_INFO_MAN, REGI_INFO_DATE, 
-      MODI_INFO_MAN, MODI_INFO_DATE)
-    values(#{no},#{learning.owner.no},#{learning.minPeople},#{learning.maxPeople},#{learning.progressOrder},#{learning.price},#{learning.zipcode},#{learning.address},#{learning.detailAddress},#{learning.refundInformation},#{learning.sigunguNo})
+    insert into custom(BUSI_NUM,CUSTOM,SHORT,CEO,CHARGE_PERSON,BUSI_CONDITION,ITEM, POST_NUM,
+      ADDR1,ADDR2,TEL,FAX,HOMEPAGE,CO_YN,FOREIGN_YN,TAX_YN,COUNTRY_ENG,COUNTRY_KOR,
+      SPECIAL_RELATION,TRADE_SHOP,CONTRACT_PERIOD_S,CONTRACT_PERIOD_E,REGI_INFO_MAN,REGI_INFO_DATE,
+      MODI_INFO_MAN,MODI_INFO_DATE)
+    values(#{businessNumber},#{custom},#{sshort},#{ceo},#{chargePerson},#{businessCondition},#{item},
+      #{postNumber},#{firstAddress},#{secondAddress},#{tel},#{fax},#{homepage},#{corporationWhether},
+      #{foreignWhether},#{taxWhether},#{countryEnglish},#{countryKorean},#{specialRelation},#{tradeShop},
+      #{contractStart},#{contractEnd},#{registrationMan},#{registrationDate},#{modificationMan},#{modificationDate})
   </insert>
   
+  
+  
+  
+  
+  
+  
+  
+  
   <update id="update" parameterType="map">
-    update har_learning set
+    update custom set
       min_head=#{learning.minPeople},
       max_head=#{learning.maxPeople},
       curriculum=#{learning.progressOrder},
