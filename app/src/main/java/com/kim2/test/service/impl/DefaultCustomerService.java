@@ -1,7 +1,6 @@
 package com.kim2.test.service.impl;
 
 import java.util.HashMap;
-import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -29,8 +28,6 @@ public class DefaultCustomerService implements CustomerService {
       @Override
       public String doInTransaction(TransactionStatus status) {
         try {
-          customerDao.insert(customer);
-
           HashMap<String,Object> param = new HashMap<>();
           param.put("businessNumber", customer.getBusinessNumber());
           param.put("customer", customer);
@@ -45,18 +42,29 @@ public class DefaultCustomerService implements CustomerService {
     });
   }
 
+
+
+
+
+
+
+
+
+
+
+  /*
   @Override
-  public List<Customer> list() throws Exception {
+  public List<Learning> list() throws Exception {
     return learningDao.findAll();
   }
 
   @Override
-  public Customer get(int no) throws Exception {
+  public Learning get(int no) throws Exception {
     return learningDao.findByNo(no);
   }
 
   @Override
-  public int update(ServiceInfo serviceInfo, Customer learning) throws Exception {
+  public int update(ServiceInfo serviceInfo, Learning learning) throws Exception {
     return transactionTemplate.execute(new TransactionCallback<Integer>() {
       @Override
       public Integer doInTransaction(TransactionStatus status) {
@@ -87,7 +95,8 @@ public class DefaultCustomerService implements CustomerService {
   }
 
   @Override
-  public Customer Search(int no) throws Exception {
+  public Learning Search(int no) throws Exception {
     return null;
   }
+   */
 }

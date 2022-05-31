@@ -24,7 +24,7 @@
     
     
     
-    
+    <!-- 
     
     <association property="owner" javaType="tutor">
       <id column="tno" property="no"/>
@@ -44,8 +44,9 @@
       <result column="stm" property="startTime"/>
       <result column="etm" property="endTime"/>
     </collection>
+     -->
   </resultMap>
-  
+  <!-- 
   <insert id="insert" parameterType="map">
     insert into har_learning(lno,tno,min_head,max_head,curriculum,price,zipcode,addr,det_addr,rfnd_info,sgg_no)
     values(#{no},#{learning.owner.no},#{learning.minPeople},#{learning.maxPeople},#{learning.progressOrder},#{learning.price},#{learning.zipcode},#{learning.address},#{learning.detailAddress},#{learning.refundInformation},#{learning.sigunguNo})
@@ -114,8 +115,9 @@
       inner join har_member m on m.mno=t.tno
     order by s.sno desc
   </select>
-  
+   -->
   <!-- 체험학습 상세 -->
+  <!-- 
   <select id="findByNo" resultMap="learningMap" parameterType="int">
     select
       s.sno,
@@ -163,7 +165,7 @@
     where
       l.lno=#{value}
   </select>
-  
+   -->
 </mapper>
 
 

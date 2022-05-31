@@ -54,7 +54,7 @@
   
   
   
-  
+  <!-- 
   <update id="update" parameterType="map">
     update custom set
       min_head=#{learning.minPeople},
@@ -118,8 +118,10 @@
       inner join har_member m on m.mno=t.tno
     order by s.sno desc
   </select>
+   -->
   
   <!-- 체험학습 상세 -->
+  <!-- 
   <select id="findByNo" resultMap="learningMap" parameterType="int">
     select
       s.sno,
@@ -167,7 +169,7 @@
     where
       l.lno=#{value}
   </select>
-  
+   -->
 </mapper>
 
 

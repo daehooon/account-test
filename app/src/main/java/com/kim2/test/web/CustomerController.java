@@ -1,23 +1,15 @@
 package com.kim2.test.web;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.kim2.test.domain.Customer;
 import com.kim2.test.service.CustomerService;
-import net.coobird.thumbnailator.ThumbnailParameter;
-import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.geometry.Positions;
-import net.coobird.thumbnailator.name.Rename;
 
 @Controller
 @RequestMapping("/customer")
@@ -76,7 +68,7 @@ public class CustomerController {
 
 
 
-
+  /*
   @RequestMapping("delete")
   public String delete(int no, HttpSession session) throws Exception {
     Customer learning = learningService.get(no);
@@ -206,6 +198,7 @@ public class CustomerController {
 
     return "redirect:../learningApplication/list";
   }
+   */
 }
 
 
