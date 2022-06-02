@@ -27,7 +27,7 @@
     <result column="COUNTRY_ENG" property="countryEnglish"/>
     <result column="COUNTRY_KOR" property="countryKorean"/>
     <result column="SPECIAL_RELATION" property="specialRelation"/>
-    <result column="TRADE_SHOP" property="tradeShop"/>
+    <result column="TRADE_STOP" property="tradeStop"/>
     <result column="CONTRACT_PERIOD_S" property="contractStart"/>
     <result column="CONTRACT_PERIOD_E" property="contractEnd"/>
     <result column="REGI_INFO_MAN" property="registrationMan"/>
@@ -39,135 +39,115 @@
   <insert id="insert" parameterType="map">
     insert into custom(BUSI_NUM,CUSTOM,SHORT,CEO,CHARGE_PERSON,BUSI_CONDITION,ITEM, POST_NUM,
       ADDR1,ADDR2,TEL,FAX,HOMEPAGE,CO_YN,FOREIGN_YN,TAX_YN,COUNTRY_ENG,COUNTRY_KOR,
-      SPECIAL_RELATION,TRADE_SHOP,CONTRACT_PERIOD_S,CONTRACT_PERIOD_E,REGI_INFO_MAN,REGI_INFO_DATE,
+      SPECIAL_RELATION,TRADE_STOP,CONTRACT_PERIOD_S,CONTRACT_PERIOD_E,REGI_INFO_MAN,REGI_INFO_DATE,
       MODI_INFO_MAN,MODI_INFO_DATE)
     values(#{businessNumber},#{custom},#{sshort},#{ceo},#{chargePerson},#{businessCondition},#{item},
       #{postNumber},#{firstAddress},#{secondAddress},#{tel},#{fax},#{homepage},#{corporationWhether},
-      #{foreignWhether},#{taxWhether},#{countryEnglish},#{countryKorean},#{specialRelation},#{tradeShop},
+      #{foreignWhether},#{taxWhether},#{countryEnglish},#{countryKorean},#{specialRelation},#{tradeStop},
       #{contractStart},#{contractEnd},#{registrationMan},#{registrationDate},#{modificationMan},#{modificationDate})
   </insert>
   
+  <!-- 거래처 정보 -->
+  <select id="findByNo" resultMap="customerMap" parameterType="String">
+    select
+      BUSI_NUM,
+      CUSTOM,
+      SHORT,
+      CEO,
+      CHARGE_PERSON,
+      BUSI_CONDITION,
+      ITEM,
+      POST_NUM,
+      ADDR1,
+      ADDR2,
+      TEL,
+      FAX,
+      HOMEPAGE,
+      CO_YN,
+      FOREIGN_YN,
+      TAX_YN,
+      COUNTRY_ENG,
+      COUNTRY_KOR,
+      SPECIAL_RELATION,
+      TRADE_STOP,
+      CONTRACT_PERIOD_S,
+      CONTRACT_PERIOD_E,
+      REGI_INFO_MAN,
+      REGI_INFO_DATE,
+      MODI_INFO_MAN,
+      MODI_INFO_DATE
+    from custom c
+    where
+      BUSI_NUM=#{value}
+  </select>
   
+  <delete id="delete" parameterType="String">
+    delete from customer where BUSI_NUM=#{businessNumber}
+  </delete>
   
-  
-  
-  
-  
-  
-  <!-- 
+ 
   <update id="update" parameterType="map">
     update custom set
-      min_head=#{learning.minPeople},
-      max_head=#{learning.maxPeople},
-      curriculum=#{learning.progressOrder},
-      price=#{learning.price},
-      zipcode=#{learning.zipcode},
-      addr=#{learning.address},
-      det_addr=#{learning.detailAddress},
-      rfnd_info=#{learning.refundInformation},
-      sgg_no=#{learning.sigunguNo}
-    where lno=#{no}
+      BUSI_NUM=#{customer.businessNumber},
+      CUSTOM=#{customer.custom},
+      SHORT=#{customer.sshort},
+      CEO=#{customer.ceo},
+      CHARGE_PERSON=#{customer.chargePerson},
+      BUSI_CONDITION=#{customer.businessCondition},
+      ITEM=#{customer.item},
+      POST_NUM=#{customer.postNumber},
+      ADDR1=#{customer.firstAddress},
+      ADDR2=#{customer.secondAddress},
+      TEL=#{customer.tel},
+      FAX=#{customer.fax},
+      HOMEPAGE=#{customer.homepage},
+      CO_YN=#{customer.corporationWhether},
+      FOREIGN_YN=#{customer.foreignWhether},
+      TAX_YN=#{customer.taxWhether},
+      COUNTRY_ENG=#{customer.countryEnglish},
+      COUNTRY_KOR=#{customer.countryKorean},
+      SPECIAL_RELATION=#{customer.specialRelation},
+      TRADE_STOP=#{customer.tradeStop},
+      CONTRACT_PERIOD_S=#{customer.contractStart},
+      CONTRACT_PERIOD_E=#{customer.contractEnd},
+      REGI_INFO_MAN=#{customer.registrationMan},
+      REGI_INFO_DATE=#{customer.registrationDate},
+      MODI_INFO_MAN=#{customer.modificationMan},
+      MODI_INFO_DATE=#{customer.modificationDate}
+    where BUSI_NUM=#{businessNumber}
   </update>
-       
-  <select id="findAll" resultMap="learningMap">
-    select
-      l.lno,
-      l.min_head,
-      l.max_head,
-      l.curriculum,
-      l.price,
-      l.zipcode,
-      l.addr,
-      l.det_addr,
-      l.rfnd_info,
-      s.sno,
-      s.sname,
-      s.sintro,
-      s.cov_img,
-      s.sstat,
-      s.rdttm,
-      e.sche_no,
-      e.date,
-      e.stm,
-      e.etm,
-      m.mno,
-      m.name,
-      m.nickname,
-      m.profile_pic,
-      m.mrno,
-      t.tno,
-      t.tintro,
-      t.tappl,
-      t.prom_dttm,
-      n.ncat_no,
-      n.ncat_name,
-      b.bcat_no,
-      b.bcat_name,
-      g.sgg_no,
-      g.sgg_name,
-      d.sido_no,
-      d.sido_name
-    from har_learning l
-      inner join har_service s on s.sno=l.lno
-      inner join har_narrow_cat n on n.ncat_no=s.ncat_no
-      inner join har_broad_cat b on b.bcat_no=n.bcat_no
-      inner join har_sigungu g on g.sgg_no=l.sgg_no
-      inner join har_sido d on d.sido_no=g.sido_no
-      inner join har_schedule e on e.lno=l.lno
-      inner join har_tutor t on t.tno=l.tno
-      inner join har_member m on m.mno=t.tno
-    order by s.sno desc
-  </select>
-   -->
   
-  <!-- 체험학습 상세 -->
+  
   <!-- 
-  <select id="findByNo" resultMap="learningMap" parameterType="int">
+   <select id="findAll" resultMap="customerMap">
     select
-      s.sno,
-      s.sname,
-      s.rdttm,
-      s.cov_img,
-      s.sintro,
-      s.sstat,
-      m.name,
-      m.nickname,
-      m.profile_pic,
-      m.mrno,
-      l.lno,
-      l.min_head,
-      l.max_head,
-      l.curriculum,
-      l.price,
-      l.zipcode,
-      l.addr,
-      l.det_addr,
-      l.rfnd_info,
-      e.sche_no,
-      e.date,
-      e.stm,
-      e.etm,
-      n.ncat_no,
-      n.ncat_name,
-      b.bcat_no,
-      b.bcat_name,
-      g.sgg_no,
-      g.sgg_name,
-      d.sido_no,
-      d.sido_name,
-      t.tno,
-      t.tintro
-    from har_learning l
-      inner join har_service s on s.sno=l.lno
-      inner join har_narrow_cat n on n.ncat_no=s.ncat_no
-      inner join har_broad_cat b on b.bcat_no=n.bcat_no
-      inner join har_sigungu g on g.sgg_no=l.sgg_no
-      inner join har_sido d on d.sido_no=g.sido_no
-      inner join har_schedule e on e.lno=l.lno
-      inner join har_tutor t on t.tno=l.tno
-      inner join har_member m on m.mno=t.tno
-    where
-      l.lno=#{value}
+      BUSI_NUM,
+      CUSTOM,
+      SHORT,
+      CEO,
+      CHARGE_PERSON,
+      BUSI_CONDITION,
+      ITEM,
+      POST_NUM,
+      ADDR1,
+      ADDR2,
+      TEL,
+      FAX,
+      HOMEPAGE,
+      CO_YN,
+      FOREIGN_YN,
+      TAX_YN,
+      COUNTRY_ENG,
+      COUNTRY_KOR,
+      SPECIAL_RELATION,
+      TRADE_STOP,
+      CONTRACT_PERIOD_S,
+      CONTRACT_PERIOD_E,
+      REGI_INFO_MAN,
+      REGI_INFO_DATE,
+      MODI_INFO_MAN,
+      MODI_INFO_DATE
+    from custom
   </select>
    -->
 </mapper>

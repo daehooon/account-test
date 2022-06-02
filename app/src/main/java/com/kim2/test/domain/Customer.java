@@ -22,7 +22,7 @@ public class Customer {
   private String countryEnglish;
   private String countryKorean;
   private String specialRelation;
-  private String tradeShop;
+  private String tradeStop;
   private Date contractStart;
   private Date contractEnd;
   private String registrationMan;
@@ -39,7 +39,7 @@ public class Customer {
         + ", homepage=" + homepage + ", corporationWhether=" + corporationWhether
         + ", foreignWhether=" + foreignWhether + ", taxWhether=" + taxWhether + ", countryEnglish="
         + countryEnglish + ", countryKorean=" + countryKorean + ", specialRelation="
-        + specialRelation + ", tradeShop=" + tradeShop + ", contractStart=" + contractStart
+        + specialRelation + ", tradeStop=" + tradeStop + ", contractStart=" + contractStart
         + ", contractEnd=" + contractEnd + ", registrationMan=" + registrationMan
         + ", registrationDate=" + registrationDate + ", modificationMan=" + modificationMan
         + ", modificationDate=" + modificationDate + "]";
@@ -159,11 +159,11 @@ public class Customer {
   public void setSpecialRelation(String specialRelation) {
     this.specialRelation = specialRelation;
   }
-  public String getTradeShop() {
-    return tradeShop;
+  public String getTradeStop() {
+    return tradeStop;
   }
-  public void setTradeShop(String tradeShop) {
-    this.tradeShop = tradeShop;
+  public void setTradeStop(String tradeStop) {
+    this.tradeStop = tradeStop;
   }
   public Date getContractStart() {
     return contractStart;

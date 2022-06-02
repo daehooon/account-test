@@ -42,46 +42,28 @@ public class DefaultCustomerService implements CustomerService {
     });
   }
 
-
-
-
-
-
-
-
-
-
-
-  /*
   @Override
-  public List<Learning> list() throws Exception {
-    return learningDao.findAll();
+  public Customer get(String businessNumber) throws Exception {
+    return customerDao.findByNo(businessNumber);
   }
 
   @Override
-  public Learning get(int no) throws Exception {
-    return learningDao.findByNo(no);
+  public String delete(String businessNumber) throws Exception {
+    return customerDao.delete(businessNumber);
   }
 
   @Override
-  public int update(ServiceInfo serviceInfo, Learning learning) throws Exception {
-    return transactionTemplate.execute(new TransactionCallback<Integer>() {
+  public String update(Customer customer) throws Exception {
+    return transactionTemplate.execute(new TransactionCallback<String>() {
       @Override
-      public Integer doInTransaction(TransactionStatus status) {
+      public String doInTransaction(TransactionStatus status) {
         try {
-          serviceInfoDao.update(serviceInfo);
-
           HashMap<String,Object> param = new HashMap<>();
-          param.put("no", serviceInfo.getNo());
-          param.put("learning", learning);
-          learningDao.update(param);
+          param.put("businessNumber", customer.getBusinessNumber());
+          param.put("customer", customer);
+          customerDao.update(param);
 
-          HashMap<String,Object> params = new HashMap<>();
-          params.put("learningNo", serviceInfo.getNo());
-          params.put("schedules", learning.getSchedules());
-          learningScheduleDao.update(params);
-
-          return serviceInfo.getNo();
+          return customer.getBusinessNumber();
         } catch (Exception e) {
           throw new RuntimeException(e);
         }
@@ -89,14 +71,11 @@ public class DefaultCustomerService implements CustomerService {
     });
   }
 
-  @Override
-  public int delete(int no) throws Exception {
-    return serviceInfoDao.delete(no);
-  }
 
-  @Override
-  public Learning Search(int no) throws Exception {
-    return null;
-  }
-   */
+
+
+  //  @Override
+  //  public List<Customer> list() throws Exception {
+  //    return customerDao.findAll();
+  //  }
 }
