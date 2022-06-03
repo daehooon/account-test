@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.kim2.test.domain.Customer;
 import com.kim2.test.service.CustomerService;
-
+//asdfa
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
