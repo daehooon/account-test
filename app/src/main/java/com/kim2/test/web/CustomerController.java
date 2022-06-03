@@ -1,6 +1,6 @@
 package com.kim2.test.web;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.kim2.test.domain.Customer;
 import com.kim2.test.service.CustomerService;
-//안녕
+
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
@@ -28,9 +28,11 @@ public class CustomerController {
   public void form() throws Exception {}
 
   @PostMapping("add")
-  public String add(HttpSession session, HttpServletRequest request) throws Exception {
+  public String add(HttpServletRequest request) throws Exception {
 
     Customer c = new Customer();
+    SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     c.setBusinessNumber(request.getParameter("businessNumber"));
     c.setCustom(request.getParameter("custom"));
@@ -52,12 +54,12 @@ public class CustomerController {
     c.setCountryKorean(request.getParameter("countryKorean"));
     c.setSpecialRelation(request.getParameter("specialRelation"));
     c.setTradeStop(request.getParameter("tradeStop"));
-    c.setContractStart(Date.valueOf(request.getParameter("contractStart")));
-    c.setContractEnd(Date.valueOf(request.getParameter("contractEnd")));
+    c.setContractStart(transFormat1.parse(request.getParameter("contractStart")));
+    c.setContractEnd(transFormat1.parse(request.getParameter("contractEnd")));
     c.setRegistrationMan(request.getParameter("registrationMan"));
-    c.setRegistrationDate(Date.valueOf(request.getParameter("registrationDate")));
+    c.setRegistrationDate(transFormat2.parse(request.getParameter("registrationDate")));
     c.setModificationMan(request.getParameter("modificationMan"));
-    c.setModificationDate(Date.valueOf(request.getParameter("modificationDate")));
+    c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
     String businessNumber = customerService.add(c);
 

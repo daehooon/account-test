@@ -5,7 +5,7 @@ import com.kim2.test.domain.Customer;
 
 public interface CustomerDao {
 
-  String insert(Map<String,Object> param) throws Exception;
+  String insert(Customer customer) throws Exception;
 
   Customer findByNo(String businessNumber) throws Exception;
 

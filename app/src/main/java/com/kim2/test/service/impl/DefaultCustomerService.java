@@ -24,23 +24,28 @@ public class DefaultCustomerService implements CustomerService {
 
   @Override
   public String add(Customer customer) throws Exception {
-    return transactionTemplate.execute(new TransactionCallback<String>() {
-      @Override
-      public String doInTransaction(TransactionStatus status) {
-        try {
-          HashMap<String,Object> param = new HashMap<>();
-          param.put("businessNumber", customer.getBusinessNumber());
-          param.put("customer", customer);
-          customerDao.insert(param);
-
-          return customer.getBusinessNumber();
-
-        } catch (Exception e) {
-          throw new RuntimeException(e);
-        }
-      }
-    });
+    return customer.getBusinessNumber();
   }
+
+  //  @Override
+  //  public String add(Customer customer) throws Exception {
+  //    return transactionTemplate.execute(new TransactionCallback<String>() {
+  //      @Override
+  //      public String doInTransaction(TransactionStatus status) {
+  //        try {
+  //          HashMap<String,Object> param = new HashMap<>();
+  //          param.put("businessNumber", customer.getBusinessNumber());
+  //          param.put("customer", customer);
+  //          customerDao.insert(param);
+  //
+  //          return customer.getBusinessNumber();
+  //
+  //        } catch (Exception e) {
+  //          throw new RuntimeException(e);
+  //        }
+  //      }
+  //    });
+  //  }
 
   @Override
   public Customer get(String businessNumber) throws Exception {

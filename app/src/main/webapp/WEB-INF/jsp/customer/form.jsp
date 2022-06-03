@@ -61,15 +61,15 @@
 팩스번호 <input type="text" name="fax"><br>
 홈페이지 <input type="text" name="homepage"><br>
 
-법인여부 <input type="radio" name="corporationWhether" value="법인">법인
-            <input type="radio" name="corporationWhether" value="개인">개인<br>
+법인여부 <input type="radio" name="corporationWhether" value="Y">법인
+            <input type="radio" name="corporationWhether" value="N">개인<br>
           
-해외여부 <input type="radio" name="foreignWhether" value="국내">국내
-            <input type="radio" name="foreignWhether" value="해외">해외<br>
+해외여부 <input type="radio" name="foreignWhether" value="Y">국내
+            <input type="radio" name="foreignWhether" value="N">해외<br>
           
 과세구분 <select name="taxWhether">
-            <option value="과세/면세">과세/면세</option>
-            <option value="비과세">비과세</option>
+            <option value="Y">과세/면세</option>
+            <option value="N">비과세</option>
          </select><br>
 
 국가(해외) <input type="text" name="countryEnglish"><br>
@@ -89,15 +89,15 @@
        min="2001-01-01" max="2100-01-01"><br>
 
 <c:set var="today" value="<%=new java.util.Date()%>" />
-<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd hh:mm:ss" /></c:set>
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
 
 등록정보 <input type="text" name="registrationMan">
             <input type="text" name="registrationDate" 
-            value="<c:out value="${date}" />" disabled><br>
+            value="<c:out value="${date}" />" readonly><br>
 
-<!-- 변경일 넘기기 -->
+<!-- 변경일 넘기기로 바꾸기, readonly 추가 -->
 변경정보 <input type="text" name="modificationMan">
-            <input type="text" name="modificationDate" disabled><br>
+            <input type="text" name="modificationDate"><br>
 
 <input type="submit" value="등록">
 
