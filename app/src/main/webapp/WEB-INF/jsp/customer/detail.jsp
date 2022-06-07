@@ -10,9 +10,8 @@
 <title>거래처 정보</title>
 </head>
 <body>
- 
-<c:if test="${not empty customer}">
 
+<c:if test="${not empty customer}">
 <!-- 
   <p><a href='?no=${customer.businessNumber}'>초기화</a></p>
   <p><a href='?no=${customer.businessNumber}'>등록</a></p>
@@ -23,7 +22,6 @@
   <fmt:formatDate value="${customer.registrationDate}" pattern="yyyy-MM-dd hh:mm:ss" var="registrationDate"/>
   <fmt:formatDate value="${customer.modificationDate}" pattern="yyyy-MM-dd hh:mm:ss" var="modificationDate"/>
   
-
   <table border='1'>
     <tbody>
       <tr><th>사업자번호</th> <td>${customer.businessNumber}</td></tr>
@@ -54,37 +52,11 @@
       <tr><th>변경정보(변경날짜)</th> <td>${customer.modificationDate}</td></tr>
     </tbody>
   </table>
-<!--   
-  <form action="applAdd" method="post">
-		<input type="hidden" name="scheNo" value="${learning.schedules[0].no}">
-		<input type="hidden" name="lno" value="${learning.schedules[0].learningNo}">
-  <table border="1">
-    <tbody>
-      <tr><th>가격</th> <td>${learning.price}</td></tr>
-      
-      <tr><th>체험날짜</th> <td>${learningDate}</td></tr>
-      
-      <tr><th>시작시간</th> <td>${startTime}</td></tr>
-      
-      <tr><th>종료시간</th> <td>${endTime}</td></tr>
-      
-      <tr><th>선택</th> <td><input type="checkbox"></td></tr>
-         
-      <tr><th>최소인원</th> <td>${learning.minPeople}</td></tr>
-      <tr><th>최대인원</th> <td>${learning.maxPeople}</td></tr>
-      <tr><th>신청인원</th> <td><input type="number" name="applySize"></td></tr>
-      <tr><th>신청하기!</th> <td><input type="submit" value="신청"></td></tr>
-    </tbody>
-  </table>
-  </form>
- -->
 </c:if>
- 
- <!-- 
-<c:if test="${empty businessNumber}">
+
+<c:if test="${empty customer}">
   <p>해당 번호의 거래처가 없습니다.</p>
 </c:if>
- -->
 
 </body>
 </html>

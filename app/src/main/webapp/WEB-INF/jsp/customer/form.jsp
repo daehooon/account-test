@@ -95,9 +95,10 @@
             <input type="text" name="registrationDate" 
             value="<c:out value="${date}" />" readonly><br>
 
-<!-- 변경일 넘기기로 바꾸기, readonly 추가 -->
+<!-- 변경일 넘기기로 바꾸기 -->
 변경정보 <input type="text" name="modificationMan">
-            <input type="text" name="modificationDate"><br>
+            <input type="text" name="modificationDate" 
+            value="<c:out value="${date}" />" readonly><br>
 
 <input type="submit" value="등록">
 
