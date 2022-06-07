@@ -15,7 +15,7 @@
 <body>
 
 <h1>거래처 관리</h1>
-<form action="add" method="post" enctype="multipart/form-data">
+<form action="add" method="post">
 사업자번호 <input type="text" name="businessNumber"><br>
 거래처명 <input type="text" name="custom"><br>
 약칭 <input type="text" name="sshort"><br>
@@ -24,10 +24,10 @@
 업태 <input type="text" name="businessCondition"><br>
 종목 <input type="text" name="item"><br>
 
-우편번호 <input type="text" id="postNumber">
+우편번호 <input type="text" name="postNumber" id="postNumber">
 <input type="button" onclick="sample6_execDaumPostcode()" value="검색"><br>
-주소 1 <input type="text" id="firstAdress"><br>
-주소 2 <input type="text" id="secondAdress"><br>
+주소 1 <input type="text" name="firstAddress" id="firstAddress"><br>
+주소 2 <input type="text" name="secondAddress" id="secondAddress"><br>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -49,9 +49,9 @@
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postNumber').value = data.zonecode;
-                document.getElementById("firstAdress").value = addr;
+                document.getElementById("firstAddress").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("secondAdress").focus();
+                document.getElementById("secondAddress").focus();
             }
         }).open();
     }
@@ -75,8 +75,10 @@
 국가(해외) <input type="text" name="countryEnglish"><br>
 국가(국내) <input type="text" name="countryKorean"><br>
 
-특수관계자 <input type="checkbox" name="specialRelation"><br>
-거래중지 <input type="checkbox" name="tradeStop"><br>
+<input type="hidden" name="specialRelation" value="Y" />
+특수관계자 <input type="checkbox" name="specialRelation" value="N" />
+<input type="hidden" name="tradeStop" value="Y" /><br>
+거래중지 <input type="checkbox" name="tradeStop" value="N" /><br>
 
 <label for="start">계약기간 </label>
 <input type="date" id="contractStart" name="contractStart"

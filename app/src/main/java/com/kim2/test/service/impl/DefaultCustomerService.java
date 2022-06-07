@@ -20,9 +20,9 @@ public class DefaultCustomerService implements CustomerService {
   }
 
   @Override
-  public int add(Customer customer) throws Exception {
+  public String add(Customer customer) throws Exception {
     customerDao.insert(customer);
-    return Integer.parseInt(customer.getBusinessNumber());
+    return customer.getBusinessNumber();
   }
 
   //  @Override

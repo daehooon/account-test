@@ -1,62 +1,119 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java"
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>거래처 정보</title>
+
 </head>
 <body>
 
 <c:if test="${not empty customer}">
-<!-- 
-  <p><a href='?no=${customer.businessNumber}'>초기화</a></p>
-  <p><a href='?no=${customer.businessNumber}'>등록</a></p>
-   
-  <p><a href='updateForm?no=${customer.businessNumber}'>수정</a></p>
-  <p><a href='delete?no=${customer.businessNumber}'>삭제</a></p>
-  -->
-  <fmt:formatDate value="${customer.registrationDate}" pattern="yyyy-MM-dd hh:mm:ss" var="registrationDate"/>
-  <fmt:formatDate value="${customer.modificationDate}" pattern="yyyy-MM-dd hh:mm:ss" var="modificationDate"/>
-  
-  <table border='1'>
-    <tbody>
-      <tr><th>사업자번호</th> <td>${customer.businessNumber}</td></tr>
-      <tr><th>거래처명</th> <td>${customer.custom}</td></tr>
-      <tr><th>약칭</th> <td>${customer.sshort}</td></tr>
-      <tr><th>대표자</th> <td>${customer.ceo}</td></tr>
-      <tr><th>담당자</th> <td>${customer.chargePerson}</td></tr>
-      <tr><th>업태</th> <td>${customer.businessCondition}</td></tr>
-      <tr><th>종목</th> <td>${customer.item}</td></tr>
-      <tr><th>우편번호</th> <td>${customer.postNumber}</td></tr>
-      <tr><th>주소1</th> <td>${customer.firstAddress}</td></tr>
-      <tr><th>주소2</th> <td>${customer.secondAddress}</td></tr>
-      <tr><th>전화번호</th> <td>${customer.tel}</td></tr>
-      <tr><th>팩스번호</th> <td>${customer.fax}</td></tr>
-      <tr><th>홈페이지</th> <td>${customer.homepage}</td></tr>
-      <tr><th>법인여부</th> <td>${customer.corporationWhether}</td></tr>
-      <tr><th>해외여부</th> <td>${customer.foreignWhether}</td></tr>
-      <tr><th>과세구분</th> <td>${customer.taxWhether}</td></tr>
-      <tr><th>국가 영문</th> <td>${customer.countryEnglish}</td></tr>
-      <tr><th>국가 한글</th> <td>${customer.countryKorean}</td></tr>
-      <tr><th>특수관계자</th> <td>${customer.specialRelation}</td></tr>
-      <tr><th>거래중지</th> <td>${customer.tradeStop}</td></tr>
-      <tr><th>계약기간(시작)</th> <td>${customer.contractStart}</td></tr>
-      <tr><th>계약기간(끝)</th> <td>${customer.contractEnd}</td></tr>
-      <tr><th>등록정보(등록인)</th> <td>${customer.registrationMan}</td></tr>
-      <tr><th>등록정보(등록날짜)</th> <td>${customer.registrationDate}</td></tr>
-      <tr><th>변경정보(변경인)</th> <td>${customer.modificationMan}</td></tr>
-      <tr><th>변경정보(변경날짜)</th> <td>${customer.modificationDate}</td></tr>
-    </tbody>
-  </table>
-</c:if>
 
-<c:if test="${empty customer}">
-  <p>해당 번호의 거래처가 없습니다.</p>
-</c:if>
+<h1>거래처 관리</h1>
+<form action="add" method="post">
+사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber"><br>
+거래처명 <input type="text" value="${customer.custom}" name="custom"><br>
+약칭 <input type="text" value="${customer.sshort}" name="sshort"><br>
+대표자 <input type="text" value="${customer.ceo}" name="ceo"><br>
+담당자 <input type="text" value="${customer.chargePerson}" name="chargePerson"><br>
+업태 <input type="text" value="${customer.businessCondition}" name="businessCondition"><br>
+종목 <input type="text" value="${customer.item}" name="item"><br>
 
+우편번호 <input type="text" value="${customer.postNumber}" name="postNumber" id="postNumber">
+<input type="button" onclick="sample6_execDaumPostcode()" value="검색"><br>
+주소 1 <input type="text" name="firstAddress" id="firstAddress"><br>
+주소 2 <input type="text" name="secondAddress" id="secondAddress"><br>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postNumber').value = data.zonecode;
+                document.getElementById("firstAddress").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("secondAddress").focus();
+            }
+        }).open();
+    }
+</script>
+
+전화번호 <input type="text" name="tel"><br>
+팩스번호 <input type="text" name="fax"><br>
+홈페이지 <input type="text" name="homepage"><br>
+
+법인여부 <input type="radio" name="corporationWhether" value="Y">법인
+            <input type="radio" name="corporationWhether" value="N">개인<br>
+          
+해외여부 <input type="radio" name="foreignWhether" value="Y">국내
+            <input type="radio" name="foreignWhether" value="N">해외<br>
+          
+과세구분 <select name="taxWhether">
+            <option value="Y">과세/면세</option>
+            <option value="N">비과세</option>
+         </select><br>
+
+국가(해외) <input type="text" name="countryEnglish"><br>
+국가(국내) <input type="text" name="countryKorean"><br>
+
+<input type="hidden" name="specialRelation" value="Y" />
+특수관계자 <input type="checkbox" name="specialRelation" value="N" />
+<input type="hidden" name="tradeStop" value="Y" /><br>
+거래중지 <input type="checkbox" name="tradeStop" value="N" /><br>
+
+<label for="start">계약기간 </label>
+<input type="date" id="contractStart" name="contractStart"
+       value="2001-01-01"
+       min="2001-01-01" max="2100-01-01">
+       
+<label for="end">~ </label>
+<input type="date" id="contractEnd" name="contractEnd"
+       value="2001-12-31"
+       min="2001-01-01" max="2100-01-01"><br>
+
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
+
+등록정보 <input type="text" name="registrationMan">
+            <input type="text" name="registrationDate" 
+            value="<c:out value="${date}" />" readonly><br>
+
+<!-- 변경일 넘기기로 바꾸기 -->
+변경정보 <input type="text" name="modificationMan">
+            <input type="text" name="modificationDate" 
+            value="<c:out value="${date}" />" readonly><br>
+
+<input type="submit" value="등록">
+
+</form>
+</c:if>
 </body>
 </html>
+
+
+
+
+
+
+

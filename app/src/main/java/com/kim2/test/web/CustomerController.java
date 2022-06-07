@@ -40,7 +40,7 @@ public class CustomerController {
     c.setItem(request.getParameter("item"));
     c.setPostNumber(request.getParameter("postNumber"));
     c.setFirstAddress(request.getParameter("firstAddress"));
-    c.setSecondAddress(request.getParameter("second"));
+    c.setSecondAddress(request.getParameter("secondAddress"));
     c.setTel(request.getParameter("tel"));
     c.setFax(request.getParameter("fax"));
     c.setHomepage(request.getParameter("homepage"));
@@ -58,7 +58,7 @@ public class CustomerController {
     c.setModificationMan(request.getParameter("modificationMan"));
     c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
-    String businessNumber = Integer.toString(customerService.add(c));
+    String businessNumber = customerService.add(c);
 
     return "redirect:detail?businessNumber=" + businessNumber;
   }

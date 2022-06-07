@@ -82,7 +82,7 @@
   </select>
   
   <delete id="delete" parameterType="String">
-    delete from customer where BUSI_NUM=#{businessNumber}
+    delete from custom where BUSI_NUM=#{businessNumber}
   </delete>
   
  <!-- 
