@@ -1,10 +1,7 @@
 package com.kim2.test.service.impl;
 
-import java.util.HashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import com.kim2.test.dao.CustomerDao;
 import com.kim2.test.domain.Customer;
@@ -23,8 +20,9 @@ public class DefaultCustomerService implements CustomerService {
   }
 
   @Override
-  public String add(Customer customer) throws Exception {
-    return customer.getBusinessNumber();
+  public int add(Customer customer) throws Exception {
+    customerDao.insert(customer);
+    return Integer.parseInt(customer.getBusinessNumber());
   }
 
   //  @Override
@@ -57,24 +55,24 @@ public class DefaultCustomerService implements CustomerService {
     return customerDao.delete(businessNumber);
   }
 
-  @Override
-  public String update(Customer customer) throws Exception {
-    return transactionTemplate.execute(new TransactionCallback<String>() {
-      @Override
-      public String doInTransaction(TransactionStatus status) {
-        try {
-          HashMap<String,Object> param = new HashMap<>();
-          param.put("businessNumber", customer.getBusinessNumber());
-          param.put("customer", customer);
-          customerDao.update(param);
-
-          return customer.getBusinessNumber();
-        } catch (Exception e) {
-          throw new RuntimeException(e);
-        }
-      }
-    });
-  }
+  //  @Override
+  //  public String update(Customer customer) throws Exception {
+  //    return transactionTemplate.execute(new TransactionCallback<String>() {
+  //      @Override
+  //      public String doInTransaction(TransactionStatus status) {
+  //        try {
+  //          HashMap<String,Object> param = new HashMap<>();
+  //          param.put("businessNumber", customer.getBusinessNumber());
+  //          param.put("customer", customer);
+  //          customerDao.update(param);
+  //
+  //          return customer.getBusinessNumber();
+  //        } catch (Exception e) {
+  //          throw new RuntimeException(e);
+  //        }
+  //      }
+  //    });
+  //  }
 
 
 

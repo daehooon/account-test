@@ -1,7 +1,6 @@
 package com.kim2.test.web;
 
 import java.text.SimpleDateFormat;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -16,11 +15,9 @@ import com.kim2.test.service.CustomerService;
 @RequestMapping("/customer")
 public class CustomerController {
 
-  ServletContext sc;
   CustomerService customerService;
 
-  public CustomerController(ServletContext sc, CustomerService customerService) {
-    this.sc = sc;
+  public CustomerController(CustomerService customerService) {
     this.customerService = customerService;
   }
 
@@ -61,7 +58,7 @@ public class CustomerController {
     c.setModificationMan(request.getParameter("modificationMan"));
     c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
-    String businessNumber = customerService.add(c);
+    String businessNumber = Integer.toString(customerService.add(c));
 
     return "redirect:detail?businessNumber=" + businessNumber;
   }
@@ -85,10 +82,10 @@ public class CustomerController {
     return "redirect:list";
   }
 
-  @GetMapping("updateForm")
-  public void updateForm(String businessNumber, Model model) throws Exception {
-    model.addAttribute("customer", customerService.get(businessNumber));
-  }
+  //  @GetMapping("updateForm")
+  //  public void updateForm(String businessNumber, Model model) throws Exception {
+  //    model.addAttribute("customer", customerService.get(businessNumber));
+  //  }
 
   //  @PostMapping("update")
   //  public String update(String businessNumber, Model model, HttpSession session, 

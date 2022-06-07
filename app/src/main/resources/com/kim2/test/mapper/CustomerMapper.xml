@@ -85,7 +85,7 @@
     delete from customer where BUSI_NUM=#{businessNumber}
   </delete>
   
- 
+ <!-- 
   <update id="update" parameterType="map">
     update custom set
       BUSI_NUM=#{customer.businessNumber},
@@ -116,7 +116,7 @@
       MODI_INFO_DATE=#{customer.modificationDate}
     where BUSI_NUM=#{businessNumber}
   </update>
-  
+   -->
   
   <!-- 
    <select id="findAll" resultMap="customerMap">
