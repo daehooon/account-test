@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java"
     contentType="text/html; charset=UTF-8"
@@ -5,6 +6,12 @@
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%
+  Date nowTime = new Date();
+  SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,8 +83,10 @@
 국가(국내) <input type="text" name="countryKorean"><br>
 
 <input type="hidden" name="specialRelation" value="Y" />
-특수관계자 <input type="checkbox" name="specialRelation" value="N" />
-<input type="hidden" name="tradeStop" value="Y" /><br>
+특수관계자 <input type="checkbox" name="specialRelation" value="N" /><br>
+
+<!-- 값이 무조건 Y로 들어감 -->
+<input type="hidden" name="tradeStop" value="Y" />
 거래중지 <input type="checkbox" name="tradeStop" value="N" /><br>
 
 <label for="start">계약기간 </label>
@@ -90,18 +99,13 @@
        value="2001-12-31"
        min="2001-01-01" max="2100-01-01"><br>
 
-<c:set var="today" value="<%=new java.util.Date()%>" />
-<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
-
 등록정보 <input type="text" name="registrationMan">
-            <input type="text" name="registrationDate" 
-            value="<c:out value="${date}" />" readonly><br>
-
+<input type="text" name="registrationDate" value="<%= sf.format(nowTime) %>" readonly/><br>
+            
 <!-- 변경일 넘기기로 바꾸기 -->
 변경정보 <input type="text" name="modificationMan">
-            <input type="text" name="modificationDate" 
-            value="<c:out value="${date}" />" readonly><br>
-
+<input type="text" name="modificationDate" value="<%= sf.format(nowTime) %>" readonly/><br>
+ 
 <input type="submit" value="등록">
 
 </form>

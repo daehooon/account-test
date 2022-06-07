@@ -63,67 +63,20 @@
 팩스번호 <input type="text" value="${customer.fax}" name="fax"><br>
 홈페이지 <input type="text" value="${customer.homepage}" name="homepage"><br>
 
-<c:choose>
-    <c:when test="${customer.corporationWhether == Y}">
-        법인여부 <input type="radio" name="corporationWhether" value="Y" checked>법인
-        <input type="radio" name="corporationWhether" value="N">개인<br>
-    </c:when>
-    <c:otherwise>
-        법인여부 <input type="radio" name="corporationWhether" value="Y">법인
-        <input type="radio" name="corporationWhether" value="N" checked>개인<br>
-    </c:otherwise>
-</c:choose>
-          
-<c:choose>
-    <c:when test="${customer.foreignWhether == Y}">
-        해외여부 <input type="radio" name="foreignWhether" value="Y" checked>국내
-        <input type="radio" name="foreignWhether" value="N">해외<br>
-    </c:when>
-    <c:otherwise>
-        해외여부 <input type="radio" name="foreignWhether" value="Y">국내
-        <input type="radio" name="foreignWhether" value="N" checked>해외<br>
-    </c:otherwise>
-</c:choose>
-          
-<c:choose>
-    <c:when test="${customer.taxWhether == Y}">
-        과세구분 <select name="taxWhether">
-            <option value="Y">과세/면세</option>
-            <option value="N">비과세</option>
-         </select><br>
-    </c:when>
-    <c:otherwise>
-        과세구분 <select name="taxWhether">
-            <option value="N">비과세</option>
-            <option value="Y">과세/면세</option>
-         </select><br>
-    </c:otherwise>
-</c:choose>
+법인여부 <input type="radio" name="corporationWhether" <c:out value="${customer.corporationWhether == 'Y' ? 'checked' : ''}"/>>법인
+<input type="radio" name="corporationWhether" <c:out value="${customer.corporationWhether == 'N' ? 'checked' : ''}"/>>개인<br>
 
+해외여부 <input type="radio" name="foreignWhether" <c:out value="${customer.foreignWhether == 'Y' ? 'checked' : ''}"/>>국내
+<input type="radio" name="foreignWhether" <c:out value="${customer.foreignWhether == 'N' ? 'checked' : ''}"/>>해외<br>
+          
+과세구분 <select name="taxWhether"><option <c:out value="${customer.taxWhether == 'Y' ? 'selected' : ''}"/>>과세/면세</option>
+          <option <c:out value="${customer.taxWhether == 'N' ? 'selected' : ''}"/>>비과세</option></select><br>
+          
 국가(해외) <input type="text" value="${customer.countryEnglish}" name="countryEnglish"><br>
 국가(국내) <input type="text" value="${customer.countryKorean}" name="countryKorean"><br>
 
-<c:choose>
-		<c:when test="${customer.specialRelation == Y}">
-		    <input type="hidden" name="specialRelation" value="Y" checked/>
-		    특수관계자 <input type="checkbox" name="specialRelation" value="N"/>
-		</c:when>
-		<c:otherwise>
-		    <input type="hidden" name="specialRelation" value="Y"/>
-        특수관계자 <input type="checkbox" name="specialRelation" value="N" checked/>
-		</c:otherwise>
-</c:choose>
-
-<c:choose>
-    <c:when test="${customer.tradeStop == Y}">
-        <input type="hidden" name="tradeStop" value="Y" checked/><br>
-        거래중지 <input type="checkbox" name="tradeStop" value="N"/><br>
-    </c:when>
-    <c:otherwise>
-        <input type="hidden" name="tradeStop" value="Y"/><br>
-        거래중지 <input type="checkbox" name="tradeStop" value="N" checked/><br>
-    </c:otherwise>
-</c:choose>
+특수관계자 <input type="checkbox" name="specialRelation" <c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>><br>
+거래중지 <input type="checkbox" name="tradeStop" <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>><br>
 
 <c:set var="contractStart"><fmt:formatDate value="${customer.contractStart}" pattern="yyyy-MM-dd" /></c:set>
 <c:set var="contractEnd"><fmt:formatDate value="${customer.contractEnd}" pattern="yyyy-MM-dd" /></c:set>
@@ -140,15 +93,13 @@
        
 <c:set var="registrationDate"><fmt:formatDate value="${customer.registrationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
 <c:set var="modificationDate"><fmt:formatDate value="${customer.modificationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
-
+<!-- 시분초 안넘어옴 -->
 등록정보 <input type="text" value="${customer.registrationMan}" name="registrationMan">
-            <input type="text" name="registrationDate" 
-            value="${registrationDate}" readonly><br>
+<input type="text" name="registrationDate" value="${registrationDate}" readonly><br>
 
 <!-- 변경일 넘기기로 바꾸기 -->
 변경정보 <input type="text" value="${customer.modificationMan}" name="modificationMan">
-            <input type="text" name="modificationDate" 
-            value="${modificationDate}" readonly><br>
+<input type="text" name="modificationDate" value="${modificationDate}" readonly><br>
 
 <input type="submit" value="등록">
 
