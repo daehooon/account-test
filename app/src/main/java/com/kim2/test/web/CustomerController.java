@@ -15,7 +15,7 @@ import com.kim2.test.service.CustomerService;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-  //asdfasdf
+
   ServletContext sc;
   CustomerService customerService;
 
