@@ -28,8 +28,8 @@
 
 우편번호 <input type="text" value="${customer.postNumber}" name="postNumber" id="postNumber">
 <input type="button" onclick="sample6_execDaumPostcode()" value="검색"><br>
-주소 1 <input type="text" name="firstAddress" id="firstAddress"><br>
-주소 2 <input type="text" name="secondAddress" id="secondAddress"><br>
+주소 1 <input type="text" value="${customer.firstAddress}" name="firstAddress" id="firstAddress"><br>
+주소 2 <input type="text" value="${customer.secondAddress}" name="secondAddress" id="secondAddress"><br>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -59,50 +59,96 @@
     }
 </script>
 
-전화번호 <input type="text" name="tel"><br>
-팩스번호 <input type="text" name="fax"><br>
-홈페이지 <input type="text" name="homepage"><br>
+전화번호 <input type="text" value="${customer.tel}" name="tel"><br>
+팩스번호 <input type="text" value="${customer.fax}" name="fax"><br>
+홈페이지 <input type="text" value="${customer.homepage}" name="homepage"><br>
 
-법인여부 <input type="radio" name="corporationWhether" value="Y">법인
-            <input type="radio" name="corporationWhether" value="N">개인<br>
+<c:choose>
+    <c:when test="${customer.corporationWhether == Y}">
+        법인여부 <input type="radio" name="corporationWhether" value="Y" checked>법인
+        <input type="radio" name="corporationWhether" value="N">개인<br>
+    </c:when>
+    <c:otherwise>
+        법인여부 <input type="radio" name="corporationWhether" value="Y">법인
+        <input type="radio" name="corporationWhether" value="N" checked>개인<br>
+    </c:otherwise>
+</c:choose>
           
-해외여부 <input type="radio" name="foreignWhether" value="Y">국내
-            <input type="radio" name="foreignWhether" value="N">해외<br>
+<c:choose>
+    <c:when test="${customer.foreignWhether == Y}">
+        해외여부 <input type="radio" name="foreignWhether" value="Y" checked>국내
+        <input type="radio" name="foreignWhether" value="N">해외<br>
+    </c:when>
+    <c:otherwise>
+        해외여부 <input type="radio" name="foreignWhether" value="Y">국내
+        <input type="radio" name="foreignWhether" value="N" checked>해외<br>
+    </c:otherwise>
+</c:choose>
           
-과세구분 <select name="taxWhether">
+<c:choose>
+    <c:when test="${customer.taxWhether == Y}">
+        과세구분 <select name="taxWhether">
             <option value="Y">과세/면세</option>
             <option value="N">비과세</option>
          </select><br>
+    </c:when>
+    <c:otherwise>
+        과세구분 <select name="taxWhether">
+            <option value="N">비과세</option>
+            <option value="Y">과세/면세</option>
+         </select><br>
+    </c:otherwise>
+</c:choose>
 
-국가(해외) <input type="text" name="countryEnglish"><br>
-국가(국내) <input type="text" name="countryKorean"><br>
+국가(해외) <input type="text" value="${customer.countryEnglish}" name="countryEnglish"><br>
+국가(국내) <input type="text" value="${customer.countryKorean}" name="countryKorean"><br>
 
-<input type="hidden" name="specialRelation" value="Y" />
-특수관계자 <input type="checkbox" name="specialRelation" value="N" />
-<input type="hidden" name="tradeStop" value="Y" /><br>
-거래중지 <input type="checkbox" name="tradeStop" value="N" /><br>
+<c:choose>
+		<c:when test="${customer.specialRelation == Y}">
+		    <input type="hidden" name="specialRelation" value="Y" checked/>
+		    특수관계자 <input type="checkbox" name="specialRelation" value="N"/>
+		</c:when>
+		<c:otherwise>
+		    <input type="hidden" name="specialRelation" value="Y"/>
+        특수관계자 <input type="checkbox" name="specialRelation" value="N" checked/>
+		</c:otherwise>
+</c:choose>
+
+<c:choose>
+    <c:when test="${customer.tradeStop == Y}">
+        <input type="hidden" name="tradeStop" value="Y" checked/><br>
+        거래중지 <input type="checkbox" name="tradeStop" value="N"/><br>
+    </c:when>
+    <c:otherwise>
+        <input type="hidden" name="tradeStop" value="Y"/><br>
+        거래중지 <input type="checkbox" name="tradeStop" value="N" checked/><br>
+    </c:otherwise>
+</c:choose>
+
+<c:set var="contractStart"><fmt:formatDate value="${customer.contractStart}" pattern="yyyy-MM-dd" /></c:set>
+<c:set var="contractEnd"><fmt:formatDate value="${customer.contractEnd}" pattern="yyyy-MM-dd" /></c:set>
 
 <label for="start">계약기간 </label>
 <input type="date" id="contractStart" name="contractStart"
-       value="2001-01-01"
+       value="${contractStart}"
        min="2001-01-01" max="2100-01-01">
        
 <label for="end">~ </label>
 <input type="date" id="contractEnd" name="contractEnd"
-       value="2001-12-31"
+       value="${contractEnd}"
        min="2001-01-01" max="2100-01-01"><br>
+       
+<c:set var="registrationDate"><fmt:formatDate value="${customer.registrationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
+<c:set var="modificationDate"><fmt:formatDate value="${customer.modificationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
 
-<c:set var="today" value="<%=new java.util.Date()%>" />
-<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
-
-등록정보 <input type="text" name="registrationMan">
+등록정보 <input type="text" value="${customer.registrationMan}" name="registrationMan">
             <input type="text" name="registrationDate" 
-            value="<c:out value="${date}" />" readonly><br>
+            value="${registrationDate}" readonly><br>
 
 <!-- 변경일 넘기기로 바꾸기 -->
-변경정보 <input type="text" name="modificationMan">
+변경정보 <input type="text" value="${customer.modificationMan}" name="modificationMan">
             <input type="text" name="modificationDate" 
-            value="<c:out value="${date}" />" readonly><br>
+            value="${modificationDate}" readonly><br>
 
 <input type="submit" value="등록">
 
