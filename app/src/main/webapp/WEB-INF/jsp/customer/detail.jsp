@@ -18,14 +18,14 @@
 
 <h1>거래처 관리</h1>
 
-<form action="add" method="post">
+<form action="detail" method="get" name="detail">
 
 <input type='reset'>
 <input type="submit" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
 <button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p>
 
-사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber"><br>
+사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber" readonly><br>
 거래처명 <input type="text" value="${customer.custom}" name="custom"><br>
 약칭 <input type="text" value="${customer.sshort}" name="sshort"><br>
 대표자 <input type="text" value="${customer.ceo}" name="ceo"><br>

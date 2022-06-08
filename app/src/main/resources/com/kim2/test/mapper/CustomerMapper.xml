@@ -91,31 +91,30 @@
    
   <update id="update" parameterType="customer">
     update custom set
-      BUSI_NUM=#{businessNumber},
-      CUSTOM=#{custom},
-      SHORT=#{sshort},
-      CEO=#{ceo},
-      CHARGE_PERSON=#{chargePerson},
-      BUSI_CONDITION=#{businessCondition},
-      ITEM=#{item},
-      POST_NUM=#{postNumber},
-      ADDR1=#{firstAddress},
-      ADDR2=#{secondAddress},
-      TEL=#{tel},
-      FAX=#{fax},
-      HOMEPAGE=#{homepage},
-      CO_YN=#{corporationWhether},
-      FOREIGN_YN=#{foreignWhether},
-      TAX_YN=#{taxWhether},
-      SPECIAL_RELATION=#{specialRelation},
-      TRADE_STOP=#{tradeStop},
-      CONTRACT_PERIOD_S=#{contractStart},
-      CONTRACT_PERIOD_E=#{contractEnd},
-      REGI_INFO_MAN=#{registrationMan},
-      REGI_INFO_DATE=#{registrationDate},
-      MODI_INFO_MAN=#{modificationMan},
-      MODI_INFO_DATE=#{modificationDate}
-    where BUSI_NUM=#{businessNumber}
+		    CUSTOM=#{custom},
+		    SHORT=#{sshort},
+		    CEO=#{ceo},
+		    CHARGE_PERSON=#{chargePerson},
+		    BUSI_CONDITION=#{businessCondition},
+		    ITEM=#{item},
+		    POST_NUM=#{postNumber},
+		    ADDR1=#{firstAddress},
+		    ADDR2=#{secondAddress},
+		    TEL=#{tel},
+		    FAX=#{fax},
+		    HOMEPAGE=#{homepage},
+		    CO_YN=#{corporationWhether},
+		    FOREIGN_YN=#{foreignWhether},
+		    TAX_YN=#{taxWhether},
+		    SPECIAL_RELATION=#{specialRelation},
+		    TRADE_STOP=#{tradeStop},
+		    CONTRACT_PERIOD_S=#{contractStart},
+		    CONTRACT_PERIOD_E=#{contractEnd},
+		    REGI_INFO_MAN=#{registrationMan},
+		    REGI_INFO_DATE=#{registrationDate},
+		    MODI_INFO_MAN=#{modificationMan},
+		    MODI_INFO_DATE=#{modificationDate}
+      where BUSI_NUM=#{businessNumber}
   </update>
   
 </mapper>

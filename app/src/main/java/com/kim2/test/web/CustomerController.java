@@ -97,7 +97,7 @@ public class CustomerController {
   public String update(HttpServletRequest request) throws Exception {
 
     Customer c = new Customer();
-    Nation n = new Nation();
+    //    Nation n = new Nation();
     SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -118,8 +118,8 @@ public class CustomerController {
     c.setForeignWhether(request.getParameter("foreignWhether"));
     c.setTaxWhether(request.getParameter("taxWhether"));
 
-    n.setNationS(request.getParameter("nationS"));
-    n.setNation(request.getParameter("nation"));
+    //    n.setNationS(request.getParameter("nationS"));
+    //    n.setNation(request.getParameter("nation"));
 
     c.setSpecialRelation(request.getParameter("specialRelation"));
     c.setTradeStop(request.getParameter("tradeStop"));

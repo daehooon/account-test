@@ -18,14 +18,14 @@
 
 <h1>거래처 관리</h1>
 
-<form action="update" method="post">
+<form action="update" method="post" name="update">
 
 <input type='reset'>
 <input type="submit" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
 <button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p>
 
-사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber"><br>
+사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber" readonly><br>
 거래처명 <input type="text" value="${customer.custom}" name="custom"><br>
 약칭 <input type="text" value="${customer.sshort}" name="sshort"><br>
 대표자 <input type="text" value="${customer.ceo}" name="ceo"><br>
@@ -76,7 +76,7 @@
 해외여부 <input type="radio" value="Y" name="foreignWhether" <c:out value="${customer.foreignWhether == 'Y' ? 'checked' : ''}"/>>국내
 <input type="radio" value="N" name="foreignWhether" <c:out value="${customer.foreignWhether == 'N' ? 'checked' : ''}"/>>해외<br>
           
-과세구분 <select name="taxWhether" value="Y"><option <c:out value="${customer.taxWhether == 'Y' ? 'selected' : ''}"/>>과세/면세</option>
+과세구분 <select name="taxWhether"><option value="Y" <c:out value="${customer.taxWhether == 'Y' ? 'selected' : ''}"/>>과세/면세</option>
               <option value="N" <c:out value="${customer.taxWhether == 'N' ? 'selected' : ''}"/>>비과세</option>
           </select><br>
 
@@ -109,6 +109,7 @@
        
 <c:set var="registrationDate"><fmt:formatDate value="${customer.registrationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
 <c:set var="modificationDate"><fmt:formatDate value="${customer.modificationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
+
 <!-- 시분초 안넘어옴 -->
 등록정보 <input type="text" value="${customer.registrationMan}" name="registrationMan">
 <input type="text" name="registrationDate" value="${registrationDate}" readonly><br>
