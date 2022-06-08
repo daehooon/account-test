@@ -24,8 +24,12 @@
     <result column="CO_YN" property="corporationWhether"/>
     <result column="FOREIGN_YN" property="foreignWhether"/>
     <result column="TAX_YN" property="taxWhether"/>
-    <result column="COUNTRY_ENG" property="countryEnglish"/>
-    <result column="COUNTRY_KOR" property="countryKorean"/>
+    
+    <!-- domain.Nation -->
+    <result column="NATION_NO" property="nationNo"/>
+    <result column="NATION_SHORT" property="nationS"/>
+    <result column="NATION" property="nation"/>
+    
     <result column="SPECIAL_RELATION" property="specialRelation"/>
     <result column="TRADE_STOP" property="tradeStop"/>
     <result column="CONTRACT_PERIOD_S" property="contractStart"/>

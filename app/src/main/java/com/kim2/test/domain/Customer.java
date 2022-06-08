@@ -2,7 +2,7 @@ package com.kim2.test.domain;
 
 import java.util.Date;
 
-public class Customer {
+public class Customer extends Nation {
   private String businessNumber;
   private String custom;
   private String sshort;

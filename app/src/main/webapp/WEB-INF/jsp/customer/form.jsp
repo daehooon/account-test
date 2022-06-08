@@ -15,6 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <meta charset="UTF-8">
 <title>거래처 관리</title>
 
@@ -22,7 +23,14 @@
 <body>
 
 <h1>거래처 관리</h1>
-<form action="add" method="post">
+
+<form action="add" method="post" name="form">
+
+<input type='reset'>
+<input type="submit" value="등록">
+<button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
+<button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p>
+
 사업자번호 <input type="text" name="businessNumber"><br>
 거래처명 <input type="text" name="custom"><br>
 약칭 <input type="text" name="sshort"><br>
@@ -79,15 +87,16 @@
             <option value="N">비과세</option>
          </select><br>
 
-국가(해외) <input type="text" name="countryEnglish"><br>
-국가(국내) <input type="text" name="countryKorean"><br>
+국가 <input type="text" name="nationS" value="${nation.nationNo}" readonly>
 
-<input type="hidden" name="specialRelation" value="Y" />
-특수관계자 <input type="checkbox" name="specialRelation" value="N" /><br>
+
+
+<input type="hidden" name="specialRelation" value="N" />
+특수관계자 <input type="checkbox" name="specialRelation" value="Y" /><br>
 
 <!-- 값이 무조건 Y로 들어감 -->
-<input type="hidden" name="tradeStop" value="Y" />
-거래중지 <input type="checkbox" name="tradeStop" value="N" /><br>
+<input type="hidden" name="tradeStop" value="N" />
+거래중지 <input type="checkbox" name="tradeStop" value="Y" /><br>
 
 <label for="start">계약기간 </label>
 <input type="date" id="contractStart" name="contractStart"
@@ -105,12 +114,28 @@
 <!-- 변경일 넘기기로 바꾸기 -->
 변경정보 <input type="text" name="modificationMan">
 <input type="text" name="modificationDate" value="<%= sf.format(nowTime) %>" readonly/><br>
- 
-<input type="submit" value="등록">
 
 </form>
 </body>
+
+<script>
+$(form).on("submit",function(e){
+	 e.preventDefault();
+	 var businessNumber=$(form.businessNumber).val();
+	 var custom=$(form.custom).val();
+	 
+	 if (businessNumber == '') {
+		 alert("사업자번호 미입력"); 
+	 } else if(custom == '') {
+		 alert("거래처명 미입력")
+	 } else {
+		 form.submit();
+	 }
+	 
+});
+</script>
 </html>
+
 
 
 

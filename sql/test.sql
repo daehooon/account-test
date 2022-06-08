@@ -35,6 +35,26 @@ create table ACCOUNT (
     ACCOUNT_NUM char(20)
 );
 
+-- 국가
+create table NATIONS (
+  NATION_NO int primary key not null AUTO_INCREMENT,
+  NATION_SHORT char(3),
+  NATION varchar(10)
+);
+
+insert into NATIONS (NATION_NO,NATION)
+    values("KOR","대한민국");
+insert into NATIONS (NATION_NO,NATION)
+    values("CHN","중국");
+insert into NATIONS (NATION_NO,NATION)
+    values("JPN","일본");
+insert into NATIONS (NATION_NO,NATION)
+    values("USA","미국");
+insert into NATIONS (NATION_NO,NATION)
+    values("PHL","필리핀");
+insert into NATIONS (NATION_NO,NATION)
+    values("GBR","영국");    
+
 -- 테스트 query
 insert into custom(BUSI_NUM,CUSTOM,SHORT,CEO,CHARGE_PERSON,BUSI_CONDITION,ITEM, POST_NUM,
       ADDR1,ADDR2,TEL,FAX,HOMEPAGE,CO_YN,FOREIGN_YN,TAX_YN,COUNTRY_ENG,COUNTRY_KOR,

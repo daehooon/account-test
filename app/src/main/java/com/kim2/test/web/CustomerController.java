@@ -9,16 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.kim2.test.domain.Customer;
+import com.kim2.test.domain.Nation;
 import com.kim2.test.service.CustomerService;
+import com.kim2.test.service.NationService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
   CustomerService customerService;
+  NationService nationService;
 
-  public CustomerController(CustomerService customerService) {
+  public CustomerController(CustomerService customerService, NationService nationService) {
     this.customerService = customerService;
+    this.nationService = nationService;
   }
 
   @GetMapping("form")
@@ -28,6 +32,7 @@ public class CustomerController {
   public String add(HttpServletRequest request) throws Exception {
 
     Customer c = new Customer();
+    Nation n = new Nation();
     SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -47,8 +52,10 @@ public class CustomerController {
     c.setCorporationWhether(request.getParameter("corporationWhether"));
     c.setForeignWhether(request.getParameter("foreignWhether"));
     c.setTaxWhether(request.getParameter("taxWhether"));
-    c.setCountryEnglish(request.getParameter("countryEnglish"));
-    c.setCountryKorean(request.getParameter("countryKorean"));
+
+    n.setNationS(request.getParameter("nationS"));
+    n.setNation(request.getParameter("nation"));
+
     c.setSpecialRelation(request.getParameter("specialRelation"));
     c.setTradeStop(request.getParameter("tradeStop"));
     c.setContractStart(transFormat1.parse(request.getParameter("contractStart")));
@@ -79,7 +86,7 @@ public class CustomerController {
 
     customerService.delete(businessNumber);
 
-    return "redirect:list";
+    return "redirect:form";
   }
 
   //  @GetMapping("updateForm")

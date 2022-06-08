@@ -17,7 +17,14 @@
 <c:if test="${not empty customer}">
 
 <h1>거래처 관리</h1>
+
 <form action="add" method="post">
+
+<input type='reset'>
+<input type="submit" value="등록">
+<button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
+<button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p>
+
 사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber"><br>
 거래처명 <input type="text" value="${customer.custom}" name="custom"><br>
 약칭 <input type="text" value="${customer.sshort}" name="sshort"><br>
@@ -100,8 +107,6 @@
 <!-- 변경일 넘기기로 바꾸기 -->
 변경정보 <input type="text" value="${customer.modificationMan}" name="modificationMan">
 <input type="text" name="modificationDate" value="${modificationDate}" readonly><br>
-
-<input type="submit" value="등록">
 
 </form>
 </c:if>
