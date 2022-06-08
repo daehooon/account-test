@@ -42,18 +42,18 @@ create table NATIONS (
   NATION varchar(10)
 );
 
-insert into NATIONS (NATION_NO,NATION)
+insert into NATIONS (NATION_SHORT,NATION)
     values("KOR","대한민국");
-insert into NATIONS (NATION_NO,NATION)
+insert into NATIONS (NATION_SHORT,NATION)
     values("CHN","중국");
-insert into NATIONS (NATION_NO,NATION)
+insert into NATIONS (NATION_SHORT,NATION)
     values("JPN","일본");
-insert into NATIONS (NATION_NO,NATION)
+insert into NATIONS (NATION_SHORT,NATION)
     values("USA","미국");
-insert into NATIONS (NATION_NO,NATION)
+insert into NATIONS (NATION_SHORT,NATION)
     values("PHL","필리핀");
-insert into NATIONS (NATION_NO,NATION)
-    values("GBR","영국");    
+insert into NATIONS (NATION_SHORT,NATION)
+    values("GBR","영국");
 
 -- 테스트 query
 insert into custom(BUSI_NUM,CUSTOM,SHORT,CEO,CHARGE_PERSON,BUSI_CONDITION,ITEM, POST_NUM,

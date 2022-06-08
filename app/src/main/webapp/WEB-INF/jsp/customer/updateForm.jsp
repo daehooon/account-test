@@ -18,7 +18,7 @@
 
 <h1>거래처 관리</h1>
 
-<form action="add" method="post">
+<form action="update" method="post">
 
 <input type='reset'>
 <input type="submit" value="등록">
@@ -71,7 +71,7 @@
 홈페이지 <input type="text" value="${customer.homepage}" name="homepage"><br>
 
 법인여부 <input type="radio" value="Y" name="corporationWhether" <c:out value="${customer.corporationWhether == 'Y' ? 'checked' : ''}"/>>법인
-<input type="radio" value="N" name="corporationWhether" <c:out value="${customer.corporationWhether == 'N' ? 'checked' : ''}"/>>개인<br>
+<input type="radio"  value="N" name="corporationWhether" <c:out value="${customer.corporationWhether == 'N' ? 'checked' : ''}"/>>개인<br>
 
 해외여부 <input type="radio" value="Y" name="foreignWhether" <c:out value="${customer.foreignWhether == 'Y' ? 'checked' : ''}"/>>국내
 <input type="radio" value="N" name="foreignWhether" <c:out value="${customer.foreignWhether == 'N' ? 'checked' : ''}"/>>해외<br>
@@ -91,8 +91,8 @@
      </select>
 <button>검색</button><br>
 
-특수관계자 <input type="checkbox" name="specialRelation" value="${customer.specialRelation}" <c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>><br>
-거래중지 <input type="checkbox" name="tradeStop" value="${customer.tradeStop}" <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>><br>
+특수관계자 <input type="checkbox" name="specialRelation" value="${customer.specialRelation}"<c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>><br>
+거래중지 <input type="checkbox" name="tradeStop" value="${tradeStop}" <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>><br>
 
 <c:set var="contractStart"><fmt:formatDate value="${customer.contractStart}" pattern="yyyy-MM-dd" /></c:set>
 <c:set var="contractEnd"><fmt:formatDate value="${customer.contractEnd}" pattern="yyyy-MM-dd" /></c:set>

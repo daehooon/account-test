@@ -8,11 +8,7 @@ public interface CustomerService {
 
   Customer get(String businessNumber) throws Exception;
 
-  String delete(String businessNumber) throws Exception;
+  String delete(Customer customer) throws Exception;
 
-  //  String update(Customer customer) throws Exception;
-  //
-  //  List<Customer> list() throws Exception;
-  //
-  //  Customer Search(String businessNumber) throws Exception;
+  String update(Customer customer) throws Exception;
 }

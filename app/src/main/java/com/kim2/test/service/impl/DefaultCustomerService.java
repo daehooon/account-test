@@ -31,34 +31,14 @@ public class DefaultCustomerService implements CustomerService {
   }
 
   @Override
-  public String delete(String businessNumber) throws Exception {
-    return customerDao.delete(businessNumber);
+  public String delete(Customer customer) throws Exception {
+    customerDao.delete(customer);
+    return customer.getBusinessNumber();
   }
 
-  //  @Override
-  //  public String update(Customer customer) throws Exception {
-  //    return transactionTemplate.execute(new TransactionCallback<String>() {
-  //      @Override
-  //      public String doInTransaction(TransactionStatus status) {
-  //        try {
-  //          HashMap<String,Object> param = new HashMap<>();
-  //          param.put("businessNumber", customer.getBusinessNumber());
-  //          param.put("customer", customer);
-  //          customerDao.update(param);
-  //
-  //          return customer.getBusinessNumber();
-  //        } catch (Exception e) {
-  //          throw new RuntimeException(e);
-  //        }
-  //      }
-  //    });
-  //  }
-
-
-
-
-  //  @Override
-  //  public List<Customer> list() throws Exception {
-  //    return customerDao.findAll();
-  //  }
+  @Override
+  public String update(Customer customer) throws Exception {
+    customerDao.update(customer);
+    return customer.getBusinessNumber();
+  }
 }

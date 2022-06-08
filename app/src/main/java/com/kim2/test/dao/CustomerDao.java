@@ -8,13 +8,7 @@ public interface CustomerDao {
 
   Customer findByNo(String businessNumber) throws Exception;
 
-  String delete(String businessNumber) throws Exception;
+  int delete(Customer customer) throws Exception;
 
-  //  String update(Map<String,Object> param) throws Exception;
-  //
-  //  List<Customer> findAll() throws Exception;
-  //
-  //  Customer findByName(String name) throws Exception;
-  //
-  //  List<Customer> findByTutor(int tutorNo) throws Exception;
+  int update(Customer customer) throws Exception;
 }

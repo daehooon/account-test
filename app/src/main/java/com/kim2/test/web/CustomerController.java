@@ -2,7 +2,6 @@ package com.kim2.test.web;
 
 import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,68 +77,63 @@ public class CustomerController {
   }
 
   @RequestMapping("delete")
-  public String delete(String businessNumber, HttpSession session) throws Exception {
+  public String delete(String businessNumber) throws Exception {
     Customer customer = customerService.get(businessNumber);
     if (customer == null) {
       throw new Exception("해당 번호의 거래처가 없습니다.");
     }
 
-    customerService.delete(businessNumber);
+    customerService.delete(customer);
 
     return "redirect:form";
   }
 
-  //  @GetMapping("updateForm")
-  //  public void updateForm(String businessNumber, Model model) throws Exception {
-  //    model.addAttribute("customer", customerService.get(businessNumber));
-  //  }
+  @GetMapping("updateForm")
+  public void updateForm(String businessNumber, Model model) throws Exception {
+    model.addAttribute("customer", customerService.get(businessNumber));
+  }
 
-  //  @PostMapping("update")
-  //  public String update(String businessNumber, Model model, HttpSession session, 
-  //      HttpServletRequest request) throws Exception {
-  //
-  //    Customer customer = customerService.get(businessNumber);
-  //    Customer c = new Customer();
-  //
-  //    c.setBusinessNumber(request.getParameter("businessNumber"));
-  //    c.setCustom(request.getParameter("custom"));
-  //    c.setSshort(request.getParameter("sshort"));
-  //    c.setCeo(request.getParameter("ceo"));
-  //    c.setChargePerson(request.getParameter("chargePerson"));
-  //    c.setBusinessCondition(request.getParameter("businessCondition"));
-  //    c.setItem(request.getParameter("item"));
-  //    c.setPostNumber(request.getParameter("postNumber"));
-  //    c.setFirstAddress(request.getParameter("firstAddress"));
-  //    c.setSecondAddress(request.getParameter("second"));
-  //    c.setTel(request.getParameter("tel"));
-  //    c.setFax(request.getParameter("fax"));
-  //    c.setHomepage(request.getParameter("homepage"));
-  //    c.setCorporationWhether(request.getParameter("corporationWhether"));
-  //    c.setForeignWhether(request.getParameter("foreignWhether"));
-  //    c.setTaxWhether(request.getParameter("taxWhether"));
-  //    c.setCountryEnglish(request.getParameter("countryEnglish"));
-  //    c.setCountryKorean(request.getParameter("countryKorean"));
-  //    c.setSpecialRelation(request.getParameter("specialRelation"));
-  //    c.setTradeStop(request.getParameter("tradeStop"));
-  //    c.setContractStart(Date.valueOf(request.getParameter("contractStart")));
-  //    c.setContractEnd(Date.valueOf(request.getParameter("contractEnd")));
-  //    c.setRegistrationMan(request.getParameter("registrationMan"));
-  //    c.setRegistrationDate(Date.valueOf(request.getParameter("registrationDate")));
-  //    c.setModificationMan(request.getParameter("modificationMan"));
-  //    c.setModificationDate(Date.valueOf(request.getParameter("modificationDate")));
-  //
-  //    String businessNumbers = customerService.update(c);
-  //
-  //    return "redirect:detail?businessNumber=" + businessNumbers;
-  //  }
+  @PostMapping("update")
+  public String update(HttpServletRequest request) throws Exception {
 
+    Customer c = new Customer();
+    Nation n = new Nation();
+    SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    c.setBusinessNumber(request.getParameter("businessNumber"));
+    c.setCustom(request.getParameter("custom"));
+    c.setSshort(request.getParameter("sshort"));
+    c.setCeo(request.getParameter("ceo"));
+    c.setChargePerson(request.getParameter("chargePerson"));
+    c.setBusinessCondition(request.getParameter("businessCondition"));
+    c.setItem(request.getParameter("item"));
+    c.setPostNumber(request.getParameter("postNumber"));
+    c.setFirstAddress(request.getParameter("firstAddress"));
+    c.setSecondAddress(request.getParameter("secondAddress"));
+    c.setTel(request.getParameter("tel"));
+    c.setFax(request.getParameter("fax"));
+    c.setHomepage(request.getParameter("homepage"));
+    c.setCorporationWhether(request.getParameter("corporationWhether"));
+    c.setForeignWhether(request.getParameter("foreignWhether"));
+    c.setTaxWhether(request.getParameter("taxWhether"));
 
-  //  @GetMapping("list")
-  //  public void list(Model model) throws Exception {
-  //    List<Customer> customer = customerService.list();
-  //    model.addAttribute("customer", customer);
-  //  }
+    n.setNationS(request.getParameter("nationS"));
+    n.setNation(request.getParameter("nation"));
+
+    c.setSpecialRelation(request.getParameter("specialRelation"));
+    c.setTradeStop(request.getParameter("tradeStop"));
+    c.setContractStart(transFormat1.parse(request.getParameter("contractStart")));
+    c.setContractEnd(transFormat1.parse(request.getParameter("contractEnd")));
+    c.setRegistrationMan(request.getParameter("registrationMan"));
+    c.setRegistrationDate(transFormat2.parse(request.getParameter("registrationDate")));
+    c.setModificationMan(request.getParameter("modificationMan"));
+    c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
+
+    String businessNumber = customerService.update(c);
+
+    return "redirect:detail?businessNumber=" + businessNumber;
+  }
 }
 
 

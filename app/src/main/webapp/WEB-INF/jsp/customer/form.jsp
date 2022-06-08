@@ -87,16 +87,23 @@
             <option value="N">비과세</option>
          </select><br>
 
-국가 <input type="text" name="nationS" value="${nation.nationNo}" readonly>
+국가 <input type="text" name="nationS">
+<select name="nation">
+    <option value="대한민국">대한민국</option>
+    <option value="중국">중국</option>
+    <option value="일본">일본</option>
+    <option value="미국">미국</option>
+    <option value="필리핀">필리핀</option>
+    <option value="영국">영국</option>
+</select>
+<button>검색</button><br>
 
-
-
-<input type="hidden" name="specialRelation" value="N" />
-특수관계자 <input type="checkbox" name="specialRelation" value="Y" /><br>
+<input type="hidden" name="specialRelation" value="Y" />
+특수관계자 <input type="checkbox" name="specialRelation" value="N" /><br>
 
 <!-- 값이 무조건 Y로 들어감 -->
-<input type="hidden" name="tradeStop" value="N" />
-거래중지 <input type="checkbox" name="tradeStop" value="Y" /><br>
+<input type="hidden" name="tradeStop" value="Y" />
+거래중지 <input type="checkbox" name="tradeStop" value="N" /><br>
 
 <label for="start">계약기간 </label>
 <input type="date" id="contractStart" name="contractStart"

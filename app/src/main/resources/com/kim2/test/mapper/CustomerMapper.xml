@@ -88,72 +88,36 @@
   <delete id="delete" parameterType="String">
     delete from custom where BUSI_NUM=#{businessNumber}
   </delete>
-  
- <!-- 
-  <update id="update" parameterType="map">
+   
+  <update id="update" parameterType="customer">
     update custom set
-      BUSI_NUM=#{customer.businessNumber},
-      CUSTOM=#{customer.custom},
-      SHORT=#{customer.sshort},
-      CEO=#{customer.ceo},
-      CHARGE_PERSON=#{customer.chargePerson},
-      BUSI_CONDITION=#{customer.businessCondition},
-      ITEM=#{customer.item},
-      POST_NUM=#{customer.postNumber},
-      ADDR1=#{customer.firstAddress},
-      ADDR2=#{customer.secondAddress},
-      TEL=#{customer.tel},
-      FAX=#{customer.fax},
-      HOMEPAGE=#{customer.homepage},
-      CO_YN=#{customer.corporationWhether},
-      FOREIGN_YN=#{customer.foreignWhether},
-      TAX_YN=#{customer.taxWhether},
-      COUNTRY_ENG=#{customer.countryEnglish},
-      COUNTRY_KOR=#{customer.countryKorean},
-      SPECIAL_RELATION=#{customer.specialRelation},
-      TRADE_STOP=#{customer.tradeStop},
-      CONTRACT_PERIOD_S=#{customer.contractStart},
-      CONTRACT_PERIOD_E=#{customer.contractEnd},
-      REGI_INFO_MAN=#{customer.registrationMan},
-      REGI_INFO_DATE=#{customer.registrationDate},
-      MODI_INFO_MAN=#{customer.modificationMan},
-      MODI_INFO_DATE=#{customer.modificationDate}
+      BUSI_NUM=#{businessNumber},
+      CUSTOM=#{custom},
+      SHORT=#{sshort},
+      CEO=#{ceo},
+      CHARGE_PERSON=#{chargePerson},
+      BUSI_CONDITION=#{businessCondition},
+      ITEM=#{item},
+      POST_NUM=#{postNumber},
+      ADDR1=#{firstAddress},
+      ADDR2=#{secondAddress},
+      TEL=#{tel},
+      FAX=#{fax},
+      HOMEPAGE=#{homepage},
+      CO_YN=#{corporationWhether},
+      FOREIGN_YN=#{foreignWhether},
+      TAX_YN=#{taxWhether},
+      SPECIAL_RELATION=#{specialRelation},
+      TRADE_STOP=#{tradeStop},
+      CONTRACT_PERIOD_S=#{contractStart},
+      CONTRACT_PERIOD_E=#{contractEnd},
+      REGI_INFO_MAN=#{registrationMan},
+      REGI_INFO_DATE=#{registrationDate},
+      MODI_INFO_MAN=#{modificationMan},
+      MODI_INFO_DATE=#{modificationDate}
     where BUSI_NUM=#{businessNumber}
   </update>
-   -->
   
-  <!-- 
-   <select id="findAll" resultMap="customerMap">
-    select
-      BUSI_NUM,
-      CUSTOM,
-      SHORT,
-      CEO,
-      CHARGE_PERSON,
-      BUSI_CONDITION,
-      ITEM,
-      POST_NUM,
-      ADDR1,
-      ADDR2,
-      TEL,
-      FAX,
-      HOMEPAGE,
-      CO_YN,
-      FOREIGN_YN,
-      TAX_YN,
-      COUNTRY_ENG,
-      COUNTRY_KOR,
-      SPECIAL_RELATION,
-      TRADE_STOP,
-      CONTRACT_PERIOD_S,
-      CONTRACT_PERIOD_E,
-      REGI_INFO_MAN,
-      REGI_INFO_DATE,
-      MODI_INFO_MAN,
-      MODI_INFO_DATE
-    from custom
-  </select>
-   -->
 </mapper>
 
 
