@@ -1,6 +1,7 @@
 package com.kim2.test.web;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -133,6 +134,12 @@ public class CustomerController {
     String businessNumber = customerService.update(c);
 
     return "redirect:detail?businessNumber=" + businessNumber;
+  }
+
+  @GetMapping("list")
+  public void list(Model model) throws Exception {
+    List<Customer> customers = customerService.list();
+    model.addAttribute("customers", customers);
   }
 }
 

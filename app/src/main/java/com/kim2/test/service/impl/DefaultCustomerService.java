@@ -1,5 +1,6 @@
 package com.kim2.test.service.impl;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 import com.kim2.test.dao.CustomerDao;
 import com.kim2.test.domain.Customer;
@@ -36,5 +37,10 @@ public class DefaultCustomerService implements CustomerService {
   public String update(Customer customer) throws Exception {
     customerDao.update(customer);
     return customer.getBusinessNumber();
+  }
+
+  @Override
+  public List<Customer> list() throws Exception {
+    return customerDao.findAll();
   }
 }

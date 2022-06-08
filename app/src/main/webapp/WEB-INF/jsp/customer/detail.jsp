@@ -16,8 +16,6 @@
 
 <c:if test="${not empty customer}">
 
-<h1>거래처 관리</h1>
-
 <form action="detail" method="get" name="detail">
 
 <input type='reset'>

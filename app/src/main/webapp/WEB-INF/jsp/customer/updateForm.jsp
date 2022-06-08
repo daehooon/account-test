@@ -9,14 +9,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>거래처 정보</title>
+<title>거래처 수정</title>
 
 </head>
 <body>
 
 <c:if test="${not empty customer}">
-
-<h1>거래처 관리</h1>
 
 <form action="update" method="post" name="update">
 
