@@ -86,12 +86,12 @@
        value="2001-12-31"
        min="2001-01-01" max="2100-01-01"><br>
 
+<!-- 시분초 등록 안됨 -->
 등록정보 <input type="text" name="registrationMan">
 <input type="text" name="registrationDate" value="<%= sf.format(nowTime) %>" readonly/><br>
             
-<!-- 변경일 넘기기로 바꾸기 -->
-변경정보 <input type="text" name="modificationMan">
-<input type="text" name="modificationDate" value="<%= sf.format(nowTime) %>" readonly/><br>
+변경정보 <input type="text" name="modificationMan" readonly>
+<input type="text" name="modificationDate" readonly/><br>
 
 <table>
 <tbody>
@@ -103,9 +103,11 @@
   <td style="text-align: center;"><b>은행</b></td>
   <td style="text-align: center;"><b>계좌번호</b></td>
 </tr>
+<tr>
   <td><input type="text" name="factory"><br></td>
   <td><input type="text" name="tradeBank"><br></td>
   <td><input type="text" name="accountNo"><br></td>
+</tr>
 </tbody>
 </table>
 

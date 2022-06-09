@@ -26,17 +26,92 @@
 <button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p>
 
 사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber" readonly><br>
-거래처명 <input type="text" value="${customer.custom}" name="custom"><br>
-약칭 <input type="text" value="${customer.sshort}" name="sshort"><br>
-대표자 <input type="text" value="${customer.ceo}" name="ceo"><br>
-담당자 <input type="text" value="${customer.chargePerson}" name="chargePerson"><br>
-업태 <input type="text" value="${customer.businessCondition}" name="businessCondition"><br>
-종목 <input type="text" value="${customer.item}" name="item"><br>
+거래처명 <input type="text" value="${customer.custom}" name="custom" readonly><br>
+약칭 <input type="text" value="${customer.sshort}" name="sshort" readonly><br>
+대표자 <input type="text" value="${customer.ceo}" name="ceo" readonly><br>
+담당자 <input type="text" value="${customer.chargePerson}" name="chargePerson" readonly><br>
+업태 <input type="text" value="${customer.businessCondition}" name="businessCondition" readonly><br>
+종목 <input type="text" value="${customer.item}" name="item" readonly><br>
 
-우편번호 <input type="text" value="${customer.postNumber}" name="postNumber" id="postNumber">
+우편번호 <input type="text" value="${customer.postNumber}" name="postNumber" id="postNumber" readonly>
 <input type="button" onclick="sample6_execDaumPostcode()" value="검색"><br>
-주소 1 <input type="text" value="${customer.firstAddress}" name="firstAddress" id="firstAddress"><br>
-주소 2 <input type="text" value="${customer.secondAddress}" name="secondAddress" id="secondAddress"><br>
+주소 1 <input type="text" value="${customer.firstAddress}" name="firstAddress" id="firstAddress" readonly><br>
+주소 2 <input type="text" value="${customer.secondAddress}" name="secondAddress" id="secondAddress" readonly><br>
+
+전화번호 <input type="text" value="${customer.tel}" name="tel" readonly><br>
+팩스번호 <input type="text" value="${customer.fax}" name="fax" readonly><br>
+홈페이지 <input type="text" value="${customer.homepage}" name="homepage" readonly><br>
+
+법인여부 <input type="radio" value="Y" name="corporationWhether" <c:out value="${customer.corporationWhether == 'Y' ? 'checked' : ''}"/>>법인
+<input type="radio" value="N" name="corporationWhether" <c:out value="${customer.corporationWhether == 'N' ? 'checked' : ''}"/>>개인<br>
+
+해외여부 <input type="radio" value="Y" name="foreignWhether" <c:out value="${customer.foreignWhether == 'Y' ? 'checked' : ''}"/>>국내
+<input type="radio" value="N" name="foreignWhether" <c:out value="${customer.foreignWhether == 'N' ? 'checked' : ''}"/>>해외<br>
+          
+과세구분 <select name="taxWhether" value="Y"><option <c:out value="${customer.taxWhether == 'Y' ? 'selected' : ''}"/>>과세/면세</option>
+              <option value="N" <c:out value="${customer.taxWhether == 'N' ? 'selected' : ''}"/>>비과세</option>
+          </select><br>
+
+          
+국가 <input type="text" value="${nation.nationS}" name="nationS" readonly>
+     <select name="nation"><option <c:out value="${nation.nation == '대한민국' ? 'selected' : ''}"/>>대한민국</option>
+         <option <c:out value="${nation.nation == '중국' ? 'selected' : ''}"/>>중국</option>
+         <option <c:out value="${nation.nation == '일본' ? 'selected' : ''}"/>>일본</option>
+         <option <c:out value="${nation.nation == '미국' ? 'selected' : ''}"/>>미국</option>
+         <option <c:out value="${nation.nation == '필리핀' ? 'selected' : ''}"/>>필리핀</option>
+         <option <c:out value="${nation.nation == '영국' ? 'selected' : ''}"/>>영국</option>
+     </select>
+<button>검색</button><br>
+
+특수관계자 <input type="checkbox" name="specialRelation" value="${customer.specialRelation}" <c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>><br>
+거래중지 <input type="checkbox" name="tradeStop" value="${customer.tradeStop}" <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>><br>
+
+<c:set var="contractStart"><fmt:formatDate value="${customer.contractStart}" pattern="yyyy-MM-dd"/></c:set>
+<c:set var="contractEnd"><fmt:formatDate value="${customer.contractEnd}" pattern="yyyy-MM-dd"/></c:set>
+
+<label for="start">계약기간 </label>
+<input type="date" id="contractStart" name="contractStart"
+       value="${contractStart}"
+       min="2001-01-01" max="2100-01-01" readonly>
+       
+<label for="end">~ </label>
+<input type="date" id="contractEnd" name="contractEnd"
+       value="${contractEnd}"
+       min="2001-01-01" max="2100-01-01" readonly><br>
+       
+<c:set var="registrationDate"><fmt:formatDate value="${customer.registrationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
+<c:set var="modificationDate"><fmt:formatDate value="${customer.modificationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
+<!-- 시분초 안넘어옴 -->
+등록정보 <input type="text" value="${customer.registrationMan}" name="registrationMan">
+<input type="text" name="registrationDate" value="${registrationDate}" readonly><br>
+
+<!-- 변경일 넘기기로 바꾸기 -->
+변경정보 <input type="text" value="${customer.modificationMan}" name="modificationMan">
+<input type="text" name="modificationDate" value="${modificationDate}" readonly><br>
+
+<table>
+<tbody>
+<tr>
+  <td>(거래처 계좌정보)</td>
+</tr>
+<tr>
+  <td style="text-align: center;"><b>사무소</b></td>
+  <td style="text-align: center;"><b>은행</b></td>
+  <td style="text-align: center;"><b>계좌번호</b></td>
+</tr>
+<tr>
+  <td><input type="text" value="${factory}" name="factory" readonly><br></td>
+  <td><input type="text" value="${tradeBank}" name="tradeBank" readonly><br></td>
+  <td><input type="text" value="${accountNo}" name="accountNo" readonly><br></td>
+</tr>
+</tbody>
+</table>
+
+<button type="button" onclick="location.href='list'">목록</button>
+
+</form>
+</c:if>
+</body>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -66,78 +141,6 @@
     }
 </script>
 
-전화번호 <input type="text" value="${customer.tel}" name="tel"><br>
-팩스번호 <input type="text" value="${customer.fax}" name="fax"><br>
-홈페이지 <input type="text" value="${customer.homepage}" name="homepage"><br>
-
-법인여부 <input type="radio" value="Y" name="corporationWhether" <c:out value="${customer.corporationWhether == 'Y' ? 'checked' : ''}"/>>법인
-<input type="radio" value="N" name="corporationWhether" <c:out value="${customer.corporationWhether == 'N' ? 'checked' : ''}"/>>개인<br>
-
-해외여부 <input type="radio" value="Y" name="foreignWhether" <c:out value="${customer.foreignWhether == 'Y' ? 'checked' : ''}"/>>국내
-<input type="radio" value="N" name="foreignWhether" <c:out value="${customer.foreignWhether == 'N' ? 'checked' : ''}"/>>해외<br>
-          
-과세구분 <select name="taxWhether" value="Y"><option <c:out value="${customer.taxWhether == 'Y' ? 'selected' : ''}"/>>과세/면세</option>
-              <option value="N" <c:out value="${customer.taxWhether == 'N' ? 'selected' : ''}"/>>비과세</option>
-          </select><br>
-
-          
-국가 <input type="text" value="${nation.nationS}" name="nationS">
-     <select name="nation"><option <c:out value="${nation.nation == '대한민국' ? 'selected' : ''}"/>>대한민국</option>
-         <option <c:out value="${nation.nation == '중국' ? 'selected' : ''}"/>>중국</option>
-         <option <c:out value="${nation.nation == '일본' ? 'selected' : ''}"/>>일본</option>
-         <option <c:out value="${nation.nation == '미국' ? 'selected' : ''}"/>>미국</option>
-         <option <c:out value="${nation.nation == '필리핀' ? 'selected' : ''}"/>>필리핀</option>
-         <option <c:out value="${nation.nation == '영국' ? 'selected' : ''}"/>>영국</option>
-     </select>
-<button>검색</button><br>
-
-특수관계자 <input type="checkbox" name="specialRelation" value="${customer.specialRelation}" <c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>><br>
-거래중지 <input type="checkbox" name="tradeStop" value="${customer.tradeStop}" <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>><br>
-
-<c:set var="contractStart"><fmt:formatDate value="${customer.contractStart}" pattern="yyyy-MM-dd" /></c:set>
-<c:set var="contractEnd"><fmt:formatDate value="${customer.contractEnd}" pattern="yyyy-MM-dd" /></c:set>
-
-<label for="start">계약기간 </label>
-<input type="date" id="contractStart" name="contractStart"
-       value="${contractStart}"
-       min="2001-01-01" max="2100-01-01">
-       
-<label for="end">~ </label>
-<input type="date" id="contractEnd" name="contractEnd"
-       value="${contractEnd}"
-       min="2001-01-01" max="2100-01-01"><br>
-       
-<c:set var="registrationDate"><fmt:formatDate value="${customer.registrationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
-<c:set var="modificationDate"><fmt:formatDate value="${customer.modificationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
-<!-- 시분초 안넘어옴 -->
-등록정보 <input type="text" value="${customer.registrationMan}" name="registrationMan">
-<input type="text" name="registrationDate" value="${registrationDate}" readonly><br>
-
-<!-- 변경일 넘기기로 바꾸기 -->
-변경정보 <input type="text" value="${customer.modificationMan}" name="modificationMan">
-<input type="text" name="modificationDate" value="${modificationDate}" readonly><br>
-
-<table>
-<tbody>
-<tr>
-  <td>(거래처 계좌정보)</td>
-</tr>
-<tr>
-  <td style="text-align: center;"><b>사무소</b></td>
-  <td style="text-align: center;"><b>은행</b></td>
-  <td style="text-align: center;"><b>계좌번호</b></td>
-</tr>
-  <td><input type="text" name="chargePerson"><br></td>
-  <td><input type="text" name="chargePerson"><br></td>
-  <td><input type="text" name="chargePerson"><br></td>
-</tbody>
-</table>
-
-<button type="button" onclick="location.href='list'">목록</button>
-
-</form>
-</c:if>
-</body>
 </html>
 
 

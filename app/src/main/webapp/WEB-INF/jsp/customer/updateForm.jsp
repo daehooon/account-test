@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java"
     contentType="text/html; charset=UTF-8"
@@ -5,6 +6,12 @@
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%
+  Date nowTime = new Date();
+  SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,13 +117,11 @@
 <c:set var="registrationDate"><fmt:formatDate value="${customer.registrationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
 <c:set var="modificationDate"><fmt:formatDate value="${customer.modificationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
 
-<!-- 시분초 안넘어옴 -->
 등록정보 <input type="text" value="${customer.registrationMan}" name="registrationMan">
 <input type="text" name="registrationDate" value="${registrationDate}" readonly><br>
 
-<!-- 변경일 넘기기로 바꾸기 -->
-변경정보 <input type="text" value="${customer.modificationMan}" name="modificationMan">
-<input type="text" name="modificationDate" value="${modificationDate}" readonly><br>
+변경정보 <input type="text" name="modificationMan">
+<input type="text" name="modificationDate" value="<%= sf.format(nowTime) %>" readonly><br>
 
 <table>
 <tbody>
@@ -128,9 +133,11 @@
   <td style="text-align: center;"><b>은행</b></td>
   <td style="text-align: center;"><b>계좌번호</b></td>
 </tr>
-  <td><input type="text" name="chargePerson"><br></td>
-  <td><input type="text" name="chargePerson"><br></td>
-  <td><input type="text" name="chargePerson"><br></td>
+<tr>
+  <td><input type="text" value="${factory}" name="factory"><br></td>
+  <td><input type="text" value="${tradeBank}" name="tradeBank"><br></td>
+  <td><input type="text" value="${accountNo}" name="accountNo"><br></td>
+</tr>
 </tbody>
 </table>
 

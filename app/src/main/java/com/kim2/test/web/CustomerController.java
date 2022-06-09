@@ -65,7 +65,7 @@ public class CustomerController {
     c.setRegistrationMan(request.getParameter("registrationMan"));
     c.setRegistrationDate(transFormat2.parse(request.getParameter("registrationDate")));
     c.setModificationMan(request.getParameter("modificationMan"));
-    c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
+    //    c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
     List<Account> accounts = new ArrayList<>();
     Account account = new Account();
@@ -73,7 +73,7 @@ public class CustomerController {
     account.setTradeBank(request.getParameter("tradeBank"));
     account.setAccountNo(request.getParameter("accountNo"));
     accounts.add(account);
-    c.setAccount(accounts);
+    c.setAccounts(accounts);
 
     String businessNumber = customerService.add(c);
 
