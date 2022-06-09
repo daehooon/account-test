@@ -14,6 +14,8 @@
 </head>
 <body>
 
+<h1>거래처 수정</h1>
+
 <c:if test="${not empty customer}">
 
 <form action="update" method="post" name="update">
@@ -115,6 +117,22 @@
 <!-- 변경일 넘기기로 바꾸기 -->
 변경정보 <input type="text" value="${customer.modificationMan}" name="modificationMan">
 <input type="text" name="modificationDate" value="${modificationDate}" readonly><br>
+
+<table>
+<tbody>
+<tr>
+  <td>(거래처 계좌정보)</td>
+</tr>
+<tr>
+  <td style="text-align: center;"><b>사무소</b></td>
+  <td style="text-align: center;"><b>은행</b></td>
+  <td style="text-align: center;"><b>계좌번호</b></td>
+</tr>
+  <td><input type="text" name="chargePerson"><br></td>
+  <td><input type="text" name="chargePerson"><br></td>
+  <td><input type="text" name="chargePerson"><br></td>
+</tbody>
+</table>
 
 </form>
 </c:if>

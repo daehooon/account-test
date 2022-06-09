@@ -17,68 +17,35 @@
 <head>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <meta charset="UTF-8">
-<title>거래처 등록</title>
+<title>거래처 관리</title>
 
 </head>
 <body>
-<table>
+<h1>거래처 등록</h1>
 <form action="add" method="post" name="form">
-
 <input type='reset'>
 <input type="submit" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
-<button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p></p>
+<button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p>
 
-<tr>
-	<td>사업자번호</td>
-	<td><input type="text" name="businessNumber"></td>
-	<td>약칭</td>
-	<td><input type="text" name="sshort"></td>
-</tr><br/>
+사업자번호 <input type="text" name="businessNumber"><br>
+거래처명 <input type="text" name="custom"><br>
+약칭 <input type="text" name="sshort"><br>
+대표자 <input type="text" name="ceo"><br>
+담당자 <input type="text" name="chargePerson"><br>
+업태 <input type="text" name="businessCondition"><br>
+종목 <input type="text" name="item"><br>
 
-<tr>
-	<td>거래처명</td>
-	<td><input type="text" name="custom"></td>
-</tr><br/>
+우편번호 <input type="text" name="postNumber" id="postNumber">
+<input type="button" onclick="sample6_execDaumPostcode()" value="검색"><br>
+주소 1 <input type="text" name="firstAddress" id="firstAddress"><br>
+주소 2 <input type="text" name="secondAddress" id="secondAddress"><br>
 
-<tr>
-	<td>대표자</td>
-	<td><input type="text" name="ceo"></td>
-	<td>담당자</td>
-	<td><input type="text" name="chargePerson"></td>
-</tr><br/>
 
-<tr>
-	<td>업태</td>
-	<td><input type="text" name="businessCondition"></td>
-	<td>종목</td>
-	<td><input type="text" name="item"></td>
-</tr><br/>
 
-<tr>
-	<td>우편번호</td>
-	<td><input type="text" name="postNumber" id="postNumber"><td>
-	<td><input type="button" onclick="sample6_execDaumPostcode()" value="검색"></td>
-	<td>주소 1</td>
-	<td><input type="text" name="firstAddress" id="firstAddress"></td>
-</tr><br/>
-
-<tr>
-  <td>주소 2</td>
-  <td><input type="text" name="secondAddress" id="secondAddress"></td>
-</tr><br>
-
-<tr>
-	<td>전화번호</td>
-	<td><input type="text" name="tel"></td>
-	<td>팩스번호</td>
-	<td><input type="text" name="fax"></td><br>
-</tr>
-
-<tr>
-  <td>홈페이지</td>
-  <td><input type="text" name="homepage"></td><br>
-</tr>
+전화번호 <input type="text" name="tel"><br>
+팩스번호 <input type="text" name="fax"><br>
+홈페이지 <input type="text" name="homepage"><br>
 
 법인여부 <input type="radio" name="corporationWhether" value="Y">법인
             <input type="radio" name="corporationWhether" value="N">개인<br>
@@ -126,8 +93,23 @@
 변경정보 <input type="text" name="modificationMan">
 <input type="text" name="modificationDate" value="<%= sf.format(nowTime) %>" readonly/><br>
 
-</form>
+<table>
+<tbody>
+<tr>
+  <td>(거래처 계좌정보)</td>
+</tr>
+<tr>
+  <td style="text-align: center;"><b>사무소</b></td>
+  <td style="text-align: center;"><b>은행</b></td>
+  <td style="text-align: center;"><b>계좌번호</b></td>
+</tr>
+  <td><input type="text" name="chargePerson"><br></td>
+  <td><input type="text" name="chargePerson"><br></td>
+  <td><input type="text" name="chargePerson"><br></td>
+</tbody>
 </table>
+
+</form>
 </body>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -160,22 +142,22 @@
 
 <script>
 $(form).on("submit",function(e){
-	 e.preventDefault();
-	 var businessNumber=$(form.businessNumber).val();
-	 var custom=$(form.custom).val();
-	 
-	 if (businessNumber == '') {
-		 alert("사업자번호 미입력"); 
-	 } else if(custom == '') {
-		 alert("거래처명 미입력")
-	 } else {
-		 form.submit();
-	 }
-	 
+   e.preventDefault();
+   var businessNumber=$(form.businessNumber).val();
+   var custom=$(form.custom).val();
+   
+   if (businessNumber == '') {
+     alert("사업자번호 미입력"); 
+   } else if(custom == '') {
+     alert("거래처명 미입력")
+   } else {
+     form.submit();
+   }
+   
 });
 </script>
-</html>
 
+</html>
 
 
 
