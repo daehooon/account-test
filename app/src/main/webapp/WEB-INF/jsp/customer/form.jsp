@@ -69,12 +69,12 @@
 </select>
 <button>검색</button><br>
 
-<input type="hidden" name="specialRelation" value="Y" />
-특수관계자 <input type="checkbox" name="specialRelation" value="N" /><br>
+<input type="hidden" name="specialRelation" value="N" />
+특수관계자 <input type="checkbox" name="specialRelation" value="Y" /><br>
 
 <!-- 값이 무조건 Y로 들어감 -->
-<input type="hidden" name="tradeStop" value="Y" />
-거래중지 <input type="checkbox" name="tradeStop" value="N" /><br>
+<input type="hidden" name="tradeStop" value="N" />
+거래중지 <input type="checkbox" name="tradeStop" value="Y" /><br>
 
 <label for="start">계약기간 </label>
 <input type="date" id="contractStart" name="contractStart"
@@ -103,11 +103,13 @@
   <td style="text-align: center;"><b>은행</b></td>
   <td style="text-align: center;"><b>계좌번호</b></td>
 </tr>
-  <td><input type="text" name="chargePerson"><br></td>
-  <td><input type="text" name="chargePerson"><br></td>
-  <td><input type="text" name="chargePerson"><br></td>
+  <td><input type="text" name="factory"><br></td>
+  <td><input type="text" name="tradeBank"><br></td>
+  <td><input type="text" name="accountNo"><br></td>
 </tbody>
 </table>
+
+<button type="button" onclick="location.href='list'">목록</button>
 
 </form>
 </body>

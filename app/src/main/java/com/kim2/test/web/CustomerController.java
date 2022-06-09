@@ -1,6 +1,7 @@
 package com.kim2.test.web;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.kim2.test.domain.Account;
 import com.kim2.test.domain.Customer;
 import com.kim2.test.domain.Nation;
 import com.kim2.test.service.CustomerService;
@@ -65,6 +67,14 @@ public class CustomerController {
     c.setModificationMan(request.getParameter("modificationMan"));
     c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
+    List<Account> accounts = new ArrayList<>();
+    Account account = new Account();
+    account.setFactory(request.getParameter("factory"));
+    account.setTradeBank(request.getParameter("tradeBank"));
+    account.setAccountNo(request.getParameter("accountNo"));
+    accounts.add(account);
+    c.setAccount(accounts);
+
     String businessNumber = customerService.add(c);
 
     return "redirect:detail?businessNumber=" + businessNumber;
@@ -86,7 +96,7 @@ public class CustomerController {
 
     customerService.delete(customer);
 
-    return "redirect:form";
+    return "redirect:list";
   }
 
   @GetMapping("updateForm")

@@ -133,6 +133,8 @@
 </tbody>
 </table>
 
+<button type="button" onclick="location.href='list'">목록</button>
+
 </form>
 </c:if>
 </body>

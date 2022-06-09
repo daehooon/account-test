@@ -5,53 +5,19 @@
 
 <mapper namespace="com.kim2.test.dao.AccountDao">
   
-  <resultMap id="accountMap" type="account">
-  
-    <!-- domain.Account -->
+  <resultMap id="accountMap" type="account">  
     <id column="BUSI_NUM" property="businessNo"/>
     <result column="FACTORY" property="factory"/>
     <result column="TRADE_BANK" property="tradeBank"/>
     <result column="ACCOUNT_NUM" property="accountNo"/>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <!-- 
-    
-    <association property="owner" javaType="tutor">
-      <id column="tno" property="no"/>
-      <result column="name" property="name"/>
-      <result column="nickname" property="nickname"/>
-      <result column="profile_pic" property="profilePicture"/>
-      <result column="mrno" property="rank"/>
-      <result column="tintro" property="intro"/>
-      <result column="tappl" property="application"/>
-      <result column="prom_dttm" property="promotedDate"/>
-    </association>
-    
-    <collection property="schedules" ofType="learningSchedule">
-      <id column="sche_no" property="no"/>
-      <result column="lno" property="learningNo"/>
-      <result column="date" property="learningDate"/>
-      <result column="stm" property="startTime"/>
-      <result column="etm" property="endTime"/>
-    </collection>
-     -->
   </resultMap>
-  <!-- 
+ 
   <insert id="insert" parameterType="map">
-    insert into har_learning(lno,tno,min_head,max_head,curriculum,price,zipcode,addr,det_addr,rfnd_info,sgg_no)
-    values(#{no},#{learning.owner.no},#{learning.minPeople},#{learning.maxPeople},#{learning.progressOrder},#{learning.price},#{learning.zipcode},#{learning.address},#{learning.detailAddress},#{learning.refundInformation},#{learning.sigunguNo})
+    insert into account(BUSI_NUM,FACTORY,TRADE_BANK,ACCOUNT_NUM)
+    values(#{businessNo},#{factory},#{tradeBank},#{accountNo})
   </insert>
   
+  <!--  
   <update id="update" parameterType="map">
     update har_learning set
       min_head=#{learning.minPeople},
