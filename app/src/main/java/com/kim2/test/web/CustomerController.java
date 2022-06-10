@@ -159,9 +159,11 @@ public class CustomerController {
   }
 
   @GetMapping("list")
-  public void list(Model model) throws Exception {
+  public void list(String keyword, Model model) throws Exception {
     List<Customer> customers = customerService.list();
+    List<Customer> list = customerService.list(keyword);
     model.addAttribute("customers", customers);
+    model.addAttribute("list", list);
   }
 }
 

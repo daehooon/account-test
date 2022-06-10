@@ -14,4 +14,6 @@ public interface CustomerDao {
   int update(Customer customer) throws Exception;
 
   List<Customer> findAll() throws Exception;
+
+  List<Customer> findByKeyword(String keyword) throws Exception;
 }

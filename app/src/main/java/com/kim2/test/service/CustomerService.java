@@ -15,4 +15,6 @@ public interface CustomerService {
   String delete(Customer customer) throws Exception;
 
   String update(Customer customer, Account account) throws Exception;
+
+  List<Customer> list(String keyword) throws Exception;
 }

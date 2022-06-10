@@ -39,7 +39,7 @@
         ACCOUNT_NUM=#{accountNo}
       where BUSI_NUM=#{businessNumber}
   </update>
-  
+
 </mapper>
 
 

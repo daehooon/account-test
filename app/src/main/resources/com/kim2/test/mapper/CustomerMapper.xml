@@ -132,6 +132,20 @@
       order by REGI_INFO_DATE desc
   </select>
   
+  <select id="findByKeyword" resultMap="customerMap" parameterType="string">
+    select 
+      BUSI_NUM,
+      CUSTOM
+    from custom
+    <where>
+      <if test="keyword != null and keyword != ''">
+        BUSI_NUM like concat('%', #{keyword}, '%')
+        or CUSTOM like concat('%', #{keyword}, '%')
+      </if>
+    </where>
+    order by BUSI_NUM asc
+  </select>
+  
 </mapper>
 
 
