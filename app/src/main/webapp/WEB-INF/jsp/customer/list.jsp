@@ -33,8 +33,18 @@
   <td><b>거래처명</b></td>
 </tr>
 
-<!-- 버그 고쳐 -->
-<c:if test="${param.keyword == c.businessNumber}">
+<c:if test="${not empty param.keyword}">
+	<c:forEach items="${customers}" var="c" >
+	 <c:if test="${param.keyword == c.businessNumber}">
+	      <tr>
+	        <td style="text-align: center;"><a href="detail?businessNumber=${param.keyword}">${param.keyword}</a></td>
+	        <td style="text-align: center;"><a href="detail?businessNumber=${param.keyword}">${param.keyword}</a></td>
+	      </tr>
+	 </c:if>
+	</c:forEach>
+</c:if>
+
+<c:if test="${empty param.keyword}">
 	<c:forEach items="${customers}" var="c" >
 	      <tr>
 	        <td style="text-align: center;"><a href="detail?businessNumber=${c.businessNumber}">${c.businessNumber}</a></td>
