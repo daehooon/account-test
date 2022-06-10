@@ -6,6 +6,7 @@ import com.kim2.test.dao.AccountDao;
 import com.kim2.test.dao.CustomerDao;
 import com.kim2.test.domain.Account;
 import com.kim2.test.domain.Customer;
+import com.kim2.test.domain.Nation;
 import com.kim2.test.service.CustomerService;
 
 @Service
@@ -58,5 +59,9 @@ public class DefaultCustomerService implements CustomerService {
   @Override
   public List<Customer> lists(String keyword2) throws Exception {
     return customerDao.findByKeyword(keyword2);
+  }
+
+  public List<Nation> search(String nation) throws Exception {
+    return customerDao.findByNation(nation);
   }
 }

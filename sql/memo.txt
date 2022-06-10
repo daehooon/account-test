@@ -2,11 +2,10 @@ mariadb
 ID/PASSWORD : root/1111
 ID/PASSWORD : test/1111
 
-list search 기능 구현
-국가 테이블 연결
-
+국가 검색 구현 (한글자만 검색돼도)
 등록, 변경 시분초 미등록 버그
 
-테스트하기
+마지막 테스트
 
+list랑 form, detail, updateForm 페이지 join
 트랜잭션 공부 및 적용

@@ -2,6 +2,7 @@ package com.kim2.test.dao;
 
 import java.util.List;
 import com.kim2.test.domain.Customer;
+import com.kim2.test.domain.Nation;
 
 public interface CustomerDao {
 
@@ -18,4 +19,6 @@ public interface CustomerDao {
   List<Customer> findByKeyword(String keyword) throws Exception;
 
   List<Customer> findByKeywords(String keywords) throws Exception;
+
+  List<Nation> findByNation(String nation) throws Exception;
 }

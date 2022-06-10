@@ -57,8 +57,34 @@
 과세구분 <select name="taxWhether">
             <option value="Y">과세/면세</option>
             <option value="N">비과세</option>
-         </select><br>
+         </select>
+</form>
 
+
+
+
+<!-- 국가 검색 구현중 -->
+<form action='search' method='get'>
+  <c:if test="${empty nation}">
+    <label>국가</label>
+      <c:if test="${param.nation == nation.nation}">
+	      <input type='text' value="${nation.nationS}"  readonly>
+	      <input type='text' name='nation' value='${param.nation}'>
+	    </c:if>
+    <button>검색</button>
+  </c:if>
+</form><br>
+
+
+
+
+
+
+
+
+
+<form action="add" method="post" name="form">
+<!-- 
 국가 <input type="text" name="nationS">
 <select name="nation">
     <option value="대한민국">대한민국</option>
@@ -69,7 +95,7 @@
     <option value="영국">영국</option>
 </select>
 <button>검색</button><br>
-
+ -->
 <input type="hidden" name="specialRelation" value="N" />
 특수관계자 <input type="checkbox" name="specialRelation" value="Y" /><br>
 

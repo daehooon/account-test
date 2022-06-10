@@ -158,6 +158,19 @@
     order by BUSI_NUM ASC
   </select>
   
+  <select id="findByNation" resultMap="customerMap" parameterType="string">
+    select
+      NATION_NO,
+      NATION_SHORT,
+      NATION
+    from nations
+    <where>
+      <if test="nation != null and nation != ''">
+        nation like CONCAT('%', #{nation}, '%')
+      </if>
+    </where>
+  </select>
+  
 </mapper>
 
 

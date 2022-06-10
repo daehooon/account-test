@@ -13,7 +13,6 @@ import com.kim2.test.domain.Customer;
 import com.kim2.test.domain.Nation;
 import com.kim2.test.service.AccountService;
 import com.kim2.test.service.CustomerService;
-import com.kim2.test.service.NationService;
 
 @Controller
 @RequestMapping("/customer")
@@ -21,14 +20,11 @@ public class CustomerController {
 
   CustomerService customerService;
   AccountService accountService;
-  NationService nationService;
 
-  public CustomerController(CustomerService customerService, AccountService accountService, 
-      NationService nationService) {
+  public CustomerController(CustomerService customerService, AccountService accountService) {
 
     this.customerService = customerService;
     this.accountService = accountService;
-    this.nationService = nationService;
   }
 
   @GetMapping("form")
@@ -166,6 +162,12 @@ public class CustomerController {
     model.addAttribute("customers", customers);
     model.addAttribute("list", list);
     model.addAttribute("lists", lists);
+  }
+
+  @GetMapping("search")
+  public void search(String nation, Model model) throws Exception {
+    List<Nation> search = customerService.search(nation);
+    model.addAttribute("search", search);
   }
 }
 
