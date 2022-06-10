@@ -106,7 +106,6 @@
   <td><input type="text" value="${customer.tradeBank}" name="tradeBank" readonly><br></td>
   <td><input type="text" value="${customer.accountNo}" name="accountNo" readonly><br></td>
 </tr>
-
 </tbody>
 </table>
 

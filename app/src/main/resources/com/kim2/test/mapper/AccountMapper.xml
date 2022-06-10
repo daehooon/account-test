@@ -19,13 +19,13 @@
   
   <select id="findByNo" resultMap="accountMap" parameterType="String">
     select
-      BUSI_NUM,
-      FACTORY,
-      TRADE_BANK,
-      ACCOUNT_NUM
+      a.BUSI_NUM,
+      a.FACTORY,
+      a.TRADE_BANK,
+      a.ACCOUNT_NUM
     from account a
     where
-      BUSI_NUM=#{value}
+      a.BUSI_NUM=#{value}
   </select>
   
   <delete id="delete" parameterType="String">

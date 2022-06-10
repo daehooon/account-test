@@ -60,36 +60,39 @@
   <!-- 거래처 정보 -->
   <select id="findByNo" resultMap="customerMap" parameterType="String">
     select
-      BUSI_NUM,
-      CUSTOM,
-      SHORT,
-      CEO,
-      CHARGE_PERSON,
-      BUSI_CONDITION,
-      ITEM,
-      POST_NUM,
-      ADDR1,
-      ADDR2,
-      TEL,
-      FAX,
-      HOMEPAGE,
-      CO_YN,
-      FOREIGN_YN,
-      TAX_YN,
-      COUNTRY_ENG,
-      COUNTRY_KOR,
-      SPECIAL_RELATION,
-      TRADE_STOP,
-      CONTRACT_PERIOD_S,
-      CONTRACT_PERIOD_E,
-      REGI_INFO_MAN,
-      REGI_INFO_DATE,
-      MODI_INFO_MAN,
-      MODI_INFO_DATE
+      c.BUSI_NUM,
+      c.CUSTOM,
+      c.SHORT,
+      c.CEO,
+      c.CHARGE_PERSON,
+      c.BUSI_CONDITION,
+      c.ITEM,
+      c.POST_NUM,
+      c.ADDR1,
+      c.ADDR2,
+      c.TEL,
+      c.FAX,
+      c.HOMEPAGE,
+      c.CO_YN,
+      c.FOREIGN_YN,
+      c.TAX_YN,
+      c.COUNTRY_ENG,
+      c.COUNTRY_KOR,
+      c.SPECIAL_RELATION,
+      c.TRADE_STOP,
+      c.CONTRACT_PERIOD_S,
+      c.CONTRACT_PERIOD_E,
+      c.REGI_INFO_MAN,
+      c.REGI_INFO_DATE,
+      c.MODI_INFO_MAN,
+      c.MODI_INFO_DATE,
+      a.FACTORY,
+      a.TRADE_BANK,
+      a.ACCOUNT_NUM
     from custom c
       inner join account a on a.BUSI_NUM=c.BUSI_NUM
     where
-      BUSI_NUM=#{value}
+      c.BUSI_NUM=#{value}
   </select>
   
   <delete id="delete" parameterType="String">
