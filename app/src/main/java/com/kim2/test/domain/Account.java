@@ -1,23 +1,23 @@
 package com.kim2.test.domain;
 
 public class Account {
-  private String businessNo;
+  private String businessNumber;
   private String factory;
   private String tradeBank;
   private String accountNo;
 
   @Override
   public String toString() {
-    return "Account [businessNo=" + businessNo + ", factory=" + factory + ", tradeBank=" + tradeBank
-        + ", accountNo=" + accountNo + "]";
+    return "Account [businessNumber=" + businessNumber + ", factory=" + factory + ", tradeBank="
+        + tradeBank + ", accountNo=" + accountNo + "]";
   }
 
-  public String getBusinessNo() {
-    return businessNo;
+  public String getBusinessNumber() {
+    return businessNumber;
   }
 
-  public void setBusinessNo(String businessNo) {
-    this.businessNo = businessNo;
+  public void setBusinessNumber(String businessNumber) {
+    this.businessNumber = businessNumber;
   }
 
   public String getFactory() {

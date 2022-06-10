@@ -1,4 +1,4 @@
-<%@page import="java.util.Date"%>
+<%@ page import="java.util.Date"%>
 <%@ page language="java"
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -16,15 +16,15 @@
 
 <h1>거래처 정보</h1>
 
-<c:if test="${not empty customer}, ${not empty account}">
+<c:if test="${not empty customer}">
 
 <form action="detail" method="get" name="detail">
 
 <input type='reset'>
 <input type="submit" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
-<button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p>
-<button type="button" onclick="location.href='list'">목록</button>
+<button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button>
+<button type="button" onclick="location.href='list'">목록</button><p>
 
 사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber" readonly><br>
 거래처명 <input type="text" value="${customer.custom}" name="custom" readonly><br>
@@ -92,6 +92,7 @@
 
 <table>
 <tbody>
+
 <tr>
   <td>(거래처 계좌정보)</td>
 </tr>
@@ -101,10 +102,11 @@
   <td style="text-align: center;"><b>계좌번호</b></td>
 </tr>
 <tr>
-  <td><input type="text" value="${account.factory}" name="factory" readonly><br></td>
-  <td><input type="text" value="${account.tradeBank}" name="tradeBank" readonly><br></td>
-  <td><input type="text" value="${account.accountNo}" name="accountNo" readonly><br></td>
+  <td><input type="text" value="${customer.factory}" name="factory" readonly><br></td>
+  <td><input type="text" value="${customer.tradeBank}" name="tradeBank" readonly><br></td>
+  <td><input type="text" value="${customer.accountNo}" name="accountNo" readonly><br></td>
 </tr>
+
 </tbody>
 </table>
 

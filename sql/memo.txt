@@ -2,7 +2,7 @@ mariadb
 ID/PASSWORD : root/1111
 ID/PASSWORD : test/1111
 
-계좌정보 테이블 연결 (일단 add만)
+계좌정보 detail
 list search 기능 구현
 국가 테이블 연결
 

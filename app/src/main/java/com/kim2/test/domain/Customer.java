@@ -1,9 +1,8 @@
 package com.kim2.test.domain;
 
 import java.util.Date;
-import java.util.List;
 
-public class Customer {
+public class Customer extends Account {
   private String businessNumber;
   private String custom;
   private String sshort;
@@ -30,7 +29,6 @@ public class Customer {
   private Date registrationDate;
   private String modificationMan;
   private Date modificationDate;
-  private List<Account> accounts;
 
   @Override
   public String toString() {
@@ -44,13 +42,16 @@ public class Customer {
         + specialRelation + ", tradeStop=" + tradeStop + ", contractStart=" + contractStart
         + ", contractEnd=" + contractEnd + ", registrationMan=" + registrationMan
         + ", registrationDate=" + registrationDate + ", modificationMan=" + modificationMan
-        + ", modificationDate=" + modificationDate + ", accounts=" + accounts + "]";
+        + ", modificationDate=" + modificationDate + ", getFactory()=" + getFactory()
+        + ", getTradeBank()=" + getTradeBank() + ", getAccountNo()=" + getAccountNo() + "]";
   }
 
+  @Override
   public String getBusinessNumber() {
     return businessNumber;
   }
 
+  @Override
   public void setBusinessNumber(String businessNumber) {
     this.businessNumber = businessNumber;
   }
@@ -253,13 +254,5 @@ public class Customer {
 
   public void setModificationDate(Date modificationDate) {
     this.modificationDate = modificationDate;
-  }
-
-  public List<Account> getAccounts() {
-    return accounts;
-  }
-
-  public void setAccounts(List<Account> accounts) {
-    this.accounts = accounts;
   }
 }

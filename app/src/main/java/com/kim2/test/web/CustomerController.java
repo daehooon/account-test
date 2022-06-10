@@ -40,6 +40,7 @@ public class CustomerController {
     Customer c = new Customer();
     Account a = new Account();
     Nation n = new Nation();
+
     SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -72,29 +73,27 @@ public class CustomerController {
     c.setModificationMan(request.getParameter("modificationMan"));
     //    c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
-    a.setBusinessNo(request.getParameter("businessNo"));
+    a.setBusinessNumber(request.getParameter("businessNumber"));
     a.setFactory(request.getParameter("factory"));
     a.setTradeBank(request.getParameter("tradeBank"));
     a.setAccountNo(request.getParameter("accountNo"));
 
-    String businessNumber = customerService.add(c);
-    accountService.update(a);
+    String businessNumber = customerService.add(c, a);
 
     return "redirect:detail?businessNumber=" + businessNumber;
   }
 
   @GetMapping("detail")
-  public void detail(String businessNumber, String businessNo, Model model) throws Exception {
+  public void detail(String businessNumber, Model model) throws Exception {
     System.out.println(businessNumber);
     System.out.println(customerService.get(businessNumber));
     model.addAttribute("customer", customerService.get(businessNumber));
-    model.addAttribute("account", accountService.get(businessNo));
   }
 
   @RequestMapping("delete")
-  public String delete(String businessNumber, String businessNo) throws Exception {
+  public String delete(String businessNumber) throws Exception {
     Customer customer = customerService.get(businessNumber);
-    Account account = accountService.get(businessNo);
+    Account account = accountService.get(businessNumber);
     if (customer == null) {
       throw new Exception("해당 번호의 거래처가 없습니다.");
     }
@@ -106,9 +105,8 @@ public class CustomerController {
   }
 
   @GetMapping("updateForm")
-  public void updateForm(String businessNumber, String businessNo, Model model) throws Exception {
+  public void updateForm(String businessNumber, Model model) throws Exception {
     model.addAttribute("customer", customerService.get(businessNumber));
-    model.addAttribute("account", accountService.get(businessNo));
   }
 
   @PostMapping("update")
@@ -117,6 +115,7 @@ public class CustomerController {
     Customer c = new Customer();
     Account a = new Account();
     //    Nation n = new Nation();
+
     SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -149,13 +148,12 @@ public class CustomerController {
     c.setModificationMan(request.getParameter("modificationMan"));
     c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
-    a.setBusinessNo(request.getParameter("businessNo"));
+    a.setBusinessNumber(request.getParameter("businessNumber"));
     a.setFactory(request.getParameter("factory"));
     a.setTradeBank(request.getParameter("tradeBank"));
     a.setAccountNo(request.getParameter("accountNo"));
 
-    String businessNumber = customerService.update(c);
-    accountService.update(a);
+    String businessNumber = customerService.update(c, a);
 
     return "redirect:detail?businessNumber=" + businessNumber;
   }

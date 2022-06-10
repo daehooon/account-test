@@ -6,7 +6,7 @@
 <mapper namespace="com.kim2.test.dao.AccountDao">
   
   <resultMap id="accountMap" type="account">  
-    <id column="BUSI_NUM" property="businessNo"/>
+    <id column="BUSI_NUM" property="businessNumber"/>
     <result column="FACTORY" property="factory"/>
     <result column="TRADE_BANK" property="tradeBank"/>
     <result column="ACCOUNT_NUM" property="accountNo"/>
@@ -14,7 +14,7 @@
  
   <insert id="insert" parameterType="account">
     insert into account(BUSI_NUM,FACTORY,TRADE_BANK,ACCOUNT_NUM)
-    values(#{businessNo},#{factory},#{tradeBank},#{accountNo})
+    values(#{businessNumber},#{factory},#{tradeBank},#{accountNo})
   </insert>
   
   <select id="findByNo" resultMap="accountMap" parameterType="String">
@@ -29,7 +29,7 @@
   </select>
   
   <delete id="delete" parameterType="String">
-    delete from account where BUSI_NUM=#{businessNo}
+    delete from account where BUSI_NUM=#{businessNumber}
   </delete>
   
   <update id="update" parameterType="account">
@@ -37,7 +37,7 @@
         FACTORY=#{factory},
         TRADE_BANK=#{tradeBank},
         ACCOUNT_NUM=#{accountNo}
-      where BUSI_NUM=#{businessNo}
+      where BUSI_NUM=#{businessNumber}
   </update>
   
 </mapper>

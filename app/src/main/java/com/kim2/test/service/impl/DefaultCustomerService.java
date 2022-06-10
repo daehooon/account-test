@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.kim2.test.dao.AccountDao;
 import com.kim2.test.dao.CustomerDao;
+import com.kim2.test.domain.Account;
 import com.kim2.test.domain.Customer;
 import com.kim2.test.service.CustomerService;
 
@@ -13,14 +14,16 @@ public class DefaultCustomerService implements CustomerService {
   CustomerDao customerDao;
   AccountDao accountDao;
 
-  public DefaultCustomerService(CustomerDao customerDao) {
+  public DefaultCustomerService(CustomerDao customerDao, AccountDao accountDao) {
 
     this.customerDao = customerDao;
+    this.accountDao = accountDao;
   }
 
   @Override
-  public String add(Customer customer) throws Exception {
+  public String add(Customer customer, Account account) throws Exception {
     customerDao.insert(customer);
+    accountDao.insert(account);
     return customer.getBusinessNumber();
   }
 
@@ -36,8 +39,9 @@ public class DefaultCustomerService implements CustomerService {
   }
 
   @Override
-  public String update(Customer customer) throws Exception {
+  public String update(Customer customer, Account account) throws Exception {
     customerDao.update(customer);
+    accountDao.update(account);
     return customer.getBusinessNumber();
   }
 
