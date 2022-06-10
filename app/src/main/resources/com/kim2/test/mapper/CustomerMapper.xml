@@ -139,11 +139,23 @@
     from custom
     <where>
       <if test="keyword != null and keyword != ''">
-        BUSI_NUM like concat('%', #{keyword}, '%')
-        or CUSTOM like concat('%', #{keyword}, '%')
+        BUSI_NUM like CONCAT('%', #{keyword}, '%')
       </if>
     </where>
-    order by BUSI_NUM asc
+    order by BUSI_NUM ASC
+  </select>
+  
+  <select id="findByKeywords" resultMap="customerMap" parameterType="string">
+    select
+      BUSI_NUM,
+      CUSTOM
+    from custom
+    <where>
+      <if test="keywordS != null and keywordS != ''">
+        CUSTOM like CONCAT('%', #{keywordS}, '%')
+      </if>
+    </where>
+    order by BUSI_NUM ASC
   </select>
   
 </mapper>

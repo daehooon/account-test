@@ -17,4 +17,6 @@ public interface CustomerService {
   String update(Customer customer, Account account) throws Exception;
 
   List<Customer> list(String keyword) throws Exception;
+
+  List<Customer> lists(String keywords) throws Exception;
 }

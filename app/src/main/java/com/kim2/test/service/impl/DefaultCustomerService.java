@@ -54,4 +54,9 @@ public class DefaultCustomerService implements CustomerService {
   public List<Customer> list(String keyword) throws Exception {
     return customerDao.findByKeyword(keyword);
   }
+
+  @Override
+  public List<Customer> lists(String keyword2) throws Exception {
+    return customerDao.findByKeyword(keyword2);
+  }
 }

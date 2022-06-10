@@ -20,7 +20,7 @@
     <label>사업자번호</label>
       <input type='text' name='keyword' value='${param.keyword}'><br>
     <label>거래처명&nbsp;&nbsp;&nbsp;</label>
-      <input type='text' name='keyword' value='${param.keyword}'>
+      <input type='text' name='keywords' value='${param.keywords}'>
     <button>조회</button>
   </fieldset>
 </form><br>
@@ -33,18 +33,24 @@
   <td><b>거래처명</b></td>
 </tr>
 
-<c:if test="${not empty param.keyword}">
+<c:if test="${not empty param.keyword || not empty param.keywords}">
 	<c:forEach items="${customers}" var="c" >
 	 <c:if test="${param.keyword == c.businessNumber}">
 	      <tr>
 	        <td style="text-align: center;"><a href="detail?businessNumber=${param.keyword}">${param.keyword}</a></td>
-	        <td style="text-align: center;"><a href="detail?businessNumber=${param.keyword}">${param.keyword}</a></td>
+	        <td style="text-align: center;"><a href="detail?businessNumber=${param.keyword}">${c.custom}</a></td>
 	      </tr>
 	 </c:if>
+   <c:if test="${param.keywords == c.custom}">
+        <tr>
+          <td style="text-align: center;"><a href="detail?businessNumber=${c.businessNumber}">${c.businessNumber}</a></td>
+          <td style="text-align: center;"><a href="detail?businessNumber=${c.businessNumber}">${param.keywords}</a></td>
+        </tr>
+   </c:if>
 	</c:forEach>
 </c:if>
 
-<c:if test="${empty param.keyword}">
+<c:if test="${empty param.keyword && empty param.keywords}">
 	<c:forEach items="${customers}" var="c" >
 	      <tr>
 	        <td style="text-align: center;"><a href="detail?businessNumber=${c.businessNumber}">${c.businessNumber}</a></td>

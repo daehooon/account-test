@@ -16,4 +16,6 @@ public interface CustomerDao {
   List<Customer> findAll() throws Exception;
 
   List<Customer> findByKeyword(String keyword) throws Exception;
+
+  List<Customer> findByKeywords(String keywords) throws Exception;
 }
