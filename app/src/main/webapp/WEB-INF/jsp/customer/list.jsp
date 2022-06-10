@@ -15,16 +15,15 @@
 <h1>거래처 관리</h1>
 
 <form>
-  <button type="button" onclick="location.href='form'">등록</button>
   <fieldset>
-    <legend></legend>
+    <legend><button type="button" onclick="location.href='form'">등록</button></legend>
     <label>사업자번호</label>
       <input type="text" name="businessNumber" value=""/><br>
     <label>거래처명</label>
       <input type="text" name="custom" value=""/>
       <input type="submit" value="조회">
   </fieldset>
-</form>
+</form><br>
 
 <table border='1'>
 <tbody>

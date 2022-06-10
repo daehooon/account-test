@@ -1,7 +1,6 @@
 package com.kim2.test.web;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kim2.test.domain.Account;
 import com.kim2.test.domain.Customer;
 import com.kim2.test.domain.Nation;
+import com.kim2.test.service.AccountService;
 import com.kim2.test.service.CustomerService;
 import com.kim2.test.service.NationService;
 
@@ -20,10 +20,14 @@ import com.kim2.test.service.NationService;
 public class CustomerController {
 
   CustomerService customerService;
+  AccountService accountService;
   NationService nationService;
 
-  public CustomerController(CustomerService customerService, NationService nationService) {
+  public CustomerController(CustomerService customerService, AccountService accountService, 
+      NationService nationService) {
+
     this.customerService = customerService;
+    this.accountService = accountService;
     this.nationService = nationService;
   }
 
@@ -34,6 +38,7 @@ public class CustomerController {
   public String add(HttpServletRequest request) throws Exception {
 
     Customer c = new Customer();
+    Account a = new Account();
     Nation n = new Nation();
     SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -67,47 +72,50 @@ public class CustomerController {
     c.setModificationMan(request.getParameter("modificationMan"));
     //    c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
-    List<Account> accounts = new ArrayList<>();
-    Account account = new Account();
-    account.setFactory(request.getParameter("factory"));
-    account.setTradeBank(request.getParameter("tradeBank"));
-    account.setAccountNo(request.getParameter("accountNo"));
-    accounts.add(account);
-    c.setAccounts(accounts);
+    a.setBusinessNo(request.getParameter("businessNo"));
+    a.setFactory(request.getParameter("factory"));
+    a.setTradeBank(request.getParameter("tradeBank"));
+    a.setAccountNo(request.getParameter("accountNo"));
 
     String businessNumber = customerService.add(c);
+    accountService.update(a);
 
     return "redirect:detail?businessNumber=" + businessNumber;
   }
 
   @GetMapping("detail")
-  public void detail(String businessNumber, Model model) throws Exception {
+  public void detail(String businessNumber, String businessNo, Model model) throws Exception {
     System.out.println(businessNumber);
     System.out.println(customerService.get(businessNumber));
     model.addAttribute("customer", customerService.get(businessNumber));
+    model.addAttribute("account", accountService.get(businessNo));
   }
 
   @RequestMapping("delete")
-  public String delete(String businessNumber) throws Exception {
+  public String delete(String businessNumber, String businessNo) throws Exception {
     Customer customer = customerService.get(businessNumber);
+    Account account = accountService.get(businessNo);
     if (customer == null) {
       throw new Exception("해당 번호의 거래처가 없습니다.");
     }
 
     customerService.delete(customer);
+    accountService.delete(account);
 
     return "redirect:list";
   }
 
   @GetMapping("updateForm")
-  public void updateForm(String businessNumber, Model model) throws Exception {
+  public void updateForm(String businessNumber, String businessNo, Model model) throws Exception {
     model.addAttribute("customer", customerService.get(businessNumber));
+    model.addAttribute("account", accountService.get(businessNo));
   }
 
   @PostMapping("update")
   public String update(HttpServletRequest request) throws Exception {
 
     Customer c = new Customer();
+    Account a = new Account();
     //    Nation n = new Nation();
     SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -141,7 +149,13 @@ public class CustomerController {
     c.setModificationMan(request.getParameter("modificationMan"));
     c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
+    a.setBusinessNo(request.getParameter("businessNo"));
+    a.setFactory(request.getParameter("factory"));
+    a.setTradeBank(request.getParameter("tradeBank"));
+    a.setAccountNo(request.getParameter("accountNo"));
+
     String businessNumber = customerService.update(c);
+    accountService.update(a);
 
     return "redirect:detail?businessNumber=" + businessNumber;
   }

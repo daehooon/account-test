@@ -3,7 +3,7 @@ package com.kim2.test.domain;
 import java.util.Date;
 import java.util.List;
 
-public class Customer extends Nation {
+public class Customer {
   private String businessNumber;
   private String custom;
   private String sshort;

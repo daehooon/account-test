@@ -16,7 +16,7 @@
 
 <h1>거래처 정보</h1>
 
-<c:if test="${not empty customer}">
+<c:if test="${not empty customer}, ${not empty account}">
 
 <form action="detail" method="get" name="detail">
 
@@ -24,6 +24,7 @@
 <input type="submit" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
 <button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p>
+<button type="button" onclick="location.href='list'">목록</button>
 
 사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber" readonly><br>
 거래처명 <input type="text" value="${customer.custom}" name="custom" readonly><br>
@@ -48,7 +49,7 @@
 해외여부 <input type="radio" value="Y" name="foreignWhether" <c:out value="${customer.foreignWhether == 'Y' ? 'checked' : ''}"/>>국내
 <input type="radio" value="N" name="foreignWhether" <c:out value="${customer.foreignWhether == 'N' ? 'checked' : ''}"/>>해외<br>
           
-과세구분 <select name="taxWhether" value="Y"><option <c:out value="${customer.taxWhether == 'Y' ? 'selected' : ''}"/>>과세/면세</option>
+과세구분 <select name="taxWhether"><option value="Y" <c:out value="${customer.taxWhether == 'Y' ? 'selected' : ''}"/>>과세/면세</option>
               <option value="N" <c:out value="${customer.taxWhether == 'N' ? 'selected' : ''}"/>>비과세</option>
           </select><br>
 
@@ -100,14 +101,12 @@
   <td style="text-align: center;"><b>계좌번호</b></td>
 </tr>
 <tr>
-  <td><input type="text" value="${factory}" name="factory" readonly><br></td>
-  <td><input type="text" value="${tradeBank}" name="tradeBank" readonly><br></td>
-  <td><input type="text" value="${accountNo}" name="accountNo" readonly><br></td>
+  <td><input type="text" value="${account.factory}" name="factory" readonly><br></td>
+  <td><input type="text" value="${account.tradeBank}" name="tradeBank" readonly><br></td>
+  <td><input type="text" value="${account.accountNo}" name="accountNo" readonly><br></td>
 </tr>
 </tbody>
 </table>
-
-<button type="button" onclick="location.href='list'">목록</button>
 
 </form>
 </c:if>

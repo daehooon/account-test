@@ -27,6 +27,7 @@
 <input type="submit" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
 <button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button><p>
+<button type="button" onclick="location.href='list'">목록</button>
 
 사업자번호 <input type="text" name="businessNumber"><br>
 거래처명 <input type="text" name="custom"><br>
@@ -110,8 +111,6 @@
 </tr>
 </tbody>
 </table>
-
-<button type="button" onclick="location.href='list'">목록</button>
 
 </form>
 </body>

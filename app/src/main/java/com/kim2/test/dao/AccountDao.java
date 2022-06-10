@@ -1,13 +1,12 @@
 package com.kim2.test.dao;
 
-import java.util.Map;
 import com.kim2.test.domain.Account;
 
 public interface AccountDao {
 
-  int insert(Map<String,Object> params) throws Exception;
+  int insert(Account account) throws Exception;
 
-  Account findByNo(String businessNumber) throws Exception;
+  Account findByNo(String businessNo) throws Exception;
 
   int delete(Account account) throws Exception;
 
