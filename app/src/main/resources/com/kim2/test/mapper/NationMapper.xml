@@ -3,49 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kim2.test.dao.CustomerDao">
+<mapper namespace="com.kim2.test.dao.NationDao">
   
-  <resultMap id="customerMap" type="customer">
+  <resultMap id="nationMap" type="nation">
   
-    <!-- domain.Customer -->
-    <id column="BUSI_NUM" property="businessNumber"/>
-    <result column="CUSTOM" property="custom"/>
-    <result column="SHORT" property="sshort"/>
-    <result column="CEO" property="ceo"/>
-    <result column="CHARGE_PERSON" property="chargePerson"/>
-    <result column="BUSI_CONDITION" property="businessCondition"/>
-    <result column="ITEM" property="item"/>
-    <result column="POST_NUM" property="postNumber"/>
-    <result column="ADDR1" property="firstAddress"/>
-    <result column="ADDR2" property="secondAddress"/>
-    <result column="TEL" property="tel"/>
-    <result column="FAX" property="fax"/>
-    <result column="HOMEPAGE" property="homepage"/>
-    <result column="CO_YN" property="corporationWhether"/>
-    <result column="FOREIGN_YN" property="foreignWhether"/>
-    <result column="TAX_YN" property="taxWhether"/>
-    
-    <!-- domain.Account -->
-    <result column="BUSI_NUM" property="businessNumber"/>
-    <result column="FACTORY" property="factory"/>
-    <result column="TRADE_BANK" property="tradeBank"/>
-    <result column="ACCOUNT_NUM" property="accountNo"/>
-    
     <!-- domain.Nation -->
-    <result column="NATION_NO" property="nationNo"/>
+    <id column="NATION_NO" property="nationNo"/>
     <result column="NATION_SHORT" property="nationS"/>
     <result column="NATION" property="nation"/>
-    
-    <result column="SPECIAL_RELATION" property="specialRelation"/>
-    <result column="TRADE_STOP" property="tradeStop"/>
-    <result column="CONTRACT_PERIOD_S" property="contractStart"/>
-    <result column="CONTRACT_PERIOD_E" property="contractEnd"/>
-    <result column="REGI_INFO_MAN" property="registrationMan"/>
-    <result column="REGI_INFO_DATE" property="registrationDate"/>
-    <result column="MODI_INFO_MAN" property="modificationMan"/>
-    <result column="MODI_INFO_DATE" property="modificationDate"/>
   </resultMap>
   
+  <!-- 
   <insert id="insert" parameterType="customer">
     insert into custom(BUSI_NUM,CUSTOM,SHORT,CEO,CHARGE_PERSON,BUSI_CONDITION,ITEM, POST_NUM,
       ADDR1,ADDR2,TEL,FAX,HOMEPAGE,CO_YN,FOREIGN_YN,TAX_YN,COUNTRY_ENG,COUNTRY_KOR,
@@ -57,7 +25,6 @@
       #{contractStart},#{contractEnd},#{registrationMan},#{registrationDate},#{modificationMan},#{modificationDate})
   </insert>
   
-  <!-- 거래처 정보 -->
   <select id="findByNo" resultMap="customerMap" parameterType="String">
     select
       c.BUSI_NUM,
@@ -126,36 +93,11 @@
 		    MODI_INFO_DATE=#{modificationDate}
       where BUSI_NUM=#{businessNumber}
   </update>
+   -->
   
-  <select id="findAll" resultMap="customerMap">
-    select * from custom
-      order by REGI_INFO_DATE desc
-  </select>
-  
-  <select id="findByKeyword" resultMap="customerMap" parameterType="string">
-    select 
-      BUSI_NUM,
-      CUSTOM
-    from custom
-    <where>
-      <if test="keyword != null and keyword != ''">
-        BUSI_NUM like CONCAT('%', #{keyword}, '%')
-      </if>
-    </where>
-    order by BUSI_NUM ASC
-  </select>
-  
-  <select id="findByKeywords" resultMap="customerMap" parameterType="string">
-    select
-      BUSI_NUM,
-      CUSTOM
-    from custom
-    <where>
-      <if test="keywordS != null and keywordS != ''">
-        CUSTOM like CONCAT('%', #{keywordS}, '%')
-      </if>
-    </where>
-    order by BUSI_NUM ASC
+  <select id="findAll" resultMap="nationMap">
+    select * from nations
+      order by NATION_NO asc
   </select>
   
 </mapper>

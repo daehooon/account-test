@@ -3,7 +3,6 @@ package com.kim2.test.service;
 import java.util.List;
 import com.kim2.test.domain.Account;
 import com.kim2.test.domain.Customer;
-import com.kim2.test.domain.Nation;
 
 public interface CustomerService {
 
@@ -20,6 +19,4 @@ public interface CustomerService {
   List<Customer> list(String keyword) throws Exception;
 
   List<Customer> lists(String keywords) throws Exception;
-
-  List<Nation> search(String nation) throws Exception;
 }

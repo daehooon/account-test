@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.kim2.test.domain.Account;
 import com.kim2.test.domain.Customer;
-import com.kim2.test.domain.Nation;
 import com.kim2.test.service.AccountService;
 import com.kim2.test.service.CustomerService;
 
@@ -35,7 +34,6 @@ public class CustomerController {
 
     Customer c = new Customer();
     Account a = new Account();
-    Nation n = new Nation();
 
     SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -56,10 +54,7 @@ public class CustomerController {
     c.setCorporationWhether(request.getParameter("corporationWhether"));
     c.setForeignWhether(request.getParameter("foreignWhether"));
     c.setTaxWhether(request.getParameter("taxWhether"));
-
-    n.setNationS(request.getParameter("nationS"));
-    n.setNation(request.getParameter("nation"));
-
+    // nation
     c.setSpecialRelation(request.getParameter("specialRelation"));
     c.setTradeStop(request.getParameter("tradeStop"));
     c.setContractStart(transFormat1.parse(request.getParameter("contractStart")));
@@ -110,7 +105,6 @@ public class CustomerController {
 
     Customer c = new Customer();
     Account a = new Account();
-    //    Nation n = new Nation();
 
     SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -131,10 +125,7 @@ public class CustomerController {
     c.setCorporationWhether(request.getParameter("corporationWhether"));
     c.setForeignWhether(request.getParameter("foreignWhether"));
     c.setTaxWhether(request.getParameter("taxWhether"));
-
-    //    n.setNationS(request.getParameter("nationS"));
-    //    n.setNation(request.getParameter("nation"));
-
+    // nation
     c.setSpecialRelation(request.getParameter("specialRelation"));
     c.setTradeStop(request.getParameter("tradeStop"));
     c.setContractStart(transFormat1.parse(request.getParameter("contractStart")));
@@ -162,12 +153,6 @@ public class CustomerController {
     model.addAttribute("customers", customers);
     model.addAttribute("list", list);
     model.addAttribute("lists", lists);
-  }
-
-  @GetMapping("search")
-  public void search(String nation, Model model) throws Exception {
-    List<Nation> search = customerService.search(nation);
-    model.addAttribute("search", search);
   }
 }
 

@@ -25,6 +25,15 @@
 <form action="add" method="post" name="form">
 <input type='reset'>
 <input type="submit" value="등록">
+
+<script>
+$(document).ready(function () {
+  $("submit[value='등록']").click(function () {
+    alert("저장되었습니다.");
+  });
+});
+</script>
+
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
 <button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
@@ -57,23 +66,18 @@
 과세구분 <select name="taxWhether">
             <option value="Y">과세/면세</option>
             <option value="N">비과세</option>
-         </select>
-</form>
+         </select><br>
 
 
 
 
-<!-- 국가 검색 구현중 -->
-<form action='search' method='get'>
-  <c:if test="${empty nation}">
-    <label>국가</label>
-      <c:if test="${param.nation == nation.nation}">
-	      <input type='text' value="${nation.nationS}"  readonly>
-	      <input type='text' name='nation' value='${param.nation}'>
-	    </c:if>
-    <button>검색</button>
-  </c:if>
-</form><br>
+
+<a href="javascript:nationSearch()">검색</a><br>
+<script type="text/javascript">
+  function nationSearch(){
+	  window.open("<%= request.getContextPath() %>/app/nation/list", "nation", "width=640, height=400")
+  }
+</script>
 
 
 
@@ -82,20 +86,6 @@
 
 
 
-
-<form action="add" method="post" name="form">
-<!-- 
-국가 <input type="text" name="nationS">
-<select name="nation">
-    <option value="대한민국">대한민국</option>
-    <option value="중국">중국</option>
-    <option value="일본">일본</option>
-    <option value="미국">미국</option>
-    <option value="필리핀">필리핀</option>
-    <option value="영국">영국</option>
-</select>
-<button>검색</button><br>
- -->
 <input type="hidden" name="specialRelation" value="N" />
 특수관계자 <input type="checkbox" name="specialRelation" value="Y" /><br>
 
