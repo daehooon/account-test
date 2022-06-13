@@ -98,8 +98,18 @@
   }
 </script>
 
-특수관계자 <input type="checkbox" name="specialRelation" value="${customer.specialRelation}"<c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>><br>
-거래중지 <input type="checkbox" name="tradeStop" value="${tradeStop}" <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>><br>
+
+
+
+<!-- 업데이트 안됨 -->
+특수관계자 <input type="checkbox" name="specialRelation" value="Y" id="specialRelation"/>
+<input type="hidden" name="specialRelation" value='N' id="input_check_hidden"/><br>
+
+거래중지 <input type="checkbox" name="tradeStop" value="Y" id="tradeStop"/>
+<input type="hidden" name="tradeStop" value='N' id="input_check_hidden2"/><br>
+
+
+
 
 <c:set var="contractStart"><fmt:formatDate value="${customer.contractStart}" pattern="yyyy-MM-dd" /></c:set>
 <c:set var="contractEnd"><fmt:formatDate value="${customer.contractEnd}" pattern="yyyy-MM-dd" /></c:set>
@@ -144,6 +154,16 @@
 </form>
 </c:if>
 </body>
+
+<script>
+if(document.getElementById("specialRelation").checked) {
+    document.getElementById("input_check_hidden").disabled = true;
+}
+
+if(document.getElementById("tradeStop").checked) {
+    document.getElementById("input_check_hidden2").disabled = true;
+}
+</script>
 
 </html>
 

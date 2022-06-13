@@ -68,12 +68,11 @@
   }
 </script>
 
-<input type="hidden" name="specialRelation" value="N" />
-특수관계자 <input type="checkbox" name="specialRelation" value="Y" /><br>
+특수관계자 <input type="checkbox" name="specialRelation" value="Y" id="specialRelation"/>
+<input type="hidden" name="specialRelation" value='N' id="input_check_hidden"/><br>
 
-<!-- 값이 무조건 Y로 들어감 -->
-<input type="hidden" name="tradeStop" value="N" />
-거래중지 <input type="checkbox" name="tradeStop" value="Y" /><br>
+거래중지 <input type="checkbox" name="tradeStop" value="Y" id="tradeStop"/>
+<input type="hidden" name="tradeStop" value='N' id="input_check_hidden2"/><br>
 
 <label for="start">계약기간 </label>
 <input type="date" id="contractStart" name="contractStart"
@@ -165,6 +164,16 @@ $(form).on("submit",function(e){
 		        return true;
 		    });
 	});
+</script>
+
+<script>
+if(document.getElementById("specialRelation").checked) {
+    document.getElementById("input_check_hidden").disabled = true;
+}
+
+if(document.getElementById("tradeStop").checked) {
+    document.getElementById("input_check_hidden2").disabled = true;
+}
 </script>
 
 </html>

@@ -2,10 +2,14 @@ mariadb
 ID/PASSWORD : root/1111
 ID/PASSWORD : test/1111
 
+특관 거래중지 업데이트 안됨 (아마 디테일도)
+
 삭제 메시지 이벤트
 등록, 변경 시분초 미등록 버그
+저장 실패 구현
 
 마지막 테스트
 
 list랑 form, detail, updateForm 페이지 join
 트랜잭션 공부 및 적용
+c:out 공부
