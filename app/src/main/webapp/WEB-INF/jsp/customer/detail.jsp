@@ -23,7 +23,7 @@
 <input type='reset'>
 <input type="submit" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
-<button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button>
+<button type="button" id="delete" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
 
 사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber" readonly><br>
@@ -53,16 +53,9 @@
               <option value="N" <c:out value="${customer.taxWhether == 'N' ? 'selected' : ''}"/>>비과세</option>
           </select><br>
 
-          
-국가 <input type="text" value="${nation.nationS}" name="nationS" readonly>
-     <select name="nation"><option <c:out value="${nation.nation == '대한민국' ? 'selected' : ''}"/>>대한민국</option>
-         <option <c:out value="${nation.nation == '중국' ? 'selected' : ''}"/>>중국</option>
-         <option <c:out value="${nation.nation == '일본' ? 'selected' : ''}"/>>일본</option>
-         <option <c:out value="${nation.nation == '미국' ? 'selected' : ''}"/>>미국</option>
-         <option <c:out value="${nation.nation == '필리핀' ? 'selected' : ''}"/>>필리핀</option>
-         <option <c:out value="${nation.nation == '영국' ? 'selected' : ''}"/>>영국</option>
-     </select>
-<button>검색</button><br>
+국    가 <input size=1 type="text" value="${customer.countryEnglish}" name="countryEnglish" readonly>
+            <input type="text" value="${customer.countryKorean}" name="countryKorean" readonly>
+            <button type="button" onclick="location.href='javascript:nationSearch()'">검색</button><br>
 
 특수관계자 <input type="checkbox" name="specialRelation" value="${customer.specialRelation}" <c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>><br>
 거래중지 <input type="checkbox" name="tradeStop" value="${customer.tradeStop}" <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>><br>

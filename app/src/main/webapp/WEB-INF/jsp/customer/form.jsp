@@ -22,18 +22,10 @@
 </head>
 <body>
 <h1>거래처 등록</h1>
-<form action="add" method="post" name="form">
+<form action="add" method="post" name="form" id="form">
+
 <input type='reset'>
 <input type="submit" value="등록">
-
-<script>
-$(document).ready(function () {
-  $("submit[value='등록']").click(function () {
-    alert("저장되었습니다.");
-  });
-});
-</script>
-
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
 <button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
@@ -51,8 +43,6 @@ $(document).ready(function () {
 주소 1 <input type="text" name="firstAddress" id="firstAddress"><br>
 주소 2 <input type="text" name="secondAddress" id="secondAddress"><br>
 
-
-
 전화번호 <input type="text" name="tel"><br>
 팩스번호 <input type="text" name="fax"><br>
 홈페이지 <input type="text" name="homepage"><br>
@@ -68,23 +58,15 @@ $(document).ready(function () {
             <option value="N">비과세</option>
          </select><br>
 
+국    가 <input size=1 type="text" id="pInputS" name="countryEnglish" readonly>
+            <input type="text" id="pInput" name="countryKorean" readonly>
 
-
-
-
-<a href="javascript:nationSearch()">검색</a><br>
+<button type="button" onclick="location.href='javascript:nationSearch()'">검색</button><br>
 <script type="text/javascript">
-  function nationSearch(){
-	  window.open("<%= request.getContextPath() %>/app/nation/list", "nation", "width=640, height=400")
+  function nationSearch() {
+	  window.open("<%= request.getContextPath() %>/app/nation/list", "nation", "width=500, height=500")
   }
 </script>
-
-
-
-
-
-
-
 
 <input type="hidden" name="specialRelation" value="N" />
 특수관계자 <input type="checkbox" name="specialRelation" value="Y" /><br>
@@ -174,6 +156,15 @@ $(form).on("submit",function(e){
    }
    
 });
+</script>
+
+<script type="text/javascript">
+  $(function(){
+	    $("#form").submit(function(event){
+		        alert("저장되었습니다.");
+		        return true;
+		    });
+	});
 </script>
 
 </html>

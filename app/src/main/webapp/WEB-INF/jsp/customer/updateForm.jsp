@@ -24,7 +24,7 @@
 <h1>거래처 수정</h1>
 
 <c:if test="${not empty customer}">
-
+<!-- 수정 완료시 메시지 띄우기 -->
 <form action="update" method="post" name="update">
 
 <input type='reset'>
@@ -88,16 +88,15 @@
               <option value="N" <c:out value="${customer.taxWhether == 'N' ? 'selected' : ''}"/>>비과세</option>
           </select><br>
 
-          
-국가 <input type="text" value="${nation.nationS}" name="nationS">
-     <select name="nation"><option <c:out value="${nation.nation == '대한민국' ? 'selected' : ''}"/>>대한민국</option>
-         <option <c:out value="${nation.nation == '중국' ? 'selected' : ''}"/>>중국</option>
-         <option <c:out value="${nation.nation == '일본' ? 'selected' : ''}"/>>일본</option>
-         <option <c:out value="${nation.nation == '미국' ? 'selected' : ''}"/>>미국</option>
-         <option <c:out value="${nation.nation == '필리핀' ? 'selected' : ''}"/>>필리핀</option>
-         <option <c:out value="${nation.nation == '영국' ? 'selected' : ''}"/>>영국</option>
-     </select>
-<button>검색</button><br>
+국    가 <input size=1 type="text" id="pInputS" value="${customer.countryEnglish}" name="countryEnglish" readonly>
+            <input type="text" id="pInput" value="${customer.countryKorean}" name="countryKorean" readonly>
+
+<button type="button" onclick="location.href='javascript:nationSearch()'">검색</button><br>
+<script type="text/javascript">
+  function nationSearch() {
+    window.open("<%= request.getContextPath() %>/app/nation/list", "nation", "width=500, height=500")
+  }
+</script>
 
 특수관계자 <input type="checkbox" name="specialRelation" value="${customer.specialRelation}"<c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>><br>
 거래중지 <input type="checkbox" name="tradeStop" value="${tradeStop}" <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>><br>
@@ -145,6 +144,7 @@
 </form>
 </c:if>
 </body>
+
 </html>
 
 

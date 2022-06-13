@@ -2,7 +2,7 @@ mariadb
 ID/PASSWORD : root/1111
 ID/PASSWORD : test/1111
 
-국가 검색 구현 (한글자만 검색돼도)
+삭제 메시지 이벤트
 등록, 변경 시분초 미등록 버그
 
 마지막 테스트

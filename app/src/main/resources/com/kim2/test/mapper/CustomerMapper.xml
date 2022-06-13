@@ -24,18 +24,8 @@
     <result column="CO_YN" property="corporationWhether"/>
     <result column="FOREIGN_YN" property="foreignWhether"/>
     <result column="TAX_YN" property="taxWhether"/>
-    
-    <!-- domain.Account -->
-    <result column="BUSI_NUM" property="businessNumber"/>
-    <result column="FACTORY" property="factory"/>
-    <result column="TRADE_BANK" property="tradeBank"/>
-    <result column="ACCOUNT_NUM" property="accountNo"/>
-    
-    <!-- domain.Nation -->
-    <result column="NATION_NO" property="nationNo"/>
-    <result column="NATION_SHORT" property="nationS"/>
-    <result column="NATION" property="nation"/>
-    
+    <result column="COUNTRY_ENG" property="countryEnglish"/>
+    <result column="COUNTRY_KOR" property="countryKorean"/>
     <result column="SPECIAL_RELATION" property="specialRelation"/>
     <result column="TRADE_STOP" property="tradeStop"/>
     <result column="CONTRACT_PERIOD_S" property="contractStart"/>
@@ -44,6 +34,12 @@
     <result column="REGI_INFO_DATE" property="registrationDate"/>
     <result column="MODI_INFO_MAN" property="modificationMan"/>
     <result column="MODI_INFO_DATE" property="modificationDate"/>
+    
+    <!-- domain.Account -->
+    <result column="BUSI_NUM" property="businessNumber"/>
+    <result column="FACTORY" property="factory"/>
+    <result column="TRADE_BANK" property="tradeBank"/>
+    <result column="ACCOUNT_NUM" property="accountNo"/>
   </resultMap>
   
   <insert id="insert" parameterType="customer">
@@ -116,6 +112,8 @@
 		    CO_YN=#{corporationWhether},
 		    FOREIGN_YN=#{foreignWhether},
 		    TAX_YN=#{taxWhether},
+		    COUNTRY_ENG=#{countryEnglish},
+		    COUNTRY_KOR=#{countryKorean},
 		    SPECIAL_RELATION=#{specialRelation},
 		    TRADE_STOP=#{tradeStop},
 		    CONTRACT_PERIOD_S=#{contractStart},

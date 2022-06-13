@@ -54,7 +54,10 @@ public class CustomerController {
     c.setCorporationWhether(request.getParameter("corporationWhether"));
     c.setForeignWhether(request.getParameter("foreignWhether"));
     c.setTaxWhether(request.getParameter("taxWhether"));
-    // nation
+
+    c.setCountryEnglish(request.getParameter("countryEnglish"));
+    c.setCountryKorean(request.getParameter("countryKorean"));
+
     c.setSpecialRelation(request.getParameter("specialRelation"));
     c.setTradeStop(request.getParameter("tradeStop"));
     c.setContractStart(transFormat1.parse(request.getParameter("contractStart")));
@@ -125,7 +128,10 @@ public class CustomerController {
     c.setCorporationWhether(request.getParameter("corporationWhether"));
     c.setForeignWhether(request.getParameter("foreignWhether"));
     c.setTaxWhether(request.getParameter("taxWhether"));
-    // nation
+
+    c.setCountryEnglish(request.getParameter("countryEnglish"));
+    c.setCountryKorean(request.getParameter("countryKorean"));
+
     c.setSpecialRelation(request.getParameter("specialRelation"));
     c.setTradeStop(request.getParameter("tradeStop"));
     c.setContractStart(transFormat1.parse(request.getParameter("contractStart")));
