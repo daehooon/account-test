@@ -101,8 +101,9 @@
 
 
 
-<!-- 업데이트 안됨 -->
-특수관계자 <input type="checkbox" name="specialRelation" value="Y" id="specialRelation"/>
+<!-- 업데이트 안됨 (체크 저장 -> 체크해제 저장 -> NULL 값 들어감 -> 다시 그냥 저장 -> N 값) -->
+특수관계자 <input type="checkbox" name="specialRelation" value="Y" id="specialRelation" 
+  <c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>>
 <input type="hidden" name="specialRelation" value='N' id="input_check_hidden"/><br>
 
 거래중지 <input type="checkbox" name="tradeStop" value="Y" id="tradeStop"/>
