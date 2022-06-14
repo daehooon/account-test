@@ -64,7 +64,9 @@ public class CustomerController {
     c.setContractEnd(transFormat1.parse(request.getParameter("contractEnd")));
     c.setRegistrationMan(request.getParameter("registrationMan"));
     c.setRegistrationDate(transFormat2.parse(request.getParameter("registrationDate")));
-    c.setModificationMan(request.getParameter("modificationMan"));
+
+    // 변경정보, 날짜는 미입력
+    //    c.setModificationMan(request.getParameter("modificationMan"));
     //    c.setModificationDate(transFormat2.parse(request.getParameter("modificationDate")));
 
     a.setBusinessNumber(request.getParameter("businessNumber"));

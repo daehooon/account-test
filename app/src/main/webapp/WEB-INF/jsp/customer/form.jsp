@@ -26,8 +26,8 @@
 
 <input type='reset'>
 <input type="submit" value="등록">
-<button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
-<button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button>
+<button type="button">수정</button>
+<button type="button">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
 
 사업자번호 <input type="text" name="businessNumber"><br>
@@ -62,11 +62,6 @@
             <input type="text" id="pInput" name="countryKorean" readonly>
 
 <button type="button" onclick="location.href='javascript:nationSearch()'">검색</button><br>
-<script type="text/javascript">
-  function nationSearch() {
-	  window.open("<%= request.getContextPath() %>/app/nation/list", "nation", "width=500, height=500")
-  }
-</script>
 
 특수관계자 <input type="checkbox" name="specialRelation" value="Y" id="specialRelation"/>
 <input type="hidden" name="specialRelation" value='N' id="input_check_hidden"/><br>
@@ -140,30 +135,28 @@
     }
 </script>
 
+<script type="text/javascript">
+  function nationSearch() {
+    window.open("<%= request.getContextPath() %>/app/nation/list", "nation", "width=500, height=500")
+  }
+</script>
+
 <script>
 $(form).on("submit",function(e){
    e.preventDefault();
    var businessNumber=$(form.businessNumber).val();
    var custom=$(form.custom).val();
    
-   if (businessNumber == '') {
+   if(businessNumber == '') {
      alert("사업자번호 미입력"); 
    } else if(custom == '') {
      alert("거래처명 미입력")
    } else {
+	   alert("저장되었습니다.");
      form.submit();
    }
    
 });
-</script>
-
-<script type="text/javascript">
-  $(function(){
-	    $("#form").submit(function(event){
-		        alert("저장되었습니다.");
-		        return true;
-		    });
-	});
 </script>
 
 <script>

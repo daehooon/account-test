@@ -25,11 +25,11 @@
 
 <c:if test="${not empty customer}">
 <!-- 수정 완료시 메시지 띄우기 -->
-<form action="update" method="post" name="update">
+<form action="update" method="post" name="update" id="update">
 
 <input type='reset'>
 <input type="submit" value="등록">
-<button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
+<button type="button" onclick="location.href='detail?businessNumber=${customer.businessNumber}'">수정 취소</button>
 <button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
 
@@ -98,19 +98,14 @@
   }
 </script>
 
-
-
-
 <!-- 업데이트 안됨 (체크 저장 -> 체크해제 저장 -> NULL 값 들어감 -> 다시 그냥 저장 -> N 값) -->
 특수관계자 <input type="checkbox" name="specialRelation" value="Y" id="specialRelation" 
   <c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>>
 <input type="hidden" name="specialRelation" value='N' id="input_check_hidden"/><br>
 
-거래중지 <input type="checkbox" name="tradeStop" value="Y" id="tradeStop"/>
+거래중지 <input type="checkbox" name="tradeStop" value="Y" id="tradeStop" 
+  <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>>
 <input type="hidden" name="tradeStop" value='N' id="input_check_hidden2"/><br>
-
-
-
 
 <c:set var="contractStart"><fmt:formatDate value="${customer.contractStart}" pattern="yyyy-MM-dd" /></c:set>
 <c:set var="contractEnd"><fmt:formatDate value="${customer.contractEnd}" pattern="yyyy-MM-dd" /></c:set>
@@ -131,7 +126,7 @@
 등록정보 <input type="text" value="${customer.registrationMan}" name="registrationMan">
 <input type="text" name="registrationDate" value="${registrationDate}" readonly><br>
 
-변경정보 <input type="text" name="modificationMan">
+변경정보 <input type="text" value="${customer.modificationMan}" name="modificationMan">
 <input type="text" name="modificationDate" value="<%= sf.format(nowTime) %>" readonly><br>
 
 <table>

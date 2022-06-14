@@ -18,12 +18,12 @@
 
 <c:if test="${not empty customer}">
 
-<form action="detail" method="get" name="detail">
+<form action="detail" method="get" name="detail" id="detail">
 
 <input type='reset'>
-<input type="submit" value="등록">
+<input type="button" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
-<button type="button" id="delete" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button>
+<button type="submit" onclick="submitForm(location.href='delete?businessNumber=${customer.businessNumber}')">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
 
 사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber" readonly><br>
@@ -35,7 +35,7 @@
 종목 <input type="text" value="${customer.item}" name="item" readonly><br>
 
 우편번호 <input type="text" value="${customer.postNumber}" name="postNumber" id="postNumber" readonly>
-<input type="button" onclick="sample6_execDaumPostcode()" value="검색"><br>
+<input type="button" value="검색"><br>
 주소 1 <input type="text" value="${customer.firstAddress}" name="firstAddress" id="firstAddress" readonly><br>
 주소 2 <input type="text" value="${customer.secondAddress}" name="secondAddress" id="secondAddress" readonly><br>
 
@@ -131,6 +131,15 @@
                 document.getElementById("secondAddress").focus();
             }
         }).open();
+    }
+</script>
+
+<script>
+    function submitForm(action)
+    {
+    	  alert("삭제되었습니다.");
+        document.getElementById('detail').action = action;
+        document.getElementById('detail').submit();
     }
 </script>
 

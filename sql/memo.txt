@@ -2,16 +2,21 @@ mariadb
 ID/PASSWORD : root/1111
 ID/PASSWORD : test/1111
 
-특관 거래중지 업데이트 안됨
-
-삭제 메시지 이벤트
+특관 거래중지 업데이트 NULL (보류)
 국가 검색 개편
-
 등록, 변경 시분초 미등록 버그
-저장 실패 구현
-
-마지막 테스트
 
 list랑 form, detail, updateForm 페이지 join
-트랜잭션 공부 및 적용
-c:out 공부
+트랜잭션 적용
+
+
+
+공부할것 : https://myhappyman.tistory.com/123 (jQuery 클릭이벤트 동적 처리)
+            https://2018-start.tistory.com/21 ([HTML5] colspan, rowspan 속성 사용 방법)
+            https://spring.io/tools (스프링 툴)
+            https://offbyone.tistory.com/367 (JSTL - <c:if>, <c:choose> 태그 사용법)
+            https://bskyvision.com/1008 ([javascript] checkbox 체크되었을 때 1, 
+                                            안 되었을 때 0을 제출하고 싶다면)
+            c:out 공부
+            ajax 공부
+            트랜잭션 공부
