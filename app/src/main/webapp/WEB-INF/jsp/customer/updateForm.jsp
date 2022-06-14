@@ -98,13 +98,13 @@
   }
 </script>
 
-<!-- 업데이트 안됨 (체크 저장 -> 체크해제 저장 -> NULL 값 들어감 -> 다시 그냥 저장 -> N 값) -->
+<!-- 업데이트 버그 (체크 저장 -> 체크해제 저장 -> NULL 값 들어감 -> 다시 그냥 저장 -> N 값) -->
 특수관계자 <input type="checkbox" name="specialRelation" value="Y" id="specialRelation" 
-  <c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'N'}"/>>
+  <c:out value="${customer.specialRelation == 'Y' ? 'checked' : 'unchecked'}"/>>
 <input type="hidden" name="specialRelation" value='N' id="input_check_hidden"/><br>
 
 거래중지 <input type="checkbox" name="tradeStop" value="Y" id="tradeStop" 
-  <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'N'}"/>>
+  <c:out value="${customer.tradeStop == 'Y' ? 'checked' : 'unchecked'}"/>>
 <input type="hidden" name="tradeStop" value='N' id="input_check_hidden2"/><br>
 
 <c:set var="contractStart"><fmt:formatDate value="${customer.contractStart}" pattern="yyyy-MM-dd" /></c:set>
@@ -154,10 +154,14 @@
 <script>
 if(document.getElementById("specialRelation").checked) {
     document.getElementById("input_check_hidden").disabled = true;
+} else(document.getElementById("specialRelation").unchecked) {
+	document.getElementById("input_check_hidden").disabled = false;
 }
 
 if(document.getElementById("tradeStop").checked) {
     document.getElementById("input_check_hidden2").disabled = true;
+} else(document.getElementById("tradeStop").unchecked) {
+	document.getElementById("input_check_hidden2").disabled = flase;
 }
 </script>
 

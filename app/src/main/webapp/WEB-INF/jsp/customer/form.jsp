@@ -151,7 +151,7 @@ $(form).on("submit",function(e){
    } else if(custom == '') {
      alert("거래처명 미입력")
    } else {
-	   alert("저장되었습니다.");
+     alert("저장되었습니다.");
      form.submit();
    }
    
