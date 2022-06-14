@@ -29,8 +29,8 @@
 <tbody>
 
 <tr>
-  <td><b>사업자 번호</b></td>
-  <td><b>거래처명</b></td>
+  <td style="text-align: center;"><b>사업자 번호</b></td>
+  <td style="text-align: center;"><b>거래처명</b></td>
 </tr>
 
 <c:if test="${not empty param.keyword || not empty param.keywords}">

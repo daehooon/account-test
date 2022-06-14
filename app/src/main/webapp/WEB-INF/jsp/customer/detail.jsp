@@ -23,7 +23,7 @@
 <input type='reset'>
 <input type="button" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
-<button type="submit" onclick="submitForm(location.href='delete?businessNumber=${customer.businessNumber}')">삭제</button>
+<button type="submit" onclick="submitForm()">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
 
 사업자번호 <input type="text" value="${customer.businessNumber}" name="businessNumber" readonly><br>
@@ -134,10 +134,10 @@
 </script>
 
 <script>
-    function submitForm(action)
+    function submitForm()
     {
     	  alert("삭제되었습니다.");
-        document.getElementById('detail').action = action;
+        document.getElementById('detail').action = "delete";
         document.getElementById('detail').submit();
     }
 </script>
