@@ -79,7 +79,6 @@
        value="2001-12-31"
        min="2001-01-01" max="2100-01-01"><br>
 
-<!-- 시분초 등록 안됨 -->
 등록정보 <input type="text" name="registrationMan">
 <input type="text" name="registrationDate" value="<%= sf.format(nowTime) %>" readonly/><br>
             

@@ -4,9 +4,8 @@ ID/PASSWORD : test/1111
 
 특관 거래중지 업데이트 NULL (보류)
 국가 검색 개편
-등록, 변경 시분초 미등록 버그
 
-list랑 form, detail, updateForm 페이지 join
+list랑 form, detail, updateForm 페이지 join (Ajax?)
 트랜잭션 적용
 
 
@@ -18,5 +17,5 @@ list랑 form, detail, updateForm 페이지 join
             https://bskyvision.com/1008 ([javascript] checkbox 체크되었을 때 1, 
                                             안 되었을 때 0을 제출하고 싶다면)
             c:out 공부
-            ajax 공부
+            Ajax 공부
             트랜잭션 공부

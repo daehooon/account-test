@@ -23,9 +23,11 @@ create table CUSTOM (
     CONTRACT_PERIOD_S date,
     CONTRACT_PERIOD_E date,
     REGI_INFO_MAN char(10),
-    REGI_INFO_DATE date,
+    -- 안돼 이럼 REGI_INFO_DATE date,
+    REGI_INFO_DATE datetime,
     MODI_INFO_MAN char(10),
-    MODI_INFO_DATE date
+    -- 안된다고... MODI_INFO_DATE date
+    MODI_INFO_DATE datetime
 );
 
 create table ACCOUNT (

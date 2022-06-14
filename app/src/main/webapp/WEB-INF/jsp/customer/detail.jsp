@@ -75,11 +75,10 @@
        
 <c:set var="registrationDate"><fmt:formatDate value="${customer.registrationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
 <c:set var="modificationDate"><fmt:formatDate value="${customer.modificationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></c:set>
-<!-- 시분초 안넘어옴 -->
+
 등록정보 <input type="text" value="${customer.registrationMan}" name="registrationMan">
 <input type="text" name="registrationDate" value="${registrationDate}" readonly><br>
 
-<!-- 변경일 넘기기로 바꾸기 -->
 변경정보 <input type="text" value="${customer.modificationMan}" name="modificationMan">
 <input type="text" name="modificationDate" value="${modificationDate}" readonly><br>
 
