@@ -27,6 +27,7 @@ create table CUSTOM (
     REGI_INFO_DATE datetime,
     MODI_INFO_MAN char(10),
     -- 안된다고... MODI_INFO_DATE date
+    -- 된다는데..?
     MODI_INFO_DATE datetime
 );
 
@@ -37,7 +38,6 @@ create table ACCOUNT (
     ACCOUNT_NUM char(20)
 );
 
--- 국가
 create table NATIONS (
   NATION_NO int primary key not null AUTO_INCREMENT,
   NATION_SHORT char(3),
@@ -56,11 +56,3 @@ insert into NATIONS (NATION_SHORT,NATION)
     values("PHL","필리핀");
 insert into NATIONS (NATION_SHORT,NATION)
     values("GBR","영국");
-
--- 테스트 query
-insert into custom(BUSI_NUM,CUSTOM,SHORT,CEO,CHARGE_PERSON,BUSI_CONDITION,ITEM, POST_NUM,
-      ADDR1,ADDR2,TEL,FAX,HOMEPAGE,CO_YN,FOREIGN_YN,TAX_YN,COUNTRY_ENG,COUNTRY_KOR,
-      SPECIAL_RELATION,TRADE_STOP,CONTRACT_PERIOD_S,CONTRACT_PERIOD_E,REGI_INFO_MAN,REGI_INFO_DATE,
-      MODI_INFO_MAN,MODI_INFO_DATE)
-    values(1,2,3,4,5,6,7,8,9,10,11,12,13,4,5,6,17,18,9,0,
-      "2022-06-02","2022-06-03",21,"2022-06-04",22,"2022-06-05");
