@@ -6,100 +6,16 @@
 <mapper namespace="com.kim2.test.dao.NationDao">
   
   <resultMap id="nationMap" type="nation">
-  
-    <!-- domain.Nation -->
     <id column="NATION_NO" property="nationNo"/>
-    <result column="NATION_SHORT" property="nationS"/>
+    <result column="NATION_SHORT" property="nationShort"/>
     <result column="NATION" property="nation"/>
   </resultMap>
-  
-  <!-- 
-  <insert id="insert" parameterType="customer">
-    insert into custom(BUSI_NUM,CUSTOM,SHORT,CEO,CHARGE_PERSON,BUSI_CONDITION,ITEM, POST_NUM,
-      ADDR1,ADDR2,TEL,FAX,HOMEPAGE,CO_YN,FOREIGN_YN,TAX_YN,COUNTRY_ENG,COUNTRY_KOR,
-      SPECIAL_RELATION,TRADE_STOP,CONTRACT_PERIOD_S,CONTRACT_PERIOD_E,REGI_INFO_MAN,REGI_INFO_DATE,
-      MODI_INFO_MAN,MODI_INFO_DATE)
-    values(#{businessNumber},#{custom},#{sshort},#{ceo},#{chargePerson},#{businessCondition},#{item},
-      #{postNumber},#{firstAddress},#{secondAddress},#{tel},#{fax},#{homepage},#{corporationWhether},
-      #{foreignWhether},#{taxWhether},#{countryEnglish},#{countryKorean},#{specialRelation},#{tradeStop},
-      #{contractStart},#{contractEnd},#{registrationMan},#{registrationDate},#{modificationMan},#{modificationDate})
-  </insert>
-  
-  <select id="findByNo" resultMap="customerMap" parameterType="String">
-    select
-      c.BUSI_NUM,
-      c.CUSTOM,
-      c.SHORT,
-      c.CEO,
-      c.CHARGE_PERSON,
-      c.BUSI_CONDITION,
-      c.ITEM,
-      c.POST_NUM,
-      c.ADDR1,
-      c.ADDR2,
-      c.TEL,
-      c.FAX,
-      c.HOMEPAGE,
-      c.CO_YN,
-      c.FOREIGN_YN,
-      c.TAX_YN,
-      c.COUNTRY_ENG,
-      c.COUNTRY_KOR,
-      c.SPECIAL_RELATION,
-      c.TRADE_STOP,
-      c.CONTRACT_PERIOD_S,
-      c.CONTRACT_PERIOD_E,
-      c.REGI_INFO_MAN,
-      c.REGI_INFO_DATE,
-      c.MODI_INFO_MAN,
-      c.MODI_INFO_DATE,
-      a.FACTORY,
-      a.TRADE_BANK,
-      a.ACCOUNT_NUM
-    from custom c
-      inner join account a on a.BUSI_NUM=c.BUSI_NUM
-    where
-      c.BUSI_NUM=#{value}
-  </select>
-  
-  <delete id="delete" parameterType="String">
-    delete from custom where BUSI_NUM=#{businessNumber}
-  </delete>
-   
-  <update id="update" parameterType="customer">
-    update custom set
-		    CUSTOM=#{custom},
-		    SHORT=#{sshort},
-		    CEO=#{ceo},
-		    CHARGE_PERSON=#{chargePerson},
-		    BUSI_CONDITION=#{businessCondition},
-		    ITEM=#{item},
-		    POST_NUM=#{postNumber},
-		    ADDR1=#{firstAddress},
-		    ADDR2=#{secondAddress},
-		    TEL=#{tel},
-		    FAX=#{fax},
-		    HOMEPAGE=#{homepage},
-		    CO_YN=#{corporationWhether},
-		    FOREIGN_YN=#{foreignWhether},
-		    TAX_YN=#{taxWhether},
-		    SPECIAL_RELATION=#{specialRelation},
-		    TRADE_STOP=#{tradeStop},
-		    CONTRACT_PERIOD_S=#{contractStart},
-		    CONTRACT_PERIOD_E=#{contractEnd},
-		    REGI_INFO_MAN=#{registrationMan},
-		    REGI_INFO_DATE=#{registrationDate},
-		    MODI_INFO_MAN=#{modificationMan},
-		    MODI_INFO_DATE=#{modificationDate}
-      where BUSI_NUM=#{businessNumber}
-  </update>
-   -->
-  
+
   <select id="findAll" resultMap="nationMap">
     select * from nations
       order by NATION_NO asc
   </select>
-  
+
 </mapper>
 
 

@@ -16,29 +16,6 @@ public class DefaultNationService implements NationService {
   }
 
   @Override
-  public int add(Nation nation) throws Exception {
-    nationDao.insert(nation);
-    return nation.getNationNo();
-  }
-
-  @Override
-  public Nation get(int nationNo) throws Exception {
-    return nationDao.findByNo(nationNo);
-  }
-
-  @Override
-  public int delete(Nation nation) throws Exception {
-    nationDao.delete(nation);
-    return nation.getNationNo();
-  }
-
-  @Override
-  public int update(Nation nation) throws Exception {
-    nationDao.update(nation);
-    return nation.getNationNo();
-  }
-
-  @Override
   public List<Nation> list() throws Exception {
     return nationDao.findAll();
   }

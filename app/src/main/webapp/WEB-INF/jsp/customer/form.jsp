@@ -2,8 +2,7 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java"
     contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    trimDirectiveWhitespaces="true"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -58,8 +57,8 @@
             <option value="N">비과세</option>
          </select><br>
 
-국    가 <input size=1 type="text" id="pInputS" name="countryEnglish" readonly>
-            <input type="text" id="pInput" name="countryKorean" readonly>
+국    가 <input size=1 type="text" id="countryEnglish" name="countryEnglish" readonly>
+            <input type="text" id="countryKorean" name="countryKorean" readonly>
 
 <button type="button" onclick="location.href='javascript:nationSearch()'">검색</button><br>
 

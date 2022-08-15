@@ -2,12 +2,13 @@ package com.kim2.test.domain;
 
 public class Nation {
   private int nationNo;
-  private String nationS;
+  private String nationShort;
   private String nation;
 
   @Override
   public String toString() {
-    return "Nation [nationNo=" + nationNo + ", nationS=" + nationS + ", nation=" + nation + "]";
+    return "Nation [nationNo=" + nationNo + ", nationShort=" + nationShort + ", nation=" + nation
+        + "]";
   }
 
   public int getNationNo() {
@@ -16,16 +17,16 @@ public class Nation {
   public void setNationNo(int nationNo) {
     this.nationNo = nationNo;
   }
-  public String getNationS() {
-    return nationS;
+  public String getNationShort() {
+    return nationShort;
   }
-  public void setNationS(String nationS) {
-    this.nationS = nationS;
+  public void setNationShort(String nationShort) {
+    this.nationShort = nationShort;
   }
   public String getNation() {
     return nation;
   }
   public void setNation(String nation) {
     this.nation = nation;
-  }  
+  }
 }

@@ -1,7 +1,6 @@
 <%@ page language="java"
     contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    trimDirectiveWhitespaces="true"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -14,12 +13,6 @@
 
 <h1>국가 검색</h1>
 
-<!-- 국가 검색 click to submit으로 개선하기 -->
-<b>국가 코드 </b><input size=1 type="text" id="cInputS">
-<input type="button" value="입력" onclick="setNationTextS()"><br>
-<b>국가명 </b><input type="text" id="cInput">
-<input type="button" value="입력" onclick="setNationText()"><br><br>
-
 <table border='1'>
 <tbody>
 
@@ -31,8 +24,12 @@
 <c:if test="${not empty nations}">
   <c:forEach items="${nations}" var="n" >
     <tr>
-      <td style="text-align: center;">${n.nationS}</td>
-      <td style="text-align: center;">${n.nation}</td>
+      <td style="text-align: center;">
+        <input type="button" value="${n.nationShort}" name="${n.nation}" onclick="setNation1(value, name)">
+      </td>
+      <td style="text-align: center;">
+        <input type="button" value="${n.nation}" name="${n.nationShort}" onclick="setNation2(value, name)">
+      </td>
     </tr>
 	</c:forEach>
 </c:if>
@@ -40,23 +37,32 @@
 </tbody>
 </table>
 
-<br>
-<input type="button" value="창닫기" onclick="window.close()">
+<br><input type="button" value="초기화" onclick="reset()"><br>
+<br><input type="button" value="창닫기" onclick="window.close()">
 
 </section>
 </body>
 
-<script type="text/javascript">
-  function setNationTextS(){
-	  opener.document.getElementById("pInputS").value = document.getElementById("cInputS").value
-  }
-</script>
+<script>
+"use strict"
 
-<script type="text/javascript">
-  function setNationText(){
-    opener.document.getElementById("pInput").value = document.getElementById("cInput").value
-  }
-</script>
+function setNation1(value, name) {
+	opener.document.getElementById("countryEnglish").value = value
+	opener.document.getElementById("countryKorean").value = name
+	window.close()
+}
 
+function setNation2(value, name) {
+	opener.document.getElementById("countryKorean").value = value
+	opener.document.getElementById("countryEnglish").value = name
+	window.close()
+}
+
+function reset() {
+	opener.document.getElementById("countryEnglish").value = null
+	opener.document.getElementById("countryKorean").value = null
+	window.close()
+}
+</script>
 
 </html>
