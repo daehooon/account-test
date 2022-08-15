@@ -41,28 +41,28 @@
 <br><input type="button" value="창닫기" onclick="window.close()">
 
 </section>
-</body>
 
 <script>
 "use strict"
 
 function setNation1(value, name) {
-	opener.document.getElementById("countryEnglish").value = value
-	opener.document.getElementById("countryKorean").value = name
-	window.close()
+  opener.document.getElementById("countryEnglish").value = value
+  opener.document.getElementById("countryKorean").value = name
+  window.close()
 }
 
 function setNation2(value, name) {
-	opener.document.getElementById("countryKorean").value = value
-	opener.document.getElementById("countryEnglish").value = name
-	window.close()
+  opener.document.getElementById("countryKorean").value = value
+  opener.document.getElementById("countryEnglish").value = name
+  window.close()
 }
 
 function reset() {
-	opener.document.getElementById("countryEnglish").value = null
-	opener.document.getElementById("countryKorean").value = null
-	window.close()
+  opener.document.getElementById("countryEnglish").value = null
+  opener.document.getElementById("countryKorean").value = null
+  window.close()
 }
 </script>
 
+</body>
 </html>

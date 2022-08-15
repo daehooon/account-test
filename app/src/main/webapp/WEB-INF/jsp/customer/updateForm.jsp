@@ -27,8 +27,8 @@
 <form action="update" method="post" name="update" id="update">
 
 <input type='reset'>
-<input type="submit" value="등록">
-<button type="button" onclick="location.href='detail?businessNumber=${customer.businessNumber}'">수정 취소</button>
+<input type="submit" value="수정하기">
+<button type="button" onclick="location.href='detail?businessNumber=${customer.businessNumber}'">취소</button>
 <button type="button" onclick="location.href='delete?businessNumber=${customer.businessNumber}'">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
 
@@ -87,8 +87,8 @@
               <option value="N" <c:out value="${customer.taxWhether == 'N' ? 'selected' : ''}"/>>비과세</option>
           </select><br>
 
-국    가 <input size=1 type="text" id="pInputS" value="${customer.countryEnglish}" name="countryEnglish" readonly>
-            <input type="text" id="pInput" value="${customer.countryKorean}" name="countryKorean" readonly>
+국    가 <input size=1 type="text" id="countryEnglish" value="${customer.countryEnglish}" name="countryEnglish" readonly>
+            <input type="text" id="countryKorean" value="${customer.countryKorean}" name="countryKorean" readonly>
 
 <button type="button" onclick="location.href='javascript:nationSearch()'">검색</button><br>
 <script type="text/javascript">
@@ -147,22 +147,41 @@
 
 </form>
 </c:if>
-</body>
 
 <script>
+"use strict"
+
 if(document.getElementById("specialRelation").checked) {
     document.getElementById("input_check_hidden").disabled = true;
 } else(document.getElementById("specialRelation").unchecked) {
-	document.getElementById("input_check_hidden").disabled = false;
+  document.getElementById("input_check_hidden").disabled = false;
 }
 
 if(document.getElementById("tradeStop").checked) {
     document.getElementById("input_check_hidden2").disabled = true;
 } else(document.getElementById("tradeStop").unchecked) {
-	document.getElementById("input_check_hidden2").disabled = flase;
+  document.getElementById("input_check_hidden2").disabled = flase;
 }
+
+<%-- 220815
+$(form).on("submit",function(e){
+   e.preventDefault();
+   var businessNumber=$(form.businessNumber).val();
+   var custom=$(form.custom).val();
+   
+   if(businessNumber == '') {
+     alert("사업자번호 미입력"); 
+   } else if(custom == '') {
+     alert("거래처명 미입력")
+   } else {
+     alert("수정되었습니다.");
+     form.submit();
+   }
+});
+--%>
 </script>
 
+</body>
 </html>
 
 

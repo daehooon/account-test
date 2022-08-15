@@ -25,8 +25,6 @@
 
 <input type='reset'>
 <input type="submit" value="등록">
-<button type="button">수정</button>
-<button type="button">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
 
 사업자번호 <input type="text" name="businessNumber"><br>
@@ -80,9 +78,6 @@
 
 등록정보 <input type="text" name="registrationMan">
 <input type="text" name="registrationDate" value="<%= sf.format(nowTime) %>" readonly/><br>
-            
-변경정보 <input type="text" name="modificationMan" readonly>
-<input type="text" name="modificationDate" readonly/><br>
 
 <table>
 <tbody>
@@ -103,7 +98,6 @@
 </table>
 
 </form>
-</body>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -153,7 +147,6 @@ $(form).on("submit",function(e){
      alert("저장되었습니다.");
      form.submit();
    }
-   
 });
 </script>
 
@@ -167,6 +160,7 @@ if(document.getElementById("tradeStop").checked) {
 }
 </script>
 
+</body>
 </html>
 
 

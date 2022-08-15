@@ -19,8 +19,6 @@
 
 <form action="detail" method="get" name="detail" id="detail">
 
-<input type='reset'>
-<input type="button" value="등록">
 <button type="button" onclick="location.href='updateForm?businessNumber=${customer.businessNumber}'">수정</button>
 <button type="submit" onclick="submitForm()">삭제</button>
 <button type="button" onclick="location.href='list'">목록</button><p>
@@ -102,7 +100,6 @@
 
 </form>
 </c:if>
-</body>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -135,12 +132,13 @@
 <script>
     function submitForm()
     {
-    	  alert("삭제되었습니다.");
+        alert("삭제되었습니다.");
         document.getElementById('detail').action = "delete";
         document.getElementById('detail').submit();
     }
 </script>
 
+</body>
 </html>
 
 
