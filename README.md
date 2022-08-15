@@ -1,6 +1,5 @@
 ## account-test
 
-#
 testdb
 
 국가 검색 개편 (javascript)
@@ -11,3 +10,5 @@ list랑 form, detail, updateForm 페이지 join (Ajax)
 
 변수 통일하기, 기능 응용으로 코드 줄여 직관성 늘리기 (무슨 코드인지 제대로 알기)
 javascript 공부 (detail.jsp에서 이벤트 처리 코드)
+
+# 2022-08-15
